@@ -16,7 +16,15 @@ Hopefully by tommorow everyone will be somewhat familiar with git.
 At 13:00 a meeting was started. Jón Logi and Gardar showed up. Fuad showed up a little later.
 Jón Logi was todays project manager.
 
-Daily Goals: Jón is going to try to make a user diagram and a class diagram. Gardar is going to try to finish a use case diagram and a wireframe(happy path). Fuad is going to make a github handbook and interface requirements.
+Daily Goals: 
+
+Jón is going to try to make a user diagram and a class diagram. 
+
+Gardar is going to try to finish a use case diagram and a wireframe(happy path). 
+
+Fuad is going to make a github handbook and interface requirements.
 
 Status:
-Everyone was able to meet their goals and everything that was planned was successful.
+After a firm talking to from a Teacher Assistant we became more focused and were planning our time more efficiently.
+
+we were able to meet most of our goals everything was successful except for the class diagram which is almost finished but needs some adjustments.
