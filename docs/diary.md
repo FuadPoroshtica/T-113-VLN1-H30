@@ -28,6 +28,6 @@ Fuad is going to make a github handbook and interface requirements.
 
 #### Status:
 
-After a firm talking to from a Teacher Assistant we became more focused and were planning our time more efficiently.
+After a firm talking to from a Teacher Assistant we became more focused and we started planning our time more efficiently.
 
-we were able to meet most of our goals everything was successful except for the class diagram which is almost finished but needs some adjustments.
+we were able to meet most of our goals everything was successful except for the class diagram which is almost finished.
