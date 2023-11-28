@@ -1,4 +1,4 @@
-##27/11/2023
+## 27/11/2023
 
 At 10:30 a meeting was started. Fuad, Garðar and Jón Logi showed up.
 Fuad was today's project manager.
@@ -11,7 +11,7 @@ Status:
 A github repository was made and a diary started. 
 Hopefully by tommorow everyone will be somewhat familiar with git.
 
-##28/11/2023
+## 28/11/2023
 
 At 13:00 a meeting was started. Jón Logi and Gardar showed up. Fuad showed up a little later.
 Jón Logi was todays project manager.
