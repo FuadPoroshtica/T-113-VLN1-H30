@@ -1,6 +1,6 @@
 ## 27/11/2023
 
-At 10:30 a meeting was started. Fuad, Garðar and Jón Logi showed up.
+At 10:30 a meeting was started. Fuad, Gardar and Jón Logi showed up.
 Fuad was today's project manager.
 
 #### Daily Goals: 
@@ -31,3 +31,13 @@ Fuad is going to make a github handbook and interface requirements.
 After a firm talking to from a Teacher Assistant we became more focused and we started planning our time more efficiently.
 
 we were able to meet most of our goals everything was successful except for the class diagram which is almost finished.
+
+## 29/11/2023
+
+At 09:00 a meeting was started and Fuad, jón and Gardar showed up.
+Jón is todays project manager.
+
+### Daily goals:
+
+Make a pdf document and add everything to it that we have done.
+Prepare and conduct user testing and document the results in the document.
