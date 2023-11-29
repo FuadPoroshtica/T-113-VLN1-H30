@@ -39,9 +39,19 @@ Jón is todays project manager.
 
 ### Daily goals:
 
-Make a pdf document and add everything to it that we have done.
+Update the pdf document and add everything to it that we have done.
+
+Start on wireframe and figure out general design.
+
 Prepare and conduct user testing and document the results in the document.
+
+Complete the class diagram.
 
 ### Status:
 
-Today we were able to go over the class diagram and finish that. We also made some changes and added to the happy path. Did some user testing and got great feedback. And last we added the diagrams to a document and started writing the documentation.
+
+We were communicating alot today and working together on the wireframe, How the wireframe was set up was mostly done by Fuad, Garðar fixed the document to have most of the data and did some user testing, Jón did the Model class diagram and the Data class diagram.
+
+We were told that our idea of a class diagram was incorrect, And thus we Changed it to be two diagrams one for The Model class diagram and another for The UI, Logic, Data class diagram.
+
+We changed how the happy path was supposed to work after some discussion and with very useful user feedback.
