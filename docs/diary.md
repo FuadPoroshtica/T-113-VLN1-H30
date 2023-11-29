@@ -41,3 +41,7 @@ Jón is todays project manager.
 
 Make a pdf document and add everything to it that we have done.
 Prepare and conduct user testing and document the results in the document.
+
+### Status:
+
+Today we were able to go over the class diagram and finish that. We also made some changes and added to the happy path. Did some user testing and got great feedback. And last we added the diagrams to a document and started writing the documentation.
