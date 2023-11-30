@@ -55,3 +55,11 @@ We were communicating alot today and working together on the wireframe, How the 
 We were told that our idea of a class diagram was incorrect, And thus we Changed it to be two diagrams one for The Model class diagram and another for The UI, Logic, Data class diagram.
 
 We changed how the happy path was supposed to work after some discussion and with very useful user feedback.
+
+## 30/11/23
+
+At 09:00 a meeting was started and we went over what we had to do for the day. Fuad, Jón and Gardar showed up.
+
+### Daily goals:
+
+Our goal today is to perfect the details of the model class diagram and the wireframe(happy path). Jón is going to make the model class diagram and Fuad is going to make the wireframe and Gardar is going to write in the report.
