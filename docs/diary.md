@@ -58,7 +58,8 @@ We changed how the happy path was supposed to work after some discussion and wit
 
 ## 30/11/23
 
-At 09:00 a meeting was started and we went over what we had to do for the day. Fuad, Jón and Gardar showed up.
+At 09:00 a meeting was started and we went over what we had to do for the day. Jón and Gardar showed up at 09:00 and Fuad showed up at 11:00.
+Todays project manager is Gardar.
 
 ### Daily goals:
 
