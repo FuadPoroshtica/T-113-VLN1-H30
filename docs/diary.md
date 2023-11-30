@@ -70,3 +70,11 @@ Jón is going to make the model class diagram
 Fuad is going to make the wireframe
 
 Gardar is going to write in the report.
+
+### Status:
+
+both of the class diagrams are fully connected, only thing remaining to add is the visibility of each class
+
+The Wireframe is essentially done just needs to be rearranged for the happy path documentation
+
+The report has gotten more information filled, we now just need to make sure it has all the collected data and looks good.
