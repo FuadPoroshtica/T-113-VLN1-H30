@@ -63,4 +63,10 @@ Todays project manager is Gardar.
 
 ### Daily goals:
 
-Our goal today is to perfect the details of the model class diagram and the wireframe(happy path). Jón is going to make the model class diagram and Fuad is going to make the wireframe and Gardar is going to write in the report.
+Our goal today is to perfect the details of the model class diagram and the wireframe(happy path). 
+
+Jón is going to make the model class diagram
+
+Fuad is going to make the wireframe
+
+Gardar is going to write in the report.
