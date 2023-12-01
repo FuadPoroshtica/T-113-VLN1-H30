@@ -78,3 +78,12 @@ both of the class diagrams are fully connected, only thing remaining to add is t
 The Wireframe is essentially done just needs to be rearranged for the happy path documentation
 
 The report has gotten more information filled, we now just need to make sure it has all the collected data and looks good.
+
+## 01/12/23
+
+Gardar and Jón showed up at 09:00 and Fuad showed up at 11:00. 
+We went over what we did yesterday and what we had to do today.
+
+### Daily goals:
+
+Our goal today is to finish the report and hand it in.
