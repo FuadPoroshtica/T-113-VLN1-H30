@@ -86,7 +86,7 @@ We went over what we did yesterday and what we had to do today.
 
 ### Daily goals:
 
-today our goal is to fix our issues with the class diagram
+Today our goal is to fix our issues with the class diagram
 
 and finish the report, fix some images and hand it in.
 
