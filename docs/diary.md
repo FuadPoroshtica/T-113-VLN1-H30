@@ -86,4 +86,10 @@ We went over what we did yesterday and what we had to do today.
 
 ### Daily goals:
 
-Our goal today is to finish the report and hand it in.
+today our goal is to fix our issues with the class diagram
+
+and finish the report, fix some images and hand it in.
+
+### Status:
+
+We think we managed to complete the document just in time for the turn in.
