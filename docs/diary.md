@@ -93,3 +93,10 @@ and finish the report, fix some images and hand it in.
 ### Status:
 
 We think we managed to complete the document just in time for the turn in.
+
+## 04/12/23
+
+Jón, Fuad and Gardar showed up at 10:00.
+Todays project manager is Fuad.
+
+### Daily goals:
