@@ -100,3 +100,5 @@ Jón, Fuad and Gardar showed up at 10:00.
 Todays project manager is Fuad.
 
 ### Daily goals:
+
+The goals of today are to make csv files and put the data in that. And hopefully start coding a little bit.
