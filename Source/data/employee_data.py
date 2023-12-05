@@ -1,8 +1,10 @@
-import csv
 from model.employee_model import Employee
+import csv
+
+
 class Employee_data:
     def __init__(self) -> None:
-        self.model = "files/employee.csv"
+        self.model = "/files/employee.csv"
     def employeeConstructor(self):
         employee_list = []
         file = csv.DictReader(open(self.employee, 'r'))
