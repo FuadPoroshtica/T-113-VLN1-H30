@@ -1,6 +1,6 @@
 planeId,airlineName,airplaneModel,maxCapacity
-1,FI56,Boeing 787,261
-2,FI80,Airbus A350,292
-3,FI63,Airbus A320,296
-4,FI70,Boeing 777,299
-5,FI88,Boeing 777,380
+FI56,nanair,Boeing 787,261
+FI80,nanair,Airbus A350,292
+FI63,nanair,Airbus A320,296
+FI70,nanair,Boeing 777,299
+FI88,nanair,Boeing 777,380
