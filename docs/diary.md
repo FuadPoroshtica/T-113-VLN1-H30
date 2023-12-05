@@ -109,3 +109,15 @@ Garðar and Fuad are going to write the csv data and figure the format.
 Jon and Olafur are going to write the model classes, and start on the Data classes.
 
 ### Status:
+Gardar finished the data on the CSV and fixed problems with report.
+
+Jon made a basic template for the data and started writing code for the flight model.
+
+Olafur made some classes.
+
+Fuad also made data and did some coding.
+
+## 05/12/23
+
+Olafur showed up at 08:30, Jon showed up at 10, Gardar showed up at 10:30 and Fuad showed up at 11:00
+
