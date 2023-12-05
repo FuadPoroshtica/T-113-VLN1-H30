@@ -1,2 +1,5 @@
 class Employee:
-    def __init__(self,) -> None:
+    def __init__(
+        self,
+    ) -> None:
+        pass
