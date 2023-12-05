@@ -1,3 +1,3 @@
-ID,departure,arrival,employees,plane,starthome,endhome,tickets
-WRONGNA5638,KEF,LYR,?????,Boeing 737,11:30 - 13:30,205
-WRONGNA9228,KEF,GOH,?????,Boeing 737,08:00 - 11:00,250
+ID,departure,arrival,employees,plane,starthome - endhome,tickets
+WRONGNA5638,KEF,LYR,3009907461 2907675667 1308941169,Boeing 737,11:30 - 13:30,205
+WRONGNA9228,KEF,GOH,3009907461 2907675667 1308941169,Boeing 737,08:00 - 11:00,250

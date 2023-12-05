@@ -1,6 +1,6 @@
-class Flight:
-    def __init__(self, flightId, location, employee, plane, startDateHome, startDateReturn, ticketSold) -> None:
-        self.flight_id = flightId
+class Employee:
+    def __init__(self, id, location, Job, plane, startDateHome, startDateReturn, ticketSold) -> None:
+        self.id = id
         self.location = location
         self.employee = employee
         self.plane = plane
