@@ -121,6 +121,8 @@ Fuad also made data and did some coding.
 
 Olafur showed up at 08:30, Jon showed up at 10, Gardar showed up at 10:30 and Fuad showed up at 11:00
 
+Jon is the group leader of the day
+
 ### Daily goals:
 
 The goal of the day is to finish the data layer. And fix all the changes to the Use case diagram.
