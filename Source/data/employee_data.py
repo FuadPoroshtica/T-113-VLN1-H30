@@ -1,4 +1,4 @@
-import csv, os
+import csv
 from model.employee_model import Employee
 
 class Employee_data:
@@ -8,9 +8,9 @@ class Employee_data:
     def employeeConstructor(self):
         employee_list = []
         file = csv.DictReader(open(self.model, 'r'))
-        for line in file:
-            print(line)
-
+        for row in file:
+            employee_list.append(Employee(row["id"],row["name"],row["address"],row["cell_phone"],row["email"],row["title"],row["home_phone"],row["current_trip"],row["plane_licenses"]))
+        return employee_list
     def addEmployeeData(self):
         pass
 
