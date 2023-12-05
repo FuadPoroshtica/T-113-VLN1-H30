@@ -96,9 +96,28 @@ We think we managed to complete the document just in time for the turn in.
 
 ## 04/12/23
 
-Jón, Fuad and Gardar showed up at 10:00.
+Jón, Fuad and Gardar showed up at 10:00, Olafur showed up at 12:00
+
 Todays project manager is Fuad.
 
 ### Daily goals:
 
-The goals of today are to make csv files and put the data in that. And hopefully start coding a little bit.
+We need to figure out how we are going to do this project for the next few days.
+
+Garðar and Fuad are going to write the csv data and figure the format.
+
+Jon and Olafur are going to write the model classes, and start on the Data classes.
+
+### Status:
+Gardar finished the data on the CSV and fixed problems with report.
+
+Jon made a basic template for the data and started writing code for the flight model.
+
+Olafur made some classes.
+
+Fuad also made data and did some coding.
+
+## 05/12/23
+
+Olafur showed up at 08:30, Jon showed up at 10, Gardar showed up at 10:30 and Fuad showed up at 11:00
+
