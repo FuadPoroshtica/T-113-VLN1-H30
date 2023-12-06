@@ -1,4 +1,4 @@
-from plane_ui import planes_menu
+from ui.plane_ui import planes_menu
 
 
 def login_screen():
