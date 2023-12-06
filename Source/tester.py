@@ -3,4 +3,4 @@ a = Employee_data()
 #b=a.employeeConstructor()
 #print(b)
 #self,id,name,address,cell_phone,email,title,home_phone
-#a.add_employee_data(1205921111,"Karl Sveinsson","Austurströnd 19",5551010,"KarlRealEmail@hotmail.com","Pilot",5552020)
+a.add_employee_data("0202921020","Gunna Gunnarsdóttir","Rósarimi 14","8888555","Gunna92@gmail.com","Pilot")
