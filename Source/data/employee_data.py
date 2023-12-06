@@ -7,23 +7,18 @@ class Employee_data:
 
     def employee_constructor(self):
         employee_list = []
-        file = csv.DictReader(open(self.model, 'r'))
-        for row in file:
-            employee_list.append(Employee(row["id"],row["name"],row["address"],row["cell_phone"],row["email"],row["title"],row["home_phone"],row["current_trip"],row["plane_licenses"]))
-        file.close()
+        with open(self.model, newline='', encoding="utf-8") as file:
+            dict_file = csv.DictReader()
+            for row in dict_file:
+                employee_list.append(Employee(row["id"],row["name"],row["address"],row["cell_phone"],row["email"],row["title"],row["home_phone"],row["current_trip"],row["plane_licenses"]))
         return employee_list
-    def add_employee_data(self,id,name,address,cell_phone,email,title,home_phone="None",current_trip="None",plane_licenses="None"):
-        with open(self.model,'r') as file_read:
-            dict_read=csv.DictReader(file_read)
-            # dictRead pairs as keys and items, by reading the first line
-            # you get key : item, turning it into 
-            print(list(dict_read))
-            print()
-            column_names=list(dict(list(dict_read)[0]))
-            print(column_names)
-#        file = csv.DictWriter(open(self.model, 'a'),column_names,lineterminator="\n")
-#        file.writerow({"id":id,"name":name,"address":address,"cell_phone":cell_phone,"email":email,"title":title,"home_phone":home_phone,"current_trip":current_trip,"plane_licenses":plane_licenses})
-#        file.close()
+    def add_employee_data(self, employee):
+        with open(self.model, 'a', newline='', encoding="utf-8") as file:
+            fieldnames = ["id","name","address","cell_phone","email","title","home_phone","current_trip","plane_licenses"]
+            dict_write=csv.DictWriter(file,fieldnames=fieldnames)
+            dict_write.writerow({"id":employee.id,"name":employee.name,"address":employee.address,"cell_phone":employee.cell_phone,"email":employee.email,"title":employee.title,"home_phone":employee.home_phone,"current_trip":employee.current_trip,"plane_licenses":employee.plane_licenses})
+ 
+
     def modify_employee_data(self,id,type):
         file = csv.DictReader(open(self.model, 'rw'))
         for row in file:
