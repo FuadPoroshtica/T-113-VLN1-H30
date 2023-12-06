@@ -131,3 +131,5 @@ The goal of the day is to finish the data layer. And fix all the changes to the 
 
 We were able to finish most of the data layer and fix what was wrong with the use case diagram.
 
+## 06/12/23
+
