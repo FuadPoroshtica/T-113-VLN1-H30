@@ -5,9 +5,6 @@
 
 
 class MainMenu_UI:
-    def __init__(self):
-        pass
-
     def menu_output(self):
         print("Main Menu")
         print("1. Locations")
@@ -19,4 +16,4 @@ class MainMenu_UI:
         print("q. Quit")
 
     def input_prompt(self):
-        input = input("Select option: ")
+        user_input = input("Select option: ")
