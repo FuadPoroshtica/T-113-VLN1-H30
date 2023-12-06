@@ -1,7 +1,10 @@
 # main_menu.py
 
+from ui.flight_crew_ui import flight_crew_menu
 from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
+from ui.flight_schedule_ui import flight_schedule_menu
+from ui.staff_schedule_ui import staff_schedule_menu
 
 
 def login_screen():
@@ -23,6 +26,7 @@ def login_screen():
 def main_menu():
     while True:
         print("Main Menu")
+        print("-----------")
         print("1. Locations")  
         print("2. Flight crew")
         print("3. Planes")
@@ -37,13 +41,13 @@ def main_menu():
             if choice == '1':
                 locations_menu(main_menu)
         elif choice == '2':
-            pass  # placeholder
+            flight_crew_menu(main_menu)
         elif choice == '3':
             planes_menu(main_menu)
-        elif choice == '4':
-            pass  # placeholder
+        if choice == '4':
+            flight_schedule_menu(main_menu)
         elif choice == '5':
-            pass  # placeholder
+            staff_schedule_menu(main_menu)
         elif choice == '6':
             login_screen() 
         elif choice == 'Q':
