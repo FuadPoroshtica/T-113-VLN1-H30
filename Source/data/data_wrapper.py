@@ -1,12 +1,11 @@
-from data.customer_data import Customer_Data
-
+from data.employee_data import Employee_Data
+from data.flight_data import Flight_Data
+from data.location_data import Location_Data
+from data.plane_data import Plane_Data
 
 class Data_Wrapper:
     def __init__(self):
-        self.customer_data = Customer_Data()
-
-    def get_all_customers(self):
-        return self.customer_data.read_all_customers()
-
-    def create_customer(self, customer):
-        return self.customer_data.create_customer(customer)
+        self.employee_data = Employee_Data()
+        self.flight_data =Flight_Data()
+        self.location_data = Location_Data()
+        self.plane_data = Plane_Data()
