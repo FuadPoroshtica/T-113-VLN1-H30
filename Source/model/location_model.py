@@ -1,9 +1,9 @@
 class Location:
-    def __init__(self, location_code_id, country, airport, flight_time, distance_from_iceland, manager_name, emergency_phone ):
-        self.location_code_id = location_code_id
-        self.country = country
-        self.airport = airport
-        self.flight_time = flight_time
-        self.distance_from_iceland = distance_from_iceland
-        self.manager_name = manager_name
-        self.emergency_phone = emergency_phone
+    def __init__(self,id,country, airport_code, flight_duration, distance, manager_name, emergency_phone):
+        self.id = str(id)
+        self.country = str(country)
+        self.airport_code = str(airport_code)
+        self.flight_duration = str(flight_duration)
+        self.distance = str(distance)
+        self.manager_name = str(manager_name)
+        self.emergency_phone = str(emergency_phone)

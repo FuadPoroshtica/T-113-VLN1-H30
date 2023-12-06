@@ -1,33 +1,27 @@
 import csv
+from model.location_model import Location
 
 class location_data():
-    def __init__(self, csv_doc, model) -> None:
-        self.location = csv_doc
-        self.model = model
-        self.data = []
-        self.locationConstructor()
+    def __init__(self) -> None:
+        self.model = "files/locations.csv"
+        self.fieldname = ["id","country","airport_code","flight_duration","distance","manager_name","emergency_phone"]
 
-    def locationConstructor(self):
-        with open(self.location, 'r') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                if row['airplaneModel'] == self.model:
-                    self.data.append(row)
+    def location_constructor(self):
+        location_list = []
+        with open(self.model, newline='', encoding="utf-8") as file:
+            dict_file = csv.DictReader(file)
+            for row in dict_file:
+                location_list.append(Location(row["id"],row["country"],row["airport_code"],row["flight_duration"],row["distance"],row["manager_name"],row["emergency_phone"]))
+        return location_list
 
-    def addLocationData(self, locationCodeId, country, airPort, flightTime, distanceFromIceland, managerName, EmergencyPhone):
-        with open(self.location, 'a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([locationCodeId, country, airPort, flightTime, distanceFromIceland, managerName, EmergencyPhone])
+    def add_location_data(self,location):
+        with open(self.model, 'a', newline='', encoding="utf-8") as file:
+            dict_write=csv.DictWriter(file,fieldname=self.fieldname)
+            dict_write.writerow({"id":location.id,"country":location.country,"airport_code":location.airport_code,"flight_duration":location.flight_duration,"distance":location.distance,"manager_name":location.manager_name,"emergency_phone":location.emergency_phone})        
 
-    def modifyLocationData(self, locationCodeId, new_data):
-        with open(self.location, 'r') as file:
-            reader = csv.DictReader(file)
-            rows = list(reader)
-        
-        with open(self.location, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(reader.fieldnames)
-            for row in rows:
-                if row['locationCodeId'] == locationCodeId:
-                    row.update(new_data)
-                writer.writerow(row.values())
+    def modify_location_data(self,location_list):
+        with open(self.model,'w', newline='', encoding="utf-8") as file:
+            dict_write = csv.DictWriter(file,fieldnames=self.fieldname)
+            dict_write.writerow({self.fieldname[i]: self.fieldname[i] for i in range(len(self.fieldname))})
+            for location in location_list:
+                dict_write.writerow({"id":location.id,"country":location.country,"airport_code":location.airport_code,"flight_duration":location.flight_duration,"distance":location.distance,"manager_name":location.manager_name,"emergency_phone":location.emergency_phone})        

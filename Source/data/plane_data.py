@@ -1,50 +1,27 @@
 import csv
+from model.plane_model import Plane
 
-from ../model/plane_model import Plane 
+class plane_data():
+    def __init__(self) -> None:
+        self.model = "files/planes.csv"
+        self.fieldname = ["id","country","airport_code","flight_duration","distance","manager_name","emergency_phone"]
 
-class Plane_data():
-    def __init__(self, csv_doc, model) -> None:
-        self.csv_doc = csv_doc
-        self.model = model
-        self.data = []
-        self.planeConstructor()
+    def plane_constructor(self):
+        plane_list = []
+        with open(self.model, newline='', encoding="utf-8") as file:
+            dict_file = csv.DictReader(file)
+            for row in dict_file:
+                location_list.append(Plane(row["id"],row["country"],row["airport_code"],row["flight_duration"],row["distance"],row["manager_name"],row["emergency_phone"]))
+        return location_list
 
-    def planeConstructor(self):
-        """Reads plane data from the CSV and stores it as Plane objects."""
-        with open(self.csv_doc, 'r') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                plane = Plane(
-                    row['planeId'],
-                    row['airlineName'],
-                    row['airplaneModel'],
-                    int(row['maxCapacity'])
-                )
-                self.data.append(plane)
+    def add_plane_data(self,plane):
+        with open(self.model, 'a', newline='', encoding="utf-8") as file:
+            dict_write=csv.DictWriter(file,fieldname=self.fieldname)
+            dict_write.writerow({})
 
-    def addPlaneData(self, planeId, airlineName, airplaneModel, maxCapacity):
-        """Adds a new plane's data to the CSV."""
-        new_plane = Plane(planeId, airlineName, airplaneModel, maxCapacity)
-        self.data.append(new_plane)
-        with open(self.csv_doc, 'a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([new_plane.get_plane_id(), new_plane.get_airline_name(), new_plane.get_airplane_model(), new_plane.get_max_capacity()])
-
-    def modifyPlaneData(self, planeId, new_airlineName):
-        """Modifies data in the CSV for a specific plane."""
-        modified = False
-        for plane in self.data:
-            if plane.get_plane_id() == planeId:
-                plane.set_airline_name(new_airlineName)
-                modified = True
-        
-        if modified:
-            with open(self.csv_doc, 'w', newline='') as file:
-                writer = csv.writer(file)
-                writer.writerow(['planeId', 'airlineName', 'airplaneModel', 'maxCapacity'])
-                for plane in self.data:
-                    writer.writerow([plane.get_plane_id(), plane.get_airline_name(), plane.get_airplane_model(), plane.get_max_capacity()])
-
-
-plane_data = Plane_data("../files/planes.csv")
-
+    def modify_location_data(self,location_list):
+        with open(self.model,'w', newline='', encoding="utf-8") as file:
+            dict_write = csv.DictWriter(file,fieldnames=self.fieldname)
+            dict_write.writerow({self.fieldname[i]: self.fieldname[i] for i in range(len(self.fieldname))})
+            for location in location_list:
+                dict_write.writerow({"id":location.id,"country":location.country,"airport_code":location.airport_code,"flight_duration":location.flight_duration,"distance":location.distance,"manager_name":location.manager_name,"emergency_phone":location.emergency_phone})        
