@@ -38,13 +38,12 @@ def main_menu():
         choice = input("Select option: ").upper()
 
         if choice == '1':
-            if choice == '1':
-                locations_menu(main_menu)
+           locations_menu(main_menu)
         elif choice == '2':
             flight_crew_menu(main_menu)
         elif choice == '3':
             planes_menu(main_menu)
-        if choice == '4':
+        elif choice == '4':
             flight_schedule_menu(main_menu)
         elif choice == '5':
             staff_schedule_menu(main_menu)
