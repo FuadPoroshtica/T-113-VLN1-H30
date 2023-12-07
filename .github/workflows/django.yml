@@ -27,4 +27,4 @@ jobs:
         pip install -r Source/requirements.txt
     - name: Run login_screen
       run: |
-        python Source/main.py login_screen
+        python Source/main.py
