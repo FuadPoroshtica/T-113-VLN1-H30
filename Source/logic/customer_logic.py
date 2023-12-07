@@ -1,5 +1,5 @@
 from data.customer_data import Customer_Data
-from model.customer import Customer
+from model.location_model import Customer
 
 class Customer_Logic:
     def __init__(self, data_connection):
