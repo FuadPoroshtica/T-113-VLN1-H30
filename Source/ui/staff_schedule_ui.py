@@ -1,7 +1,11 @@
-def staff_schedule_menu(return_to_main_menu):
-    # Display the current staff schedule
-    print_staff_schedule()
+from logic.logic_wrapper import LogicWrapper
+from data.data_wrapper import Data_Wrapper
 
+# Initialize Data_Wrapper and LogicWrapper
+data_wrapper = Data_Wrapper()
+logic_wrapper = LogicWrapper(data_wrapper)
+
+def staff_schedule_menu(return_to_main_menu):
     while True:
         print("\nStaff Schedule Menu")
         print("--------------------")
@@ -36,12 +40,25 @@ def staff_schedule_menu(return_to_main_menu):
             print("Invalid choice. Please choose again.")
 
 def print_staff_schedule():
-    pass    # placeholder 
-
-def modify_schedule():
-    pass    # placeholder
+    all_employees = data_wrapper.get_all_employees()
+    for employee in all_employees:
+        print(f"{employee.id}: {employee.name}, {employee.title}")
 
 def create_cabin_crew():
+    print("Create New Cabin Crew Member")
+    id = input("Enter ID: ")
+    name = input("Enter Name: ")
+    address = input("Enter Address: ")
+    cell_phone = input("Enter Cell Phone: ")
+    email = input("Enter Email: ")
+    title = input("Enter Title: ")
+    home_phone = input("Enter Home Phone (optional): ")
+
+
+    logic_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone)
+    print("Cabin crew member added successfully.")
+
+def modify_schedule():
     pass    # placeholder
 
 def view_staff_not_working():
@@ -52,3 +69,10 @@ def view_staff_working():
 
 def search_flight_crew():
     pass    # placeholder
+
+# Replace this with the actual function or way you return to the main menu
+def return_to_main_menu():
+    pass
+
+# Example: Start the staff schedule menu
+staff_schedule_menu(return_to_main_menu)
