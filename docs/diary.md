@@ -133,3 +133,33 @@ We were able to finish most of the data layer and fix what was wrong with the us
 
 ## 06/12/23
 
+We had a meeting at 10:00 Garðar, Jon and Olafur showed up, Fuad was sick today but we communicated on discord.
+
+Jon is the project manager today.
+
+Fuad is gonna start on location logic
+
+Garðar is going to work on employee logic
+
+Jon is going to finish the data layer
+
+Ólafur is gonna make the UI menus so we can just easily connect the our features
+
+### Status
+
+The progress is good but we found some issues with our raw data so we had to make it more detailed. We also had to update the model diagram to fit.
+
+Fuad and Garðar both managed to 
+### 07/12/23
+
+we had a meeting at 10:30 Fuad, Jón, and Ólafur showed up, Garðar went to Amsterdam, we will have to work longer hours next week to make up for that.
+
+### Daily goals.
+
+Jon is the project manager today.
+
+Fuad is gonna start writing plane logic.
+
+Jon is gonna try to set up the flight logic
+
+Ólafur is gonna try to get and make data from UI to logic to data.
