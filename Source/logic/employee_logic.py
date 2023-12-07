@@ -1,7 +1,7 @@
 from data.employee_data import Employee_data
 from model.employee_model import Employee
 
-class EmployeeLogic:
+class employee_logic:
     def __init__(self):
         self.employee_data = Employee_data()
 
