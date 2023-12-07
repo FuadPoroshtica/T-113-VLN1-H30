@@ -5,25 +5,25 @@ class EmployeeLogic:
     def __init__(self):
         self.employee_data = Employee_data()
 
-    def getEmployees(self):
+    def get_employees(self):
         return self.employee_data.employee_constructor()
 
-    def getPilots(self):
-        return [emp for emp in self.getEmployees() if emp.title == 'Pilot']
+    def get_pilots(self):
+        return [emp for emp in self.get_employees() if emp.title == 'Pilot']
 
-    def getStewards(self):
-        return [emp for emp in self.getEmployees() if emp.title == 'Steward']
+    def get_stewards(self):
+        return [emp for emp in self.get_employees() if emp.title == 'Steward']
 
-    def doesEmployeeExist(self, employee_id):
-        return any(emp.id == employee_id for emp in self.getEmployees())
+    def does_employee_exist(self, employee_id):
+        return any(emp.id == employee_id for emp in self.get_employees())
 
-    def changeSpecificEmployee(self, employee_id, updated_info):
+    def change_specific_employee(self, employee_id, updated_info):
         # Logic to update employee details
         # You need to define how updated_info is structured and how it updates the employee
         pass
 
-    def searchLicense(self, license_type):
-        return [emp for emp in self.getEmployees() if license_type in emp.plane_licenses]
+    def search_license(self, license_type):
+        return [emp for emp in self.get_employees() if license_type in emp.plane_licenses]
 
-    def licenseSort(self):
-        return sorted(self.getEmployees(), key=lambda emp: emp.plane_licenses)
+    def license_sort(self):
+        return sorted(self.get_employees(), key=lambda emp: emp.plane_licenses)
