@@ -154,9 +154,9 @@ Fuad and Garðar both managed to
 
 we had a meeting at 10:30 Fuad, Jón, and Ólafur showed up, Garðar went to Amsterdam, we will have to work longer hours next week to make up for that.
 
-### Daily goals.
-
 Jon is the project manager today.
+
+### Daily goals.
 
 Fuad is gonna start writing plane logic.
 
