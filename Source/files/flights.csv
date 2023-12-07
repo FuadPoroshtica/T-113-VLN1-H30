@@ -1,7 +1,7 @@
-id,initial_location,arrival_location,employees,plane,start_home,start_foreign,tickets
-NA011,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205
-NA011,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205
-NA011,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205
-NA021,KEF,SHA,id1 id2 id3,Boeing 737,2023:12:08 15:25,2023:12:09 02:25,210
-NA011,KEF,HAM,id1 id2 id3,Boeing 737,2024:01:03 05:20,2024:01:03 14:25,204
-NA021,KEF,SHA,id1 id2 id3,Boeing 737,2024:02:07 07:25,2024:01:03 19:25,260
+id,initial_location,arrival_location,employees,plane,start_home,start_foreign,tickets_home,tickets_foreign
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205,223
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205,150
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205,277
+NA020,KEF,SHA,id1 id2 id3,Boeing 737,2023:12:08 15:25,2023:12:09 02:25,210,160
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2024:01:03 05:20,2024:01:03 14:25,204,124
+NA020,KEF,SHA,id1 id2 id3,Boeing 737,2024:02:07 07:25,2024:01:03 19:25,260,190
