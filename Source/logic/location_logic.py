@@ -13,11 +13,10 @@ class Location_logic:
     def changeSpecificLocation(self, location_id, updated_info):
         for Location in self.getLocations():
             if Location.id == location_id:
-                Location.location_type = updated_info.get('location_type', Location.location_type)
                 Location.manager_name = updated_info.get('manager_name', Location.name)
                 Location.emergency_phone = updated_info.get('emergency_phone', Location.address)
-                break   
-
+                break
+            
     def searchLocation(self, location_type):
         return [Location for Location in self.getLocations() if location_type in Location.location_type]
 
