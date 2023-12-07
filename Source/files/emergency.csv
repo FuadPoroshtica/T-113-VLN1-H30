@@ -1,0 +1,30 @@
+id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
+3009907461,Doddi Doddason,Fellsmúli 1,8998801,doddi@gmail.com,Pilot,None,None,Boeing 777
+2907675667,Felecia Moye,Smáragata 2,8227780,felecia@gmail.com,Pilot,None,None,Boeing 777;Boeing 787
+1308941169,Alex Kárasson,Bollagata 3,7782456,alex@gmail.com,Cabin Crew,6353331,None,None
+1205921111,Karl Sveinsson,Austurströnd 19,5551010,KarlRealEmail@hotmail.com,Pilot,5552020,None,None
+0202921020,Gunna Gunnarsdóttir,Rósarimi 14,8888555,Gunna92@gmail.com,Pilot,None,None,None
+2806009975,Gauti Guðmundsson,Austurbrekka 2,6222412,Gautigudmunds@gmail.com,Cabin Crew,None,None,None
+
+id,initial_location,arrival_location,employees,plane,start_home,start_foreign,tickets_home,tickets_foreign
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205,223
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205,150
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2023:11:08 13:25,2023:11:09 19:25,205,277
+NA020,KEF,SHA,id1 id2 id3,Boeing 737,2023:12:08 15:25,2023:12:09 02:25,210,160
+NA010,KEF,HAM,id1 id2 id3,Boeing 737,2024:01:03 05:20,2024:01:03 14:25,204,124
+NA020,KEF,SHA,id1 id2 id3,Boeing 737,2024:02:07 07:25,2024:01:03 19:25,260,190
+
+id,country,airport_code,flight_duration,distance,manager_name,emergency_phone
+01,Germany,HAM,3h 30m,9167 km,Isabella Garcia,49 1122334455
+02,China,SHA,11h 30m,6818 km,Chen Li,86 11443555122
+03,Italy,ROM,3h 30m,1884 km,Stefano Luca,39 087654321
+04,Denmark,ROM,3h 30m,1884 km,Johan Johansen,39 087654321
+05,Norway,ROM,3h 30m,1884 km,Mikel Jensen,39 087654321
+06,United Kingdom,ROM,3h 30m,1884 km,Michael Jones,39 087654321
+
+id,airline_name,airplane_model,max_capacity
+TF-ABC,NA,Boeing 787,261
+TF-DAR,NA,Airbus A350,292
+TF-GOL,NA,Airbus A320,296
+TF-FUN,NA,Boeing 777,299
+TF-RCA,NA,Boeing 777,380
