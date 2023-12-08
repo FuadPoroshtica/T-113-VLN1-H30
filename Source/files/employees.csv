@@ -6,4 +6,4 @@ id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
 0202921020,Gunna Gunnarsdóttir,Rósarimi 14,8888555,Gunna92@gmail.com,Pilot,None,None,None
 2806009975,Gauti Guðmundsson,Austurbrekka 2,6222412,Gautigudmunds@gmail.com,Cabin Crew,None,None,None
 0310963169,Olafur,Eskihlid,8661994,olafurvalfells@gmail.com,Cabin Crew,None,None,None
-1231312222,Jon spæjó,Runarit 16,1800100,TheRealSpy@spyservice.is,Cabin Crew,1000200,,
+1231312222,Jon spæjó,Runarit 16,1800100,TheRealSpy@spyservice.is,Cabin Crew,1000200,None,None
