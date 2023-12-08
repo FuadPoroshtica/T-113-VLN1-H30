@@ -1,4 +1,5 @@
-# Employee_Logic.py
+# employee_logic.py
+from model.employee_model import Employee 
 
 class EmployeeLogic:
     def __init__(self, data_wrapper):
@@ -7,12 +8,16 @@ class EmployeeLogic:
     def add_new_employee(self, id, name, address, cell_phone, email, title, home_phone="None", current_trip="None", plane_licenses="None"):
         if self.verify_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses) == True:
             pass
-            #self.data_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
+            # add employee currently disabled while testing verify
+            # self.data_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
+            
         else:
             print("Invalid Data")
     def update_employee(self, id, new_data):
         self.data_wrapper.modify_employee(id, new_data)
 
+    def get_all_employees(self):
+        return self.data_wrapper.get_all_employees()
     ##### BELOW NEEDS FIXING #####
     def verify_employee(self, id, name, address, cell_phone, email, title, home_phone="None", current_trip="None", plane_licenses="None"):
         possible = True
@@ -36,25 +41,19 @@ class EmployeeLogic:
         else:
             return False
 
-    def get_employees(self):
-        return self.employee_data.employee_constructor()
+    def get_employee_by_id(self, employee_id):
+        return self.data_wrapper.get_employee_by_id(employee_id)
 
-    def get_pilots(self):
-        return [emp for emp in self.get_employees() if emp.title == 'Pilot']
+    def update_employee_details(self, employee_id, new_details):
+        employee = self.get_employee_by_id(employee_id)
+        if not employee:
+            return
 
-    def get_stewards(self):
-        return [emp for emp in self.get_employees() if emp.title == 'Steward']
+        for key, value in new_details.items():
+            if value is not None: 
+                setattr(employee, key, value)
 
-    def does_employee_exist(self, employee_id):
-        return any(emp.id == employee_id for emp in self.get_employees())
+        self.data_wrapper.modify_employee(employee)
 
-    def change_specific_employee(self, employee_id, updated_info):
-        # Logic to update employee details
-        # You need to define how updated_info is structured and how it updates the employee
-        pass
-
-    def search_license(self, license_type):
-        return [emp for emp in self.get_employees() if license_type in emp.plane_licenses]
-
-    def license_sort(self):
-        return sorted(self.get_employees(), key=lambda emp: emp.plane_licenses)
+    def is_employee_a_pilot(self, employee):
+        return employee.title.lower() == 'pilot'
