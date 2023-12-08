@@ -5,7 +5,7 @@ class Flight:
         self.arrival_location = str(arrival_location)
         self.employees = list(employees)
         self.plane = str(plane)
-        self.start_home = start_home
-        self.start_foreign = start_foreign
-        self.tickets_home = tickets_home
-        self.tickets_foreign = tickets_foreign
+        self.start_home = str(start_home)
+        self.start_foreign = str(start_foreign)
+        self.tickets_home = int(tickets_home)
+        self.tickets_foreign = int(tickets_foreign)

@@ -1,6 +1,6 @@
 
 class Flight_logic:
-    def __init__(self):
+    def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
 
     def get_flights():

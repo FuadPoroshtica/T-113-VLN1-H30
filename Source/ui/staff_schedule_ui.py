@@ -1,9 +1,9 @@
-from logic.logic_wrapper import LogicWrapper
+from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
-logic_wrapper = LogicWrapper(data_wrapper)
+logic_wrapper = Logic_Wrapper(data_wrapper)
 
 def staff_schedule_menu(return_to_main_menu):
     while True:

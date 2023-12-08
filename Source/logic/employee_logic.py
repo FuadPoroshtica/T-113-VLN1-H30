@@ -27,7 +27,7 @@ class Employee_Logic:
                     id_year=int(id[4,6])
                     id_month=int(id[2,4])
                     id_day=int(id[0,2])
-                    valid_date = datetime.date(id_year,id_month,id_day)
+                    datetime.date(id_year,id_month,id_day)
                 except ValueError:
                     possible=False
             elif len(name)<3:

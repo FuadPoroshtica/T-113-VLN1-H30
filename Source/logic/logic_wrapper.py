@@ -1,15 +1,15 @@
 # Logic_Wrapper.py
 from logic.employee_logic import Employee_Logic
 from logic.flight_logic import Flight_logic
-from logic.location_logic import Location_Logic
-from logic.plane_logic import Plane_Logic
+#from logic.location_logic import Location_Logic
+#from logic.plane_logic import Plane_Logic
 
-class LogicWrapper:
+class Logic_Wrapper:
     def __init__(self, data_wrapper):
         self.employee_logic = Employee_Logic(data_wrapper)
         self.flight_logic = Flight_logic(data_wrapper)
-        self.location_logic = Location_Logic(data_wrapper)
-        self.plane_logic = Plane_Logic(data_wrapper)
+        #self.location_logic = Location_Logic(data_wrapper)
+        #self.plane_logic = Plane_Logic(data_wrapper)
 
 
     def add_employee(self, id, name, address, cell_phone, email, title, home_phone=None, current_trip=None, plane_licenses=None):
