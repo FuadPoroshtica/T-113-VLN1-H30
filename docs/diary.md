@@ -150,7 +150,7 @@ Jon is going to finish the data layer
 The progress is good but we found some issues with our raw data so we had to make it more detailed. We also had to update the model diagram to fit.
 
 Fuad and Garðar both managed to 
-### 07/12/23
+## 07/12/23
 
 we had a meeting at 10:30 Fuad, Jón, and Ólafur showed up, Garðar went to Amsterdam, we will have to work longer hours next week to make up for that.
 
@@ -163,3 +163,24 @@ Fuad is gonna start writing plane logic.
 Jon is gonna try to set up the flight logic
 
 Ólafur is gonna try to get and make data from UI to logic to data.
+
+### Status
+
+Ólafur managed to establish a connection from employee ui to logic to data, but in doing so we realized that alot of our code is inconsistant in some places.
+
+Jón didn't write the flight logic instead focused on fixing the inconsistant typing and bugs that started popping up.
+
+Fuad worked on the 
+
+## 08/12/23
+
+we held a meeting at 11:00 Ólafur and Jón showed up fuad showed up at 13:30, Garðar is still in amsterdam but will be here monday.
+
+### Daily goals
+
+Ólafur was is going to rewrite some options in ui as they no longer make sense.
+
+Jón was gonna start on making sure info was allowed to be passed into csv.
+
+
+
