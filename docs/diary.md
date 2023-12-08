@@ -178,9 +178,9 @@ we held a meeting at 11:00 Ólafur and Jón showed up fuad showed up at 13:30, G
 
 ### Daily goals
 
-Ólafur was is going to rewrite some options in ui as they no longer make sense.
+Ólafur is going to rewrite some options in ui as they no longer make sense.
 
-Jón was gonna start on making sure info was allowed to be passed into csv.
+Jón will start making sure info was allowed to be passed into csv.
 
 
 
