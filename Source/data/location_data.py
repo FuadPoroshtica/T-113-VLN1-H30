@@ -1,7 +1,7 @@
 import csv
 from model.location_model import Location
 
-class location_data():
+class Location_Data():
     def __init__(self) -> None:
         self.model = "files/locations.csv"
         self.fieldname = ["id","country","airport_code","flight_duration","distance","manager_name","emergency_phone"]

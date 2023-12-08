@@ -1,7 +1,7 @@
 import csv
 from model.plane_model import Plane
 
-class plane_data():
+class Plane_Data():
     def __init__(self) -> None:
         self.model = "files/planes.csv"
         self.fieldname = ["id","airline_name","airplane_model","max_capacity"]

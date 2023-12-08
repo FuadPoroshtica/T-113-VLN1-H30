@@ -1,7 +1,7 @@
 import csv
 from model.employee_model import Employee
 
-class Employee_data:
+class Employee_Data:
     def __init__(self) -> None:
         self.model = "files/employees.csv"
         self.fieldname = ["id", "name", "address", "cell_phone", "email", "title", "home_phone", "current_trip", "plane_licenses"]
