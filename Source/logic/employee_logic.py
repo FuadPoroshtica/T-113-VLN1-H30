@@ -1,7 +1,7 @@
 # employee_logic.py
 from model.employee_model import Employee 
-
-class EmployeeLogic:
+import datetime
+class Employee_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
         
@@ -22,24 +22,33 @@ class EmployeeLogic:
     def verify_employee(self, id, name, address, cell_phone, email, title, home_phone="None", current_trip="None", plane_licenses="None"):
         possible = True
         if possible ==True:
-            if len(id) != 10 and id.isnumeric()==False:
-                possible = False
+            if len(id) == 10 and id.isnumeric()==True:
+                try:
+                    id_year=int(id[4,6])
+                    id_month=int(id[2,4])
+                    id_day=int(id[0,2])
+                    valid_date = datetime.date(id_year,id_month,id_day)
+                except ValueError:
+                    possible=False
             elif len(name)<3:
+                print(f"name: {name}")
                 possible = False
             elif len(address)<3:
+                print(f"address: {address}")
                 possible = False
             elif len(cell_phone)!=7:
+                print(f"cell_phone: {cell_phone}")
                 possible = False
             elif len(email)<6:
+                print(f"email: {email}")
                 possible = False
-            elif title != "Pilot" and title != "Cabin Crew":
+            elif title.lower() != "pilot" and title.lower() != "cabin crew":
+                print(f"title: {title}")
                 possible = False
             elif len(home_phone)!=7 and home_phone != "None":
+                print(f"home_phone: {home_phone}")
                 possible = False
-        if possible == True:
-            return True
-        else:
-            return False
+        return possible
 
     def get_employee_by_id(self, employee_id):
         return self.data_wrapper.get_employee_by_id(employee_id)
