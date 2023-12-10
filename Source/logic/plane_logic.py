@@ -1,5 +1,5 @@
 
-class Plane_Logic:
+class Plane_Logic
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
         
@@ -18,3 +18,7 @@ class Plane_Logic:
 
     def planeSort(self):
         return sorted(self.getPlanes(), key=lambda Plane: Plane.plane_type)
+
+
+
+
