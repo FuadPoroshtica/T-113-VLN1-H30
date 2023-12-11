@@ -16,3 +16,4 @@ def return_to_main_menu():
     if menu_stack:
         main_menu_func = menu_stack.pop()
         main_menu_func()
+

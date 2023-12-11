@@ -5,6 +5,7 @@ from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
 from ui.flight_schedule_ui import flight_schedule_menu
 from ui.employees_ui import employees_menu
+from ui.interface_ui import interface
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
 def login_screen():
@@ -56,3 +57,13 @@ def main_menu():
         else:
             print("Invalid choice. Please choose again.")
 
+def interface(stdscr):
+    # Clear screen
+    stdscr.clear()
+
+    # This raises ZeroDivisionError when i == 10.
+    for i in range(0, 11):
+        stdscr.addstr(i, 0, '10 divided by {} is {}'.format(i, 10/i))
+
+    stdscr.refresh()
+    stdscr.getkey()
