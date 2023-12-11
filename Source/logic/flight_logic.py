@@ -1,4 +1,4 @@
-
+#turn over time 60 minutes
 class Flight_logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
