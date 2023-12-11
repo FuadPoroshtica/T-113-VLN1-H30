@@ -1,12 +1,15 @@
 # employees_ui.py
+#Import wrappers and navigation 
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
+from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
 logic_wrapper = Logic_Wrapper(data_wrapper)
 
-def employees_menu(return_to_main_menu):
+def employees_menu():
+    menu_stack.append(employees_menu)
     while True:
         print("\nEmployees menu")
         print("--------------------")
@@ -22,8 +25,11 @@ def employees_menu(return_to_main_menu):
             add_employees()
         elif choice == '3':
             modify_employees()
-        elif choice in ['M', 'B']:
+        elif choice == 'M':
             return_to_main_menu()
+            break
+        elif choice == 'B':
+            return_to_previous_menu()
             break
         elif choice == 'Q':
             print("Exiting the program.")
@@ -32,6 +38,7 @@ def employees_menu(return_to_main_menu):
             print("Invalid choice. Please choose again.")
 
 def view_all_employees():
+    menu_stack.append(view_all_employees)
     while True:
         all_employees = logic_wrapper.get_all_employees()
         print("\nList of All Employees:")
@@ -39,10 +46,14 @@ def view_all_employees():
         for employee in all_employees:
             print(f"{employee.id}: {employee.name}, {employee.title}")
 
-        print("\nMain Menu (M), Quit (Q)")
+        print("\nMain Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
         if choice == 'M':
+            return_to_main_menu()
+            break
+        elif choice == 'B':
+            return_to_previous_menu()
             break
         elif choice == 'Q':
             print("Exiting the program.")
@@ -51,6 +62,7 @@ def view_all_employees():
             print("Invalid choice. Please choose again.")
 
 def add_employees():
+    menu_stack.append(add_employees)
     print("\nAdd a new employee")
     id = input("Enter ID: ")
     name = input("Enter Name: ")
@@ -64,6 +76,7 @@ def add_employees():
     print("Employee added successfully.")
 
 def modify_employees():
+    menu_stack.append(modify_employees)
     print("\nModify an Employee's Details")
     employee_id = input("Enter the ID of the employee to modify: ")
 
@@ -85,7 +98,3 @@ def modify_employees():
 
     logic_wrapper.update_employee_details(employee_id, new_details)
     print("Employee details updated successfully.")
-
-# Replace this with the actual function or way you return to the main menu
-def return_to_main_menu():
-    pass

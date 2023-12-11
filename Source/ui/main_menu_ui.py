@@ -1,11 +1,11 @@
-# main_menu.py
+# main_menu_ui.py
 
 from ui.flight_crew_ui import flight_crew_menu
 from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
 from ui.flight_schedule_ui import flight_schedule_menu
 from ui.employees_ui import employees_menu
-
+from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
 def login_screen():
     while True:
@@ -17,13 +17,14 @@ def login_screen():
         choice = input("Select option: ").upper()
 
         if choice == 'L':
-            main_menu()  # This will now take the user to the main menu
+            main_menu()  
         elif choice == 'Q':
             exit()
         else:
             print("Invalid choice. Please choose again.")
 
 def main_menu():
+    menu_stack.append(main_menu)
     while True:
         print("Main Menu")
         print("-----------")
@@ -38,15 +39,15 @@ def main_menu():
         choice = input("Select option: ").upper()
 
         if choice == '1':
-           locations_menu(main_menu)
+           locations_menu()
         elif choice == '2':
-            flight_crew_menu(main_menu)
+            flight_crew_menu()
         elif choice == '3':
-            planes_menu(main_menu)
+            planes_menu()
         elif choice == '4':
-            flight_schedule_menu(main_menu)
+            flight_schedule_menu()
         elif choice == '5':
-            employees_menu(main_menu)
+            employees_menu()
         elif choice == '6':
             login_screen() 
         elif choice == 'Q':
@@ -54,3 +55,4 @@ def main_menu():
             exit()
         else:
             print("Invalid choice. Please choose again.")
+
