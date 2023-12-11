@@ -1,9 +1,8 @@
-from data.plane_data import plane_data
 
-class Plane_logic:
-    def __init__(self):
-        self.plane_data = plane_data()
-    
+class Plane_Logic
+    def __init__(self, data_wrapper):
+        self.data_wrapper = data_wrapper
+        
     def addPlane(self, plane):
         self.plane_data.add_plane(plane)
         
@@ -19,3 +18,7 @@ class Plane_logic:
 
     def planeSort(self):
         return sorted(self.getPlanes(), key=lambda Plane: Plane.plane_type)
+
+
+
+
