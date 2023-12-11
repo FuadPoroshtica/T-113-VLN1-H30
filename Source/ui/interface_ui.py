@@ -2,15 +2,19 @@ import curses
 
 def interface(stdscr):
     stdscr.clear()
-
-    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
-    stdscr.attron(curses.color_pair(1))
-    stdscr.box()
-    stdscr.attroff(curses.color_pair(1))
-
-    for i in range(1, 10):
-        stdscr.addstr(i, 1, '10 divided by {} is {}'.format(i,
-                                                            10 // i))
-
+    COLOR_PAIR_ID = 1
+    initialize_color(stdscr, COLOR_PAIR_ID)
+    add_lines(stdscr, COLOR_PAIR_ID)
     stdscr.refresh()
     stdscr.getkey()
+
+
+def initialize_color(stdscr, color_pair_id):
+    curses.init_pair(color_pair_id, curses.COLOR_BLACK, curses.COLOR_WHITE)
+    stdscr.attron(curses.color_pair(color_pair_id))
+    stdscr.box()
+    stdscr.attroff(curses.color_pair(color_pair_id))
+
+
+def add_lines(stdscr, color_pair_id):
+    for i in range
