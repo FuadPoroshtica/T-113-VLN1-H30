@@ -1,5 +1,5 @@
 # employees_ui.py
-#Import wrappers and navigation 
+from model.employee_model import Employee
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
@@ -44,7 +44,7 @@ def view_all_employees():
         print("\nList of All Employees:")
         print("----------------------")
         for employee in all_employees:
-            print(f"{employee.id}: {employee.name}, {employee.title}")
+            print(f"ID: {employee.id}, Name: {employee.name}, Title: {employee.title}, Address: {employee.address}, Cell Phone: {employee.cell_phone}, Email: {employee.email}, Home Phone: {employee.home_phone}, Current Trip: {employee.current_trip}, Plane Licenses: {employee.plane_licenses}")
 
         print("\nMain Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
@@ -61,8 +61,8 @@ def view_all_employees():
         else:
             print("Invalid choice. Please choose again.")
 
+
 def add_employees():
-    menu_stack.append(add_employees)
     print("\nAdd a new employee")
     id = input("Enter ID: ")
     name = input("Enter Name: ")
@@ -72,11 +72,26 @@ def add_employees():
     title = input("Enter Title: ")
     home_phone = input("Enter Home Phone (optional): ")
 
-    logic_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone)
+    plane_licenses = None
+    if title.lower() == 'pilot':
+        add_licenses = input("Would you like to add plane licenses? (y/n): ")
+        if add_licenses.lower() == 'y':
+            plane_licenses = []
+            add_more = 'y'
+            while add_more.lower() == 'y':
+                license = input("Enter a plane license: ")
+                plane_licenses.append(license)
+                add_more = input("Would you like to add another license? (y/n): ")
+
+    # Create an Employee object
+    new_employee = Employee(id, name, address, cell_phone, email, title, home_phone, plane_licenses=plane_licenses)
+
+    # Add the new employee using the logic_wrapper
+    logic_wrapper.add_employee(new_employee)
     print("Employee added successfully.")
 
+
 def modify_employees():
-    menu_stack.append(modify_employees)
     print("\nModify an Employee's Details")
     employee_id = input("Enter the ID of the employee to modify: ")
 
@@ -94,7 +109,14 @@ def modify_employees():
     }
 
     if logic_wrapper.is_employee_a_pilot(employee_id):
-        new_details['plane_licenses'] = input(f"Enter new pilot licenses (current: {employee.plane_licenses}): ") or None
+        add_licenses = input("Would you like to modify plane licenses? (y/n): ")
+        if add_licenses.lower() == 'y':
+            new_details['plane_licenses'] = []
+            add_more = 'y'
+            while add_more.lower() == 'y':
+                license = input("Enter a plane license: ")
+                new_details['plane_licenses'].append(license)
+                add_more = input("Would you like to add another license? (y/n): ")
 
     logic_wrapper.update_employee_details(employee_id, new_details)
     print("Employee details updated successfully.")

@@ -1,7 +1,7 @@
 id,country,airport_code,flight_duration,distance,manager_name,emergency_phone
-01,Germany,HAM,3h 30m,9167 km,Isabella Garcia,49 1122334455
-02,China,SHA,11h 30m,6818 km,Chen Li,86 11443555122
-03,Italy,ROM,3h 30m,1884 km,Stefano Luca,39 087654321
-04,Denmark,ROM,3h 30m,1884 km,Johan Johansen,39 087654321
-05,Norway,ROM,3h 30m,1884 km,Mikel Jensen,39 087654321
-06,United Kingdom,ROM,3h 30m,1884 km,Michael Jones,39 087654321
+01,Germany,HAM,3h 30m,9167,Isabella Garcia,49 1122334455
+02,China,SHA,11h 30m,6818,Chen Li,86 11443555122
+03,Italy,ROM,3h 30m,1884,Stefano Luca,39 087654321
+04,Denmark,ROM,3h 30m,1884,Johan Johansen,39 087654321
+05,Norway,ROM,3h 30m,1884,Mikel Jensen,39 087654321
+06,United Kingdom,ROM,3h 30m,1884,Michael Jones,39 087654321

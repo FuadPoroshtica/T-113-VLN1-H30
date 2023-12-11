@@ -1,16 +1,13 @@
 # employee_logic.py
+from model.employee_model import Employee 
 import datetime
 class Employee_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
         
-    def add_new_employee(self, id, name, address, cell_phone, email, title, home_phone="None", current_trip="None", plane_licenses="None"):
-        if self.verify_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses) == True:
-            pass
-            self.data_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
-            
-        else:
-            print("Invalid Data")
+    def add_new_employee(self, employee):
+        self.data_wrapper.add_employee(employee)
+
     def update_employee(self, id, new_data):
         self.data_wrapper.modify_employee(id, new_data)
 
@@ -64,5 +61,3 @@ class Employee_Logic:
 
     def is_employee_a_pilot(self, employee):
         return employee.title.lower() == 'pilot'
-    
-    

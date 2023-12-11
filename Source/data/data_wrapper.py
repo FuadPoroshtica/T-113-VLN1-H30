@@ -14,19 +14,18 @@ class Data_Wrapper:
         self.location_data = Location_Data()
         self.plane_data = Plane_Data()
 
-    #Employee
+    #Employees
     def get_all_employees(self):
         return self.employee_data.employee_constructor()
 
-    def add_employee(self, id, name, address, cell_phone, email, title, home_phone="None", current_trip="None", plane_licenses="None"):
-        employee = Employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
+    def add_employee(self, employee):
         self.employee_data.add_employee_data(employee)
 
     def get_employee_by_id(self, id):
         return self.employee_data.get_employee_by_id(id)
 
     def modify_employee(self, updated_employee):
-        all_employees = self.employee_data.employee_constructor()
+        all_employees = self.get_all_employees()
         for i, employee in enumerate(all_employees):
             if employee.id == updated_employee.id:
                 all_employees[i] = updated_employee
@@ -52,19 +51,18 @@ class Data_Wrapper:
                 break
         self.flight_data.modify_flight_data(all_flights)
 
-    #Location
+    #Locations
     def get_all_locations(self):
         return self.location_data.location_constructor()
 
-    def add_location(self,id,country, airport_code, flight_duration, distance, manager_name, emergency_phone):
-        location = Location(id,country, airport_code, flight_duration, distance, manager_name, emergency_phone)
+    def add_location(self, location):
         self.location_data.add_location_data(location)
 
     def get_location_by_id(self, id):
         return self.location_data.get_location_by_id(id)
 
     def modify_location(self, updated_location):
-        all_locations = self.location_data.location_constructor()
+        all_locations = self.get_all_locations()
         for i, location in enumerate(all_locations):
             if location.id == updated_location.id:
                 all_locations[i] = updated_location

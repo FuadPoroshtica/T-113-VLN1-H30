@@ -11,10 +11,10 @@ class Logic_Wrapper:
         self.location_logic = Location_Logic(data_wrapper)
         self.plane_logic = Plane_Logic(data_wrapper)
 
-    #Employee
-    def add_employee(self, id, name, address, cell_phone, email, title, home_phone=None, current_trip=None, plane_licenses=None):
-        self.employee_logic.add_new_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
-
+    #Employees
+    def add_employee(self, employee):
+        self.employee_logic.add_new_employee(employee)
+    
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()
 
@@ -32,4 +32,16 @@ class Logic_Wrapper:
 
     def update_employee(self, id, new_data):
         self.employee_logic.update_employee(id, new_data)
-    #Plane
+
+    #Locations
+    def add_location(self, id, country, airport_code, flight_duration, distance, manager_name, emergency_phone):
+        self.location_logic.add_new_location(id, country, airport_code, flight_duration, distance, manager_name, emergency_phone)
+
+    def get_all_locations(self):
+        return self.location_logic.get_all_locations()
+    
+    def get_location_by_id(self, location_id):
+        return self.location_logic.get_location_by_id(location_id)
+    
+    def update_location_details(self, location_id, new_details):
+        self.location_logic.update_location_details(location_id, new_details)
