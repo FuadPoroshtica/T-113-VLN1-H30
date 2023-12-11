@@ -2,7 +2,7 @@
 class Plane_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
-        
+
     def add_new_plane(self, plane):
         self.data_wrapper.add_plane(plane)
 
@@ -12,10 +12,10 @@ class Plane_Logic:
     def get_plane_by_id(self, plane_id):
         return self.data_wrapper.get_plane_by_id(plane_id)
 
-    def update_plane_details(self, plane_id, new_details):
+    def update_plane(self, plane_id, new_data):
         plane = self.get_plane_by_id(plane_id)
         if plane:
-            for key, value in new_details.items():
+            for key, value in new_data.items():
                 if value is not None:
                     setattr(plane, key, value)
             self.data_wrapper.modify_plane(plane)
