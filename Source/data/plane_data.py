@@ -19,9 +19,3 @@ class Plane_Data():
             dict_write=csv.DictWriter(file,fieldname=self.fieldname)
             dict_write.writerow({"id":plane.id,"airline_name":plane.airline_name,"airplane_model":plane.airplane_model,"max_capacity":plane.max_capacity})
 
-    def modify_plane_data(self,plane_list):
-        with open(self.model,'w', newline='', encoding="utf-8") as file:
-            dict_write = csv.DictWriter(file,fieldnames=self.fieldname)
-            dict_write.writerow({self.fieldname[i]: self.fieldname[i] for i in range(len(self.fieldname))})
-            for plane in plane_list:
-                dict_write.writerow({"id":plane.id,"airline_name":plane.airline_name,"airplane_model":plane.airplane_model,"max_capacity":plane.max_capacity})

@@ -19,6 +19,13 @@ class Flight_Data():
             dict_write=csv.DictWriter(file,fieldname=self.fieldname)
             dict_write.writerow({"id":flight.id,"initial_location":flight.initial_location,"arrival_location":flight.arrival_location,"employees":flight.employees,"plane":flight.plane,"start_home":flight.start_home,"start_foreign":flight.start_foreign,"tickets_home":flight.tickets_home,"tickets_foreign":flight.tickets_foreign})        
 
+    def get_flight_by_id(self, id):
+        all_flights = self.flight_constructor()
+        for flight in all_flights:
+            if flight.id == id:
+                return flight
+        return None
+
     def modify_flight_data(self, flight_list):
         with open(self.model,'w', newline='', encoding="utf-8") as file:
             dict_write = csv.DictWriter(file,fieldnames=self.fieldname)
