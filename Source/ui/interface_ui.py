@@ -17,4 +17,8 @@ def initialize_color(stdscr, color_pair_id):
 
 
 def add_lines(stdscr, color_pair_id):
-    for i in range
+    for i in range(1, 10):
+        stdscr.addstr(i, color_pair_id, format_str(i))
+
+def format_str(i):
+    return '10 divided by {} is {}'.format(i, 10 // i)
