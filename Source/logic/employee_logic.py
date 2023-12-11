@@ -1,5 +1,4 @@
 # employee_logic.py
-from model.employee_model import Employee 
 import datetime
 class Employee_Logic:
     def __init__(self, data_wrapper):
@@ -8,8 +7,7 @@ class Employee_Logic:
     def add_new_employee(self, id, name, address, cell_phone, email, title, home_phone="None", current_trip="None", plane_licenses="None"):
         if self.verify_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses) == True:
             pass
-            # add employee currently disabled while testing verify
-            # self.data_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
+            self.data_wrapper.add_employee(id, name, address, cell_phone, email, title, home_phone, current_trip, plane_licenses)
             
         else:
             print("Invalid Data")
