@@ -1,3 +1,5 @@
+#data_wrapper.py
+
 from data.employee_data import Employee_Data
 from data.flight_data import Flight_Data
 from data.location_data import Location_Data
@@ -69,10 +71,20 @@ class Data_Wrapper:
                 break
         self.location_data.modify_location_data(all_locations)
 
-    #Plane
+    # Planes
     def get_all_planes(self):
         return self.plane_data.plane_constructor()
 
-    def add_plane(self,plane_id, airline_name, airplane_model, max_capacity):
-        plane = Plane(plane_id, airline_name, airplane_model, max_capacity)
+    def add_plane(self, plane):
         self.plane_data.add_plane_data(plane)
+
+    def get_plane_by_id(self, id):
+        return self.plane_data.get_plane_by_id(id)
+
+    def modify_plane(self, updated_plane):
+        all_planes = self.get_all_planes()
+        for i, plane in enumerate(all_planes):
+            if plane.id == updated_plane.id:
+                all_planes[i] = updated_plane
+                break
+        self.plane_data.modify_plane_data(all_planes)

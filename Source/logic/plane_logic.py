@@ -1,20 +1,21 @@
-
+#plane_logic.py
 class Plane_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
         
-    def addPlane(self, plane):
-        self.plane_data.add_plane(plane)
-        
-    
-    def getPlanes(self):
-        return self.plane_data.plane_constructor()
+    def add_new_plane(self, plane):
+        self.data_wrapper.add_plane(plane)
 
-    def doesPlaneExist(self, plane_id):
-        return any(Plane.id == plane_id for Plane in self.getPlanes())
-            
-    def searchPlane(self, plane_type):
-        return [Plane for Plane in self.getPlanes() if plane_type in Plane.plane_type]
+    def get_all_planes(self):
+        return self.data_wrapper.get_all_planes()
 
-    def planeSort(self):
-        return sorted(self.getPlanes(), key=lambda Plane: Plane.plane_type)
+    def get_plane_by_id(self, plane_id):
+        return self.data_wrapper.get_plane_by_id(plane_id)
+
+    def update_plane_details(self, plane_id, new_details):
+        plane = self.get_plane_by_id(plane_id)
+        if plane:
+            for key, value in new_details.items():
+                if value is not None:
+                    setattr(plane, key, value)
+            self.data_wrapper.modify_plane(plane)

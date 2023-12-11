@@ -1,4 +1,5 @@
 # location_ui.py
+
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper

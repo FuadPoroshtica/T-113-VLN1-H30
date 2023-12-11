@@ -1,3 +1,4 @@
+#plane_model.py
 class Plane:
     def __init__(self, plane_id, airline_name, airplane_model, max_capacity):
         self.plane_id = plane_id
