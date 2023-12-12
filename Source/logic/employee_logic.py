@@ -1,4 +1,4 @@
-#employee_logic.py
+# employee_logic.py
 class Employee_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
@@ -11,7 +11,7 @@ class Employee_Logic:
 
     def get_pilots(self):
         return [x for x in self.data_wrapper.get_all_employees() if x.title == "Pilot"]
-    
+
     def get_cabin_crew(self):
         return [x for x in self.data_wrapper.get_all_employees() if x.title != "Pilot"]
 
@@ -25,9 +25,9 @@ class Employee_Logic:
                 if value is not None:
                     setattr(employee, key, value)
             self.data_wrapper.modify_employee(employee)
-    
+
     def is_employee_a_pilot(self, employee_id):
         employee = self.get_employee_by_id(employee_id)
         if employee:
-            return employee.title.lower() == 'pilot'
+            return employee.title.lower() == "pilot"
         return False
