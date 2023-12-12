@@ -206,5 +206,24 @@ Jon is gonna finish the connections in data wrapper and finish setting up the si
 
 Garðar will prepare functions in ui.
 
+### Status
+
+It went pretty well now everything is connected upwards, the only things left are connecting the logic to eachother and adding to it as we make more in the ui layer
+
 ## 12/12/23
 
+we had a meeting at 10:00 Fuad Garðar Jón and Ólafur all showed up.
+
+Jón is Today's project manager.
+
+### Daily goals
+
+Fuad is gonna work on 'curse' border.
+
+Garðar is gonna add to the google doc 
+
+Jón is gonna try to connect the classes within the logic layer together.
+
+Ólafur is reworking the modify attributes to work with our current configuration.
+
+### Status
