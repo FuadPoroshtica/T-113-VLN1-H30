@@ -21,6 +21,10 @@ class Logic_Wrapper:
 
     def update_employee(self, employee_id, new_data):
         self.employee_logic.update_employee(employee_id, new_data)
+    
+    def is_employee_a_pilot(self, employee_id):
+        return self.employee_logic.is_employee_a_pilot(employee_id)
+
 
     # Location related methods
     def add_location(self, location):

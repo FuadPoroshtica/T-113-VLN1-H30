@@ -79,10 +79,8 @@ def add_employees():
     if title.lower() == "pilot":
         plane_licenses = add_license()
 
-    # Create an Employee object
     new_employee = Employee(id, name, address, cell_phone, email, title, home_phone, plane_licenses)
 
-    # Add the new employee using the logic_wrapper
     logic_wrapper.add_employee(new_employee)
     print("Employee added successfully.")
 
@@ -107,27 +105,16 @@ def modify_employees():
 
     print(f"Modifying details for employee {employee.name} (ID: {employee.id})")
     new_details = {
-        "cell_phone": input(
-            f"Enter new cell phone number (current: {employee.cell_phone}): "
-        )
-        or None,
-        "email": input(f"Enter new email address (current: {employee.email}): ")
-        or None,
-        "home_phone": input(f"Enter new home phone (current: {employee.home_phone}): ")
-        or None,
-        "address": input(f"Enter new home address (current: {employee.address}): ")
-        or None,
+        "cell_phone": input(f"Enter new cell phone number (current: {employee.cell_phone}): ") or employee.cell_phone,
+        "email": input(f"Enter new email address (current: {employee.email}): ") or employee.email,
+        "home_phone": input(f"Enter new home phone (current: {employee.home_phone}): ") or employee.home_phone,
+        "address": input(f"Enter new home address (current: {employee.address}): ") or employee.address,
     }
 
     if logic_wrapper.is_employee_a_pilot(employee_id):
         add_licenses = input("Would you like to modify plane licenses? (y/n): ")
         if add_licenses.lower() == "y":
-            new_details["plane_licenses"] = []
-            add_more = "y"
-            while add_more.lower() == "y":
-                license = input("Enter a plane license: ")
-                new_details["plane_licenses"].append(license)
-                add_more = input("Would you like to add another license? (y/n): ")
+            new_details["plane_licenses"] = add_license()
 
-    logic_wrapper.update_employee_details(employee_id, new_details)
+    logic_wrapper.update_employee(employee_id, new_details)
     print("Employee details updated successfully.")

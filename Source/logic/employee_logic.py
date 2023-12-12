@@ -25,3 +25,9 @@ class Employee_Logic:
                 if value is not None:
                     setattr(employee, key, value)
             self.data_wrapper.modify_employee(employee)
+    
+    def is_employee_a_pilot(self, employee_id):
+        employee = self.get_employee_by_id(employee_id)
+        if employee:
+            return employee.title.lower() == 'pilot'
+        return False

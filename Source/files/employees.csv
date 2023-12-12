@@ -5,5 +5,5 @@ id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
 1205921111,Karl Sveinsson,Austurströnd 19,5551010,KarlRealEmail@hotmail.com,Pilot,5552020,None,None
 0202921020,Gunna Gunnarsdóttir,Rósarimi 14,8888555,Gunna92@gmail.com,Pilot,None,None,None
 2806009975,Gauti Guðmundsson,Austurbrekka 2,6222412,Gautigudmunds@gmail.com,Cabin Crew,None,None,None
-0310963169,Olafur,Eskihlid,8661994,olafurvalfells@gmail.com,Cabin Crew,None,None,None
-1050201500,Guggenheim,logarvegur 151,1500232,TheGuggenheim@gmail.com,pilot,2312302,None,None
+0310963169,Olafur,Eskihlíð 16,8661994,olafurvalfells@gmail.com,Cabin Crew,5516666,None,None
+1050201500,Guggenheim,logarvegur 151,1500232,TheGuggenheim@gmail.com,pilot,2312302,None,['Boeing 747']
