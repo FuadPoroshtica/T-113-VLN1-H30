@@ -1,3 +1,4 @@
+
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
@@ -42,7 +43,7 @@ def view_planes():
     print("\nList of All Planes:")
     print("-------------------")
     for plane in all_planes:
-        print(f"ID: {plane.plane_id}, Airline: {plane.airline_name}, Model: {plane.airplane_model}, Capacity: {plane.max_capacity}")
+        print(f"ID: {plane.id}, Airline: {plane.airline_name}, Model: {plane.airplane_model}, Capacity: {plane.max_capacity}")
 
     print("\nMain Menu (M), Back (B), Quit (Q)")
     while True:
@@ -62,12 +63,12 @@ def view_planes():
             
 def create_plane():
     print("\nCreate a New Plane")
-    plane_id = input("Enter ID: ")
+    id = input("Enter ID: ")
     airline_name = input("Enter Airline Name: ")
     airplane_model = input("Enter Airplane Model: ")
     max_capacity = input("Enter Max Capacity: ")
 
-    new_plane = Plane(plane_id, airline_name, airplane_model, max_capacity)
+    new_plane = Plane(id, airline_name, airplane_model, max_capacity)
     logic_wrapper.add_plane(new_plane)
     print("Plane added successfully.")
 
@@ -79,12 +80,12 @@ def modify_plane():
         print("No plane found with the given ID.")
         return
 
-    print(f"Modifying details for plane {plane.airplane_model} (ID: {plane.plane_id})")
+    print(f"Modifying details for plane {plane.airplane_model} (ID: {plane.id})")
     new_details = {
         'airline_name': input(f"Enter new airline name (current: {plane.airline_name}): ") or None,
         'airplane_model': input(f"Enter new airplane model (current: {plane.airplane_model}): ") or None,
         'max_capacity': input(f"Enter new max capacity (current: {plane.max_capacity}): ") or None
     }
 
-    logic_wrapper.update_plane_details(plane_id, new_details)
+    logic_wrapper.update_plane(plane_id, new_details)
     print("Plane details updated successfully.")
