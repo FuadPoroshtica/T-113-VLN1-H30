@@ -71,25 +71,26 @@ def add_employees():
     email = input("Enter Email: ")
     title = input("Enter Title: ")
     home_phone = input("Enter Home Phone (optional): ")
-
-    plane_licenses = None
-    if title.lower() == 'pilot':
-        add_licenses = input("Would you like to add plane licenses? (y/n): ")
-        if add_licenses.lower() == 'y':
-            plane_licenses = []
-            add_more = 'y'
-            while add_more.lower() == 'y':
-                license = input("Enter a plane license: ")
-                plane_licenses.append(license)
-                add_more = input("Would you like to add another license? (y/n): ")
+    plane_licenses="None"
+    if title.lower() == "pilot":
+        plane_licenses = add_license()
 
     # Create an Employee object
-    new_employee = Employee(id, name, address, cell_phone, email, title, home_phone, plane_licenses=plane_licenses)
+    new_employee = Employee(id, name, address, cell_phone, email, title, home_phone, plane_licenses)
 
     # Add the new employee using the logic_wrapper
     logic_wrapper.add_employee(new_employee)
     print("Employee added successfully.")
 
+def add_license():
+    plane_licenses = None
+    continue_input = input("Would you like to add plane licenses? (y/n): ")
+    plane_licenses = []
+    while continue_input == 'y':
+        license_input = input("Enter a plane license: ")
+        plane_licenses.append(license_input)
+        continue_input = input("Would you like to add another license? (y/n): ")
+    return plane_licenses
 
 def modify_employees():
     print("\nModify an Employee's Details")
