@@ -1,6 +1,6 @@
 # location_ui.py
 
-from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
+from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 
@@ -49,17 +49,7 @@ def view_locations():
         print("\nMain Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
-        if choice == 'M':
-            return_to_main_menu()
-            break
-        elif choice == 'B':
-            return_to_previous_menu()
-            break
-        elif choice == 'Q':
-            print("Exiting the program.")
-            exit()
-        else:
-            print("Invalid choice. Please choose again.")
+        handle_menu_options()
 
 def create_location():
     print("\nCreate a New Location")

@@ -17,3 +17,19 @@ def return_to_main_menu():
         main_menu_func = menu_stack.pop()
         main_menu_func()
 
+def handle_menu_options():
+    print("\nMain Menu (M), Back (B), Quit (Q)")
+    while True:
+        choice = input("Select Option: ").upper()
+
+        if choice == 'M':
+            return_to_main_menu()
+            break
+        elif choice == 'B':
+            return_to_previous_menu()
+            break
+        elif choice == 'Q':
+            print("Exiting the program.")
+            exit()
+        else:
+            print("Invalid choice. Please choose again.")
