@@ -212,7 +212,7 @@ It went pretty well now everything is connected upwards, the only things left ar
 
 ## 12/12/23
 
-we had a meeting at 10:00 Fuad Garðar Jón and Ólafur all showed up.
+we had a meeting at 10:00 Fuad Garðar Jón and Ólafur, everyone showed up.
 
 Jón is Today's project manager.
 
