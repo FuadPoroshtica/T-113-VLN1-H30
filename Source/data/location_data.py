@@ -32,7 +32,7 @@ class Location_Data():
 
     def add_location_data(self, location):
         with open(self.model, 'a', newline='', encoding="utf-8") as file:
-            dict_write = csv.DictWriter(file, fieldnames=self.fieldname)  # Corrected here
+            dict_write = csv.DictWriter(file, fieldnames=self.fieldname)
             dict_write.writerow({
             "id": location.id,
             "country": location.country,
@@ -43,6 +43,13 @@ class Location_Data():
             "emergency_phone": location.emergency_phone
         })        
 
+    def get_location_by_id(self, id):
+        all_locations = self.location_constructor()
+        for location in all_locations:
+            if location.id == id:
+                return location
+        return None  
+    
     def modify_location_data(self,location_list):
         with open(self.model,'w', newline='', encoding="utf-8") as file:
             dict_write = csv.DictWriter(file,fieldnames=self.fieldname)
@@ -55,10 +62,5 @@ class Location_Data():
                     "flight_duration":location.flight_duration,
                     "distance":location.distance,
                     "manager_name":location.manager_name,
-                    "emergency_phone":location.emergency_phone})      
-    def get_location_by_id(self, id):
-        all_locations = self.location_constructor()
-        for location in all_locations:
-            if location.id == id:
-                return location
-        return None  
+                    "emergency_phone":location.emergency_phone
+                    })      

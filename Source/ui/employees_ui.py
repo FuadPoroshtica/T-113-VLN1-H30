@@ -8,7 +8,6 @@ from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 data_wrapper = Data_Wrapper()
 logic_wrapper = Logic_Wrapper(data_wrapper)
 
-
 def employees_menu():
     menu_stack.append(employees_menu)
     while True:
@@ -37,7 +36,6 @@ def employees_menu():
             exit()
         else:
             print("Invalid choice. Please choose again.")
-
 
 def view_all_employees():
     menu_stack.append(view_all_employees)
