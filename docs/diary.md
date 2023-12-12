@@ -170,11 +170,13 @@ Jon is gonna try to set up the flight logic
 
 Jón didn't write the flight logic instead focused on fixing the inconsistant typing and bugs that started popping up.
 
-Fuad worked on the 
+Fuad worked on the Plane logic however it needs to be better connected to 
 
 ## 08/12/23
 
-we held a meeting at 11:00 Ólafur and Jón showed up fuad showed up at 13:30, Garðar is still in amsterdam but will be here monday.
+we held a meeting at 11:00 Ólafur and Jón showed up fuad showed up at 13:00, Garðar is still in amsterdam but will be here monday.
+
+Jón is todays project leader
 
 ### Daily goals
 
@@ -182,5 +184,27 @@ we held a meeting at 11:00 Ólafur and Jón showed up fuad showed up at 13:30, G
 
 Jón will start making sure info was allowed to be passed into csv.
 
+Fuad location logic and plane logic
 
+### Status
+
+We had a few problems with the logic so on monday we will tackle that. 
+
+## 11/12/23
+
+we had a meeting at 11:00 Fuad, Jón, and Ólafur showed up, Garðar had an online meeting at 3.
+
+Jón is todays project manager.
+
+### Daily goals
+
+Fuad is gonna try to finish the menu ui 
+
+Jon is gonna finish the connections in data wrapper and finish setting up the simple part of flight logic
+
+Ólafur is gonna set up location and plane logic 
+
+Garðar will prepare functions in ui.
+
+## 12/12/23
 

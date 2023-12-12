@@ -8,6 +8,7 @@ from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 data_wrapper = Data_Wrapper()
 logic_wrapper = Logic_Wrapper(data_wrapper)
 
+
 def employees_menu():
     menu_stack.append(employees_menu)
     while True:
@@ -19,23 +20,24 @@ def employees_menu():
         print("Main Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
-        if choice == '1':
+        if choice == "1":
             view_all_employees()
-        elif choice == '2':
+        elif choice == "2":
             add_employees()
-        elif choice == '3':
+        elif choice == "3":
             modify_employees()
-        elif choice == 'M':
+        elif choice == "M":
             return_to_main_menu()
             break
-        elif choice == 'B':
+        elif choice == "B":
             return_to_previous_menu()
             break
-        elif choice == 'Q':
+        elif choice == "Q":
             print("Exiting the program.")
             exit()
         else:
             print("Invalid choice. Please choose again.")
+
 
 def view_all_employees():
     menu_stack.append(view_all_employees)
@@ -44,18 +46,20 @@ def view_all_employees():
         print("\nList of All Employees:")
         print("----------------------")
         for employee in all_employees:
-            print(f"ID: {employee.id}, Name: {employee.name}, Title: {employee.title}, Address: {employee.address}, Cell Phone: {employee.cell_phone}, Email: {employee.email}, Home Phone: {employee.home_phone}, Current Trip: {employee.current_trip}, Plane Licenses: {employee.plane_licenses}")
+            print(
+                f"ID: {employee.id}, Name: {employee.name}, Title: {employee.title}, Address: {employee.address}, Cell Phone: {employee.cell_phone}, Email: {employee.email}, Home Phone: {employee.home_phone}, Current Trip: {employee.current_trip}, Plane Licenses: {employee.plane_licenses}"
+            )
 
         print("\nMain Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
-        if choice == 'M':
+        if choice == "M":
             return_to_main_menu()
             break
-        elif choice == 'B':
+        elif choice == "B":
             return_to_previous_menu()
             break
-        elif choice == 'Q':
+        elif choice == "Q":
             print("Exiting the program.")
             exit()
         else:
@@ -103,20 +107,26 @@ def modify_employees():
 
     print(f"Modifying details for employee {employee.name} (ID: {employee.id})")
     new_details = {
-        'cell_phone': input(f"Enter new cell phone number (current: {employee.cell_phone}): ") or None,
-        'email': input(f"Enter new email address (current: {employee.email}): ") or None,
-        'home_phone': input(f"Enter new home phone (current: {employee.home_phone}): ") or None,
-        'address': input(f"Enter new home address (current: {employee.address}): ") or None
+        "cell_phone": input(
+            f"Enter new cell phone number (current: {employee.cell_phone}): "
+        )
+        or None,
+        "email": input(f"Enter new email address (current: {employee.email}): ")
+        or None,
+        "home_phone": input(f"Enter new home phone (current: {employee.home_phone}): ")
+        or None,
+        "address": input(f"Enter new home address (current: {employee.address}): ")
+        or None,
     }
 
     if logic_wrapper.is_employee_a_pilot(employee_id):
         add_licenses = input("Would you like to modify plane licenses? (y/n): ")
-        if add_licenses.lower() == 'y':
-            new_details['plane_licenses'] = []
-            add_more = 'y'
-            while add_more.lower() == 'y':
+        if add_licenses.lower() == "y":
+            new_details["plane_licenses"] = []
+            add_more = "y"
+            while add_more.lower() == "y":
                 license = input("Enter a plane license: ")
-                new_details['plane_licenses'].append(license)
+                new_details["plane_licenses"].append(license)
                 add_more = input("Would you like to add another license? (y/n): ")
 
     logic_wrapper.update_employee_details(employee_id, new_details)
