@@ -33,6 +33,10 @@ class Data_Wrapper:
                 all_employees[i] = updated_employee
                 break
         self.employee_data.modify_employee_data(all_employees)
+    
+    def get_all_employee_licenses(self):
+        return self.employee_data.get_all_employee_licenses()
+
 
     #Flights
     def get_all_flights(self):

@@ -2,7 +2,7 @@
 from model.employee_model import Employee
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
-from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
+from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -51,20 +51,7 @@ def view_all_employees():
         for employee in all_cabin_crew:
             print(f"{employee.id:<12}{employee.name:<30}{employee.title:<12}{employee.address:<20}{employee.cell_phone:<11}{employee.email:<30}{employee.home_phone:<11}{employee.current_trip:<5}")
         
-        print("\nMain Menu (M), Back (B), Quit (Q)")
-        choice = input("Select Option: ").upper()
-
-        if choice == "M":
-            return_to_main_menu()
-            break
-        elif choice == "B":
-            return_to_previous_menu()
-            break
-        elif choice == "Q":
-            print("Exiting the program.")
-            exit()
-        else:
-            print("Invalid choice. Please choose again.")
+        handle_menu_options()
 
 
 def add_employees():

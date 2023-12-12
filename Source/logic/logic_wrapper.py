@@ -2,12 +2,15 @@
 from logic.employee_logic import Employee_Logic
 from logic.location_logic import Location_Logic
 from logic.plane_logic import Plane_Logic
+from data.data_wrapper import Data_Wrapper
 
 class Logic_Wrapper:
     def __init__(self, data_wrapper):
         self.employee_logic = Employee_Logic(data_wrapper)
         self.location_logic = Location_Logic(data_wrapper)
         self.plane_logic = Plane_Logic(data_wrapper)
+        self.data_wrapper = Data_Wrapper()
+
 
     # Employee related methods
     def add_employee(self, employee):
@@ -30,6 +33,18 @@ class Logic_Wrapper:
     
     def is_employee_a_pilot(self, employee_id):
         return self.employee_logic.is_employee_a_pilot(employee_id)
+    
+    def get_all_plane_licenses(self):
+        licenses = self.data_wrapper.get_all_employee_licenses()
+        return licenses if licenses is not None else {}
+    
+    def get_pilots_by_plane_type(self, plane_type):
+        all_pilots = self.get_pilots()
+        licensed_pilots = [pilot for pilot in all_pilots if plane_type in pilot.plane_licenses]
+        return licensed_pilots
+
+
+
 
 
     # Location related methods

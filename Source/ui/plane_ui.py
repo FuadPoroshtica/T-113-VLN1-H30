@@ -1,5 +1,6 @@
+#plane_ui.py
 
-from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
+from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack, handle_menu_options 
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 from model.plane_model import Plane
@@ -16,6 +17,8 @@ def planes_menu():
         print("1. View Planes")
         print("2. Create New Plane")
         print("3. Modify Plane")
+        print("4. View Plane Licenses")
+        print("5. Search Pilots by Plane Type")
         print("Main Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
@@ -25,6 +28,11 @@ def planes_menu():
             create_plane()  
         elif choice == '3':
             modify_plane()
+        elif choice == '4':
+            view_plane_licenses()
+        elif choice == '5':
+            search_pilots_by_plane_type()
+
         elif choice == 'M':
             return_to_main_menu()
             break
@@ -44,23 +52,9 @@ def view_planes():
     print("-------------------")
     for plane in all_planes:
         print(f"ID: {plane.id}, Airline: {plane.airline_name}, Model: {plane.airplane_model}, Capacity: {plane.max_capacity}")
-
-    print("\nMain Menu (M), Back (B), Quit (Q)")
-    while True:
-        choice = input("Select Option: ").upper()
-
-        if choice == 'M':
-            return_to_main_menu()
-            break
-        elif choice == 'B':
-            return_to_previous_menu()
-            break
-        elif choice == 'Q':
-            print("Exiting the program.")
-            exit()
-        else:
-            print("Invalid choice. Please choose again.")
-            
+    
+    handle_menu_options()
+    
 def create_plane():
     print("\nCreate a New Plane")
     id = input("Enter ID: ")
@@ -89,3 +83,31 @@ def modify_plane():
 
     logic_wrapper.update_plane(plane_id, new_details)
     print("Plane details updated successfully.")
+
+def view_plane_licenses():
+    menu_stack.append(view_plane_licenses)
+    licenses = logic_wrapper.get_all_plane_licenses()
+    if not licenses:
+        print("No plane license information available.")
+        return
+    print("\nPlane License Information:")
+    print("--------------------------")
+    for plane_type, employees in licenses.items():
+        print(f"\n{plane_type} License Holders:")
+        for id, name in employees:
+            print(f"ID: {id}, Name: {name}")
+
+    handle_menu_options()
+
+def search_pilots_by_plane_type():
+    menu_stack.append(search_pilots_by_plane_type)
+    plane_type = input("Enter plane type (e.g., Boeing 747): ")
+    pilots = logic_wrapper.get_pilots_by_plane_type(plane_type)
+    if pilots:
+        print(f"\nPilots licensed to fly {plane_type}:")
+        for pilot in pilots:
+            print(f"ID: {pilot.id}, Name: {pilot.name}")
+    else:
+        print(f"No pilots found with a license to fly {plane_type}.")
+
+    handle_menu_options()
