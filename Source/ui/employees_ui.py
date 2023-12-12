@@ -2,7 +2,12 @@
 from model.employee_model import Employee
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
+<<<<<<< Updated upstream
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
+=======
+from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
+from ui.interface_ui import print_boxed
+>>>>>>> Stashed changes
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -17,6 +22,7 @@ def employees_menu():
         print("2. Add employees")
         print("3. Modify employees")
         print("Main Menu (M), Back (B), Quit (Q)")
+
         choice = input("Select Option: ").upper()
 
         if choice == "1":
