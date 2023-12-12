@@ -13,7 +13,7 @@ class Employee_Logic:
         return [x for x in self.data_wrapper.get_all_employees() if x.title == "Pilot"]
     
     def get_cabin_crew(self):
-        return [x for x in self.data_wrapper.get_all_employees() if x.title == "Steward"]
+        return [x for x in self.data_wrapper.get_all_employees() if x.title != "Pilot"]
 
     def get_employee_by_id(self, employee_id):
         return self.data_wrapper.get_employee_by_id(employee_id)

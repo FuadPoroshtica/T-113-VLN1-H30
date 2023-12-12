@@ -43,13 +43,16 @@ def view_all_employees():
     menu_stack.append(view_all_employees)
     while True:
         all_employees = logic_wrapper.get_all_employees()
+        all_pilots = logic_wrapper.get_pilots()
+        all_cabin_crew = logic_wrapper.get_cabin_crew()
         print("\nList of All Employees:")
         print("----------------------")
-        for employee in all_employees:
-            print(
-                f"ID: {employee.id}, Name: {employee.name}, Title: {employee.title}, Address: {employee.address}, Cell Phone: {employee.cell_phone}, Email: {employee.email}, Home Phone: {employee.home_phone}, Current Trip: {employee.current_trip}, Plane Licenses: {employee.plane_licenses}"
-            )
-
+        print(f"{'ID':<12}{'Name':<30}{'Title':<12}{'Home Address':<20}{'Cell Phone':<11}{'Email':<30}{' Home Phone':<11}{'Current Trip':<12}")
+        for employee in all_pilots:
+            print(f"{employee.id:<12}{employee.name:<30}{employee.title:<12}{employee.address:<20}{employee.cell_phone:<11}{employee.email:<30}{employee.home_phone:<11}{employee.current_trip:<5}")
+        for employee in all_cabin_crew:
+            print(f"{employee.id:<12}{employee.name:<30}{employee.title:<12}{employee.address:<20}{employee.cell_phone:<11}{employee.email:<30}{employee.home_phone:<11}{employee.current_trip:<5}")
+        
         print("\nMain Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
