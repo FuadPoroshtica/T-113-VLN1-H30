@@ -19,7 +19,7 @@ def flight_schedule_menu():
         print("2. View This weeks flights")
         print("3. View specific days flights")
         print("4. View specific weeks flights")
-        print("5. Create new flight")
+        print("5. Create new flight plan")
 
         print("Main Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
