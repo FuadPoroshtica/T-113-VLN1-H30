@@ -46,9 +46,6 @@ def view_locations():
         for location in all_locations:
             print(f"{location.id}: {location.country}, {location.airport_code}")
 
-        print("\nMain Menu (M), Back (B), Quit (Q)")
-        choice = input("Select Option: ").upper()
-
         handle_menu_options()
 
 def create_location():
