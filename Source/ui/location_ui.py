@@ -3,6 +3,7 @@
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
+from ui.interface_ui import print_boxed
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -11,18 +12,21 @@ logic_wrapper = Logic_Wrapper(data_wrapper)
 def locations_menu():
     menu_stack.append(locations_menu)
     while True:
-        print("\nLocations Menu")
-        print("---------------")
-        print("1. View Locations")
-        print("2. Create New Location")
-        print("3. Modify Location")
-        print("Main Menu (M), Back (B), Quit (Q)")
-        choice = input("Select Option: ").upper()
+        content = [
+            "Locations Menu",
+            "---------------",
+            "1. View Locations",
+            "2. Create New Location",
+            "3. Modify Location",
+            "Main Menu (M), Back (B), Quit (Q)"
+        ]
+
+        choice = print_boxed(content)
 
         if choice == '1':
-            view_locations() 
+            view_locations()
         elif choice == '2':
-            create_location()  
+            create_location()
         elif choice == '3':
             modify_location()
         elif choice == 'M':
@@ -41,11 +45,13 @@ def view_locations():
     menu_stack.append(view_locations)
     while True:
         all_locations = logic_wrapper.get_all_locations()
-        print("\nList of All Locations:")
-        print("----------------------")
-        for location in all_locations:
-            print(f"{location.id}: {location.country}, {location.airport_code}")
-
+        content = [
+            "List of All Locations:",
+            "----------------------",
+            *["{}: {}, {}".format(location.id, location.country, location.airport_code) for location in all_locations],
+            "Main Menu (M), Back (B), Quit (Q)"
+        ]
+        choice = print_boxed(content)
         handle_menu_options()
 
 def create_location():
