@@ -36,6 +36,8 @@ class Employee_Data:
     def add_employee_data(self, employee):
         with open(self.model, 'a', newline='', encoding="utf-8") as file:
             dict_write = csv.DictWriter(file, fieldnames=self.fieldname)  
+            if file.tell() == 0:  
+                dict_write.writeheader()
             dict_write.writerow({
                 "id": employee.id, 
                 "name": employee.name, 

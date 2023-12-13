@@ -1,18 +1,22 @@
 #logic_wrapper.py
+from datetime import datetime
 from logic.employee_logic import Employee_Logic
 from logic.location_logic import Location_Logic
 from logic.plane_logic import Plane_Logic
 from data.data_wrapper import Data_Wrapper
+from logic.flight_logic import Flight_Logic
 
 class Logic_Wrapper:
     def __init__(self, data_wrapper):
         self.employee_logic = Employee_Logic(data_wrapper)
         self.location_logic = Location_Logic(data_wrapper)
         self.plane_logic = Plane_Logic(data_wrapper)
+        self.flight_logic = Flight_Logic(data_wrapper, self.location_logic)
+
         self.data_wrapper = Data_Wrapper()
 
 
-    # Employee related methods
+    """Employee related methods"""
     def add_employee(self, employee):
         self.employee_logic.add_new_employee(employee)
     
@@ -43,11 +47,7 @@ class Logic_Wrapper:
         licensed_pilots = [pilot for pilot in all_pilots if plane_type in pilot.plane_licenses]
         return licensed_pilots
 
-
-
-
-
-    # Location related methods
+    """Location related methods """
     def add_location(self, location):
         self.location_logic.add_new_location(location)
 
@@ -60,7 +60,7 @@ class Logic_Wrapper:
     def update_location(self, location_id, new_data):
         self.location_logic.update_location(location_id, new_data)
 
-    # Plane related methods
+    """Plane related methods"""
     def add_plane(self, plane):
         self.plane_logic.add_new_plane(plane)
 
@@ -72,3 +72,35 @@ class Logic_Wrapper:
 
     def update_plane(self, plane_id, new_data):
         self.plane_logic.update_plane(plane_id, new_data)
+
+    """Flight related methods"""
+    
+    def add_flight(self, flight_data):
+        self.flight_logic.add_new_flight(flight_data)
+
+    def get_all_flights(self):
+        return self.flight_logic.get_all_flights()
+
+    def get_flight_by_id(self, flight_id):
+        return self.flight_logic.get_flight_by_id(flight_id)
+
+    def update_flight(self, flight_id, new_data):
+        self.flight_logic.update_flight(flight_id, new_data)
+    
+    def generate_flight_id(self, plane_id, arrival_airport_code):
+        plane = self.plane_logic.get_plane_by_id(plane_id)
+        if plane:
+            airline_code = plane.airline_name[:2].upper()
+        else:
+            airline_code = "NA"  
+
+        arrival_location = self.location_logic.get_location_by_airport_code(arrival_airport_code)
+        if arrival_location:
+            location_id = str(arrival_location.id).zfill(3)
+        else:
+            location_id = "000"  
+
+        today = datetime.now().strftime("%Y-%m-%d")
+        last_digits = self.flight_logic.get_next_flight_number(airline_code, location_id, today)
+
+        return f"{airline_code}{location_id}{last_digits}"
