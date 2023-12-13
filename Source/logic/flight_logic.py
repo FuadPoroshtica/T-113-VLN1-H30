@@ -6,7 +6,7 @@ class Flight_Logic:
 
     def add_new_flight(self, flight):
         self.data_wrapper.add_flight(flight)
-
+    
     def get_all_flights(self):
         return self.data_wrapper.get_all_flight()
 
