@@ -23,14 +23,17 @@ class Plane_Data():
                     row["max_capacity"]))
         return plane_list
 
-    def add_plane_data(self,plane):
-        with open(self.model, 'a', newline='', encoding="utf-8") as file:
-            dict_write=csv.DictWriter(file,fieldnames=self.fieldname)
+    def add_plane_data(self, plane):
+        with open(self.model, 'a', newline='', encoding="utf-8") as file: 
+            dict_write = csv.DictWriter(file, fieldnames=self.fieldname)
+            if file.tell() == 0:  
+                dict_write.writeheader()
             dict_write.writerow({
-                "id":plane.id,
-                "airline_name":plane.airline_name,
-                "airplane_model":plane.airplane_model,
-                "max_capacity":plane.max_capacity})
+                "id": plane.id,
+                "airline_name": plane.airline_name,
+                "airplane_model": plane.airplane_model,
+                "max_capacity": plane.max_capacity
+            })
 
     def get_plane_by_id(self, id):
         all_planes = self.plane_constructor()

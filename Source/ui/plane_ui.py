@@ -86,18 +86,40 @@ def modify_plane():
 
 def view_plane_licenses():
     menu_stack.append(view_plane_licenses)
-    licenses = logic_wrapper.get_all_plane_licenses()
-    if not licenses:
-        print("No plane license information available.")
-        return
+    all_planes = logic_wrapper.get_all_planes()  
+    licenses = logic_wrapper.get_all_plane_licenses()  
+
+    fleet_models = set(plane.airplane_model for plane in all_planes)
+
+    fleet_licenses = {model: [] for model in fleet_models} 
+    non_fleet_licenses = {}
+
+    for model, pilots in licenses.items():
+        if model in fleet_models:
+            fleet_licenses[model] = pilots
+        else:
+            non_fleet_licenses[model] = pilots
+
     print("\nPlane License Information:")
     print("--------------------------")
-    for plane_type, employees in licenses.items():
-        print(f"\n{plane_type} License Holders:")
-        for id, name in employees:
-            print(f"ID: {id}, Name: {name}")
+    
+    print("\nIn Current Fleet:")
+    for model in fleet_models:
+        print(f"\n{model} License Holders:")
+        if fleet_licenses[model]:
+            for id, name in fleet_licenses[model]:
+                print(f"  Pilot ID: {id}, Name: {name}")
+        else:
+            print("  No licensed pilots for this plane model.")
+
+    print("\nNot in Current Fleet:")
+    for model, pilots in non_fleet_licenses.items():
+        print(f"\n{model} License Holders:")
+        for id, name in pilots:
+            print(f"  Pilot ID: {id}, Name: {name}")
 
     handle_menu_options()
+
 
 def search_pilots_by_plane_type():
     menu_stack.append(search_pilots_by_plane_type)
