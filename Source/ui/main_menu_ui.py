@@ -9,8 +9,6 @@ from ui.employees_ui import employees_menu
 from ui.interface_ui import print_boxed
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
-
-
 # Inside your login_screen and main_menu functions
 def login_screen():
     while True:

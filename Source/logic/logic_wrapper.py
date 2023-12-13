@@ -73,6 +73,12 @@ class Logic_Wrapper:
     def update_plane(self, plane_id, new_data):
         self.plane_logic.update_plane(plane_id, new_data)
 
+    def get_plane_statuses_at_time(self, input_time):
+        return self.plane_logic.get_plane_statuses_at_time(input_time)
+    
+    def get_upcoming_flights_for_plane(self, plane_id):
+        return self.flight_logic.get_upcoming_flights_for_plane(plane_id)
+
     """Flight related methods"""
     
     def add_flight(self, flight_data):

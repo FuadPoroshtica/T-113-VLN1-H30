@@ -1,6 +1,7 @@
 #plane_ui.py
 
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack, handle_menu_options 
+from datetime import datetime, timedelta
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 from model.plane_model import Plane
@@ -19,6 +20,8 @@ def planes_menu():
         print("3. Modify Plane")
         print("4. View Plane Licenses")
         print("5. Search Pilots by Plane Type")
+        print("6. Check Plane Status by Time")
+        print("7. View Upcoming Flights for a Plane")
         print("Main Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
@@ -32,7 +35,11 @@ def planes_menu():
             view_plane_licenses()
         elif choice == '5':
             search_pilots_by_plane_type()
-
+        elif choice == '6':
+            check_plane_status()
+        elif choice == '7':
+            view_upcoming_flights_for_plane()
+        
         elif choice == 'M':
             return_to_main_menu()
             break
@@ -131,5 +138,33 @@ def search_pilots_by_plane_type():
             print(f"ID: {pilot.id}, Name: {pilot.name}")
     else:
         print(f"No pilots found with a license to fly {plane_type}.")
+
+    handle_menu_options()
+
+
+def check_plane_status():
+    menu_stack.append(check_plane_status)
+    input_time_str = input("Enter the date and time (YYYY-MM-DD HH:MM): ").strip()
+    try:
+        input_time = datetime.strptime(input_time_str, "%Y-%m-%d %H:%M")
+        plane_statuses = logic_wrapper.get_plane_statuses_at_time(input_time)
+        for status in plane_statuses:
+            print(status)
+    except ValueError as e:
+        print("Error: Invalid date/time format. Please use YYYY-MM-DD HH:MM format.")
+        print(e)
+
+    handle_menu_options()
+
+def view_upcoming_flights_for_plane():
+    menu_stack.append(view_upcoming_flights_for_plane)
+    plane_id = input("Enter the Plane ID: ")
+    upcoming_flights = logic_wrapper.get_upcoming_flights_for_plane(plane_id)
+    if upcoming_flights:
+        print(f"\nUpcoming flights for Plane ID {plane_id}:")
+        for flight in upcoming_flights:
+            print(f"Flight ID: {flight.id}, To: {flight.arrival_location}, Departure: {flight.start_home}")
+    else:
+        print(f"No upcoming flights found for Plane ID {plane_id}.")
 
     handle_menu_options()

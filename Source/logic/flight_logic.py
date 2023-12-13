@@ -60,3 +60,9 @@ class Flight_Logic:
                 highest_number = max(highest_number, current_number)
 
         return str(highest_number + 1).zfill(3)
+    
+    def get_upcoming_flights_for_plane(self, plane_id):
+        all_flights = self.data_wrapper.get_all_flights()
+        current_time = datetime.now()
+        upcoming_flights = [flight for flight in all_flights if flight.plane == plane_id and datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M") > current_time]
+        return upcoming_flights
