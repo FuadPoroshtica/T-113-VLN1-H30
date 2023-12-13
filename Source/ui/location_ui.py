@@ -3,7 +3,7 @@
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
-from ui.interface_ui import print_boxed
+from ui.interface_ui import print_boxed, print_boxed_with_inputs, print_boxed_with_inputs_modify
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -55,32 +55,69 @@ def view_locations():
         handle_menu_options()
 
 def create_location():
-    print("\nCreate a New Location")
-    id = input("Enter ID: ")
-    country = input("Enter Country: ")
-    airport_code = input("Enter Airport Code: ")
-    flight_duration = input("Enter Flight Duration: ")
-    distance = input("Enter Distance: ")
-    manager_name = input("Enter Manager Name: ")
-    emergency_phone = input("Enter Emergency Phone: ")
+    # Define the input prompts
+    prompts = [
+        "Enter ID",
+        "Enter Country",
+        "Enter Airport Code",
+        "Enter Flight Duration",
+        "Enter Distance",
+        "Enter Manager Name",
+        "Enter Emergency Phone"
+    ]
 
-    logic_wrapper.add_location(id, country, airport_code, flight_duration, distance, manager_name, emergency_phone)
+    # Use the modified print_boxed function to get inputs
+    inputs = print_boxed_with_inputs(prompts)
+
+    # Prepare the location data
+    location_data = {
+        "id": inputs["Enter ID"],
+        "country": inputs["Enter Country"],
+        "airport_code": inputs["Enter Airport Code"],
+        "flight_duration": inputs["Enter Flight Duration"],
+        "distance": inputs["Enter Distance"],
+        "manager_name": inputs["Enter Manager Name"],
+        "emergency_phone": inputs["Enter Emergency Phone"]
+    }
+
+    # Add the location using logic_wrapper
+    logic_wrapper.add_location(location_data)
+    
+    # Confirmation message
     print("Location added successfully.")
 
+
 def modify_location():
-    print("\nModify Location Details")
-    location_id = input("Enter the ID of the location to modify: ")
+    location_id = input("Enter the ID of the location to modify: ")  # This initial input remains outside the box
 
     location = logic_wrapper.get_location_by_id(location_id)
     if location is None:
         print("No location found with the given ID.")
         return
 
-    print(f"Modifying details for location {location.country} (ID: {location.id})")
-    new_details = { #Only things allowed to change
-        'manager_name': input(f"Enter new manager name (current: {location.manager_name}): ") or None,
-        'emergency_phone': input(f"Enter new emergency phone (current: {location.emergency_phone}): ") or None
+    # Static information to display
+    info_lines = [
+        "Modify Location Details",
+        f"Modifying details for location {location.country} (ID: {location.id})"
+    ]
+    
+    # Input prompts
+    input_prompts = [
+        f"Enter new manager name (current: {location.manager_name})",
+        f"Enter new emergency phone (current: {location.emergency_phone})"
+    ]
+
+    # Use the modified print_boxed function to get inputs
+    new_details = print_boxed_with_inputs_modify(info_lines, input_prompts)
+
+    # Prepare the details to be updated
+    update_details = {
+        'manager_name': new_details.get(input_prompts[0]),
+        'emergency_phone': new_details.get(input_prompts[1])
     }
 
-    logic_wrapper.update_location_details(location_id, new_details)
+    # Filtering out None values if no new input was provided
+    update_details = {k: v for k, v in update_details.items() if v is not None}
+
+    logic_wrapper.update_location_details(location_id, update_details)
     print("Location details updated successfully.")
