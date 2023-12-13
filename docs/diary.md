@@ -227,3 +227,23 @@ Jón is gonna try to connect the classes within the logic layer together.
 Ólafur is reworking the modify attributes to work with our current configuration.
 
 ### Status
+
+Most of what we did wasn't working some of us ended up not being able to complete our specific tasks but we did start on others.
+
+## 13/12/23
+
+we had a meeting at 10 Fuad, Jón and Ólafur showed up. Garðar is sick today but will try to work from home.
+
+Jón is Today's project manager.
+
+### Daily goals
+
+Fuad is gonna connect a new Border around every finished menu/page.
+
+Garðar is gonna code verification for adding instances and write a script for the video.
+
+Jón is gonna update the model diagram, class diagram make a task checklist.
+
+Ólafur is gonna finish connecting the flight logic.
+
+### Status
