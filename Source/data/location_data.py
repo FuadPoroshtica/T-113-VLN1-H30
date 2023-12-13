@@ -33,6 +33,8 @@ class Location_Data():
     def add_location_data(self, location):
         with open(self.model, 'a', newline='', encoding="utf-8") as file:
             dict_write = csv.DictWriter(file, fieldnames=self.fieldname)
+            if file.tell() == 0:  
+                dict_write.writeheader()
             dict_write.writerow({
             "id": location.id,
             "country": location.country,
