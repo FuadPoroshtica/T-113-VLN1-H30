@@ -21,7 +21,7 @@ def employees_menu():
             "3. Modify employees",
             "Main Menu (M), Back (B), Quit (Q)"
         ]
-        choice = print_boxed(content)  # Use the print_boxed function
+        choice = print_boxed(content)
 
         if choice == "1":
             view_all_employees()
