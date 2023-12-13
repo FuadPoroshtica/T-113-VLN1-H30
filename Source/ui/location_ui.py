@@ -1,5 +1,6 @@
 # location_ui.py
 
+from model.location_model import Location
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
@@ -70,15 +71,15 @@ def create_location():
     inputs = print_boxed_with_inputs(prompts)
 
     # Prepare the location data
-    location_data = {
-        "id": inputs["Enter ID"],
-        "country": inputs["Enter Country"],
-        "airport_code": inputs["Enter Airport Code"],
-        "flight_duration": inputs["Enter Flight Duration"],
-        "distance": inputs["Enter Distance"],
-        "manager_name": inputs["Enter Manager Name"],
-        "emergency_phone": inputs["Enter Emergency Phone"]
-    }
+    location_data = Location(
+        inputs["Enter ID"],
+        inputs["Enter Country"],
+        inputs["Enter Airport Code"],
+        inputs["Enter Flight Duration"],
+        inputs["Enter Distance"],
+        inputs["Enter Manager Name"],
+        inputs["Enter Emergency Phone"]
+    )
 
     # Add the location using logic_wrapper
     logic_wrapper.add_location(location_data)

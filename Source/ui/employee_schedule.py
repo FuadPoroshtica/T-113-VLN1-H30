@@ -2,12 +2,10 @@ def flight_crew_menu(return_to_main_menu):
     while True:
         print("Flight Crew Menu")
         print("----------------")
-        print("1. Pilots")
-        print("2. Stewards")
-        print("3. Search for ID")
-        print("4. Create Cabin Crew Plan")
-        print("5. Make a new Pilot")
-        print("6. Make a new Steward")
+        #TO BE FINISHED
+        print("4. See unmanned flights")
+        print("3. add employees to flight")
+
         print("Main Menu (M), Back (B), Quit (Q)")
         choice = input("Select Option: ").upper()
 
