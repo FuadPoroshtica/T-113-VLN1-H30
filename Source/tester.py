@@ -1,8 +1,9 @@
-import datetime
-employee="1212121200"
-y=int(employee[4:6])
-m=int(employee[2:4])
-d=int(employee[0:2])
-print(y,m,d)
-a=datetime.date(y,m,d)
-print(a)
+#
+from prettytable import PrettyTable
+x = PrettyTable()
+x.field_name = ["id","Name"]
+x.add_row(["12","George"])
+x.add_row(["16","Harold"])
+x.add_row(["19","Alex"])
+x.add_row(["51","Sinclair"])
+print(x)
