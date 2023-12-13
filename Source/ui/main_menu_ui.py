@@ -1,7 +1,7 @@
 import os
 # main_menu_ui.py
 
-from ui.employee_schedule import flight_crew_menu
+from ui.employee_schedule import employee_schedule_menu
 from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
 from ui.flight_ui import flights_menu
@@ -50,7 +50,7 @@ def main_menu():
         if choice == '1':
             locations_menu()
         elif choice == '2':
-            flight_crew_menu()
+            employee_schedule_menu()
         elif choice == '3':
             planes_menu()
         elif choice == '4':

@@ -5,7 +5,8 @@ class Location:
         self.id = str(id)
         self.country = str(country)
         self.airport_code = str(airport_code)
-        self.flight_duration = str(flight_duration)
+        self.flight_duration = int(flight_duration)
         self.distance = float(distance)
         self.manager_name = str(manager_name)
         self.emergency_phone = str(emergency_phone)
+

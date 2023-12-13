@@ -95,7 +95,6 @@ def modify_flight():
         'start_home': input(f"Enter new start time at home location (current: {flight.start_home}): ") or None,
         'tickets_home': input(f"Enter new number of home tickets (current: {flight.tickets_home}): ") or None,
         'tickets_foreign': input(f"Enter new number of foreign tickets (current: {flight.tickets_foreign}): ") or None
-        # Note: Modifying employees for a flight can be more complex and may need a different approach
     }
 
     logic_wrapper.update_flight(flight_id, new_details)
