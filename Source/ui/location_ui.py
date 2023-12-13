@@ -74,11 +74,7 @@ def modify_location():
         return
 
     print(f"Modifying details for location {location.country} (ID: {location.id})")
-    new_details = {
-        'country': input(f"Enter new country (current: {location.country}): ") or None,
-        'airport_code': input(f"Enter new airport code (current: {location.airport_code}): ") or None,
-        'flight_duration': input(f"Enter new flight duration (current: {location.flight_duration}): ") or None,
-        'distance': input(f"Enter new distance (current: {location.distance}): ") or None,
+    new_details = { #Only things allowed to change
         'manager_name': input(f"Enter new manager name (current: {location.manager_name}): ") or None,
         'emergency_phone': input(f"Enter new emergency phone (current: {location.emergency_phone}): ") or None
     }
