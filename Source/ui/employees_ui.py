@@ -2,6 +2,7 @@
 from model.employee_model import Employee
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
+from ui.interface_ui import print_boxed
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
 # Initialize Data_Wrapper and LogicWrapper
@@ -12,13 +13,15 @@ logic_wrapper = Logic_Wrapper(data_wrapper)
 def employees_menu():
     menu_stack.append(employees_menu)
     while True:
-        print("\nEmployees menu")
-        print("--------------------")
-        print("1. View all employees")
-        print("2. Add employees")
-        print("3. Modify employees")
-        print("Main Menu (M), Back (B), Quit (Q)")
-        choice = input("Select Option: ").upper()
+        content = [
+            "Employees menu",
+            "--------------------",
+            "1. View all employees",
+            "2. Add employees",
+            "3. Modify employees",
+            "Main Menu (M), Back (B), Quit (Q)"
+        ]
+        choice = print_boxed(content)  # Use the print_boxed function
 
         if choice == "1":
             view_all_employees()
@@ -43,15 +46,21 @@ def view_all_employees():
     menu_stack.append(view_all_employees)
     while True:
         all_employees = logic_wrapper.get_all_employees()
-        print("\nList of All Employees:")
-        print("----------------------")
-        for employee in all_employees:
-            print(
-                f"ID: {employee.id}, Name: {employee.name}, Title: {employee.title}, Address: {employee.address}, Cell Phone: {employee.cell_phone}, Email: {employee.email}, Home Phone: {employee.home_phone}, Current Trip: {employee.current_trip}, Plane Licenses: {employee.plane_licenses}"
-            )
+        # Header for the table-like list
+        header = f"{'ID':<10}{'Name':<20}{'Title':<15}{'Address':<25}{'Cell':<15}{'Email':<25}{'Home Phone':<15}{'Current Trip':<15}{'Licenses'}"
+        content = ["List of All Employees:", "----------------------", header]
 
-        print("\nMain Menu (M), Back (B), Quit (Q)")
-        choice = input("Select Option: ").upper()
+        # Add each employee's details to the content list, formatted as a row
+        for employee in all_employees:
+            row = (
+                f"{employee.id:<10}{employee.name:<20}{employee.title:<15}"
+                f"{employee.address:<25}{employee.cell_phone:<15}{employee.email:<25}"
+                f"{employee.home_phone:<15}{employee.current_trip:<15}{', '.join(employee.plane_licenses)}"
+            )
+            content.append(row)
+
+        content += ["", "Main Menu (M), Back (B), Quit (Q)", "Select Option:"]
+        choice = print_boxed(content)
 
         if choice == "M":
             return_to_main_menu()
@@ -60,8 +69,7 @@ def view_all_employees():
             return_to_previous_menu()
             break
         elif choice == "Q":
-            print("Exiting the program.")
-            exit()
+            exit("Exiting the program.")
         else:
             print("Invalid choice. Please choose again.")
 
