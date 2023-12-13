@@ -43,3 +43,43 @@ def print_boxed(text_list):
     print('|' + choice.center(width - 4) + '|')
 
     return choice
+
+def print_boxed_with_inputs(prompts):
+    """
+    Prints prompts inside an ASCII box and collects inputs for each prompt.
+    """
+    inputs = {}
+    for prompt in prompts:
+        print("+---------------------------------------------------+")
+        # Center the prompt
+        print("| " + prompt.center(50) + " |")
+        print("+---------------------------------------------------+")
+        # Collect input
+        user_input = input(prompt + ": ").strip()
+        inputs[prompt] = user_input
+    return inputs
+
+def print_boxed_with_inputs_modify(info_lines, input_prompts):
+    """
+    Prints information lines and input prompts inside an ASCII box and collects inputs.
+    """
+    inputs = {}
+    
+    # Print the top border of the box
+    print("+---------------------------------------------------+")
+    
+    # Print the static information lines
+    for line in info_lines:
+        print("| " + line.center(50) + " |")
+    
+    # Print the input prompts and collect inputs
+    for prompt in input_prompts:
+        print("| " + prompt.ljust(50) + " |")
+        print("+---------------------------------------------------+")
+        user_input = input(prompt + ": ").strip()
+        inputs[prompt] = user_input
+    
+    # Print the bottom border of the box
+    print("+---------------------------------------------------+")
+    
+    return inputs
