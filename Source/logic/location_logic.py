@@ -11,6 +11,13 @@ class Location_Logic:
 
     def get_location_by_id(self, location_id):
         return self.data_wrapper.get_location_by_id(location_id)
+    
+    def get_location_by_airport_code(self, airport_code):
+        all_locations = self.data_wrapper.get_all_locations()
+        for location in all_locations:
+            if location.airport_code == airport_code:
+                return location
+        return None
 
     def update_location(self, location_id, new_data):
         location = self.get_location_by_id(location_id)

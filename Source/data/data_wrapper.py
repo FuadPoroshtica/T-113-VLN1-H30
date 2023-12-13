@@ -16,7 +16,7 @@ class Data_Wrapper:
         self.location_data = Location_Data()
         self.plane_data = Plane_Data()
 
-    #Employees
+    """Employees"""
     def get_all_employees(self):
         return self.employee_data.employee_constructor()
 
@@ -38,26 +38,25 @@ class Data_Wrapper:
         return self.employee_data.get_all_employee_licenses()
 
 
-    #Flights
+    """Flights"""
+    def add_flight(self, flight):
+        self.flight_data.add_flight_data(flight)
+
     def get_all_flights(self):
         return self.flight_data.flight_constructor()
-
-    def add_flight(self, id,initial_location,arrival_location,employees,plane,start_home,start_foreign,tickets_home,tickets_foreign):
-        flight = Flight(id,initial_location,arrival_location,employees,plane,start_home,start_foreign,tickets_home,tickets_foreign)
-        self.flight_data.add_flight_data(flight)
 
     def get_flight_by_id(self, id):
         return self.flight_data.get_flight_by_id(id)
 
     def modify_flight(self, updated_flight):
-        all_flights = self.flight_data.flight_constructor()
+        all_flights = self.get_all_flights()
         for i, flight in enumerate(all_flights):
             if flight.id == updated_flight.id:
                 all_flights[i] = updated_flight
                 break
         self.flight_data.modify_flight_data(all_flights)
 
-    #Locations
+    """Locations"""
     def get_all_locations(self):
         return self.location_data.location_constructor()
 
@@ -75,7 +74,7 @@ class Data_Wrapper:
                 break
         self.location_data.modify_location_data(all_locations)
 
-    # Planes
+    """Planes"""
     def get_all_planes(self):
         return self.plane_data.plane_constructor()
 

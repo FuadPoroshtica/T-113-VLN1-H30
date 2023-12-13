@@ -4,7 +4,7 @@ import os
 from ui.employee_schedule import flight_crew_menu
 from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
-from ui.flight_schedule_ui import flight_schedule_menu
+from ui.flight_ui import flights_menu
 from ui.employees_ui import employees_menu
 from ui.interface_ui import print_boxed
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
@@ -39,7 +39,7 @@ def main_menu():
             "1. Locations",
             "2. Flight crew",
             "3. Planes",
-            "4. Flight schedule",
+            "4. Flights",
             "5. Employees",
             "6. Logout",
             "Q. Quit"
@@ -54,7 +54,7 @@ def main_menu():
         elif choice == '3':
             planes_menu()
         elif choice == '4':
-            flight_schedule_menu()
+            flights_menu()
         elif choice == '5':
             employees_menu()
         elif choice == '6':
