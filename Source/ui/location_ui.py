@@ -3,7 +3,6 @@
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
-from ui.interface_ui import print_boxed
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -12,21 +11,18 @@ logic_wrapper = Logic_Wrapper(data_wrapper)
 def locations_menu():
     menu_stack.append(locations_menu)
     while True:
-        content = [
-            "Locations Menu",
-            "---------------",
-            "1. View Locations",
-            "2. Create New Location",
-            "3. Modify Location",
-            "Main Menu (M), Back (B), Quit (Q)"
-        ]
-
-        choice = print_boxed(content)
+        print("\nLocations Menu")
+        print("---------------")
+        print("1. View Locations")
+        print("2. Create New Location")
+        print("3. Modify Location")
+        print("Main Menu (M), Back (B), Quit (Q)")
+        choice = input("Select Option: ").upper()
 
         if choice == '1':
-            view_locations()
+            view_locations() 
         elif choice == '2':
-            create_location()
+            create_location()  
         elif choice == '3':
             modify_location()
         elif choice == 'M':
@@ -45,34 +41,24 @@ def view_locations():
     menu_stack.append(view_locations)
     while True:
         all_locations = logic_wrapper.get_all_locations()
-        content = [
-            "List of All Locations:",
-            "----------------------",
-            *["{}: {}, {}".format(location.id, location.country, location.airport_code) for location in all_locations],
-            "Main Menu (M), Back (B), Quit (Q)"
-        ]
-        choice = print_boxed(content)
+        print("\nList of All Locations:")
+        print("----------------------")
+        for location in all_locations:
+            print(f"{location.id}: {location.country}, {location.airport_code}")
 
         handle_menu_options()
 
+def create_location():
+    print("\nCreate a New Location")
+    id = input("Enter ID: ")
+    country = input("Enter Country: ")
+    airport_code = input("Enter Airport Code: ")
+    flight_duration = input("Enter Flight Duration: ")
+    distance = input("Enter Distance: ")
+    manager_name = input("Enter Manager Name: ")
+    emergency_phone = input("Enter Emergency Phone: ")
 
-def get_location_data():
-
-        print("Create a New Location")
-        loc_data = {
-            "id": input("Enter ID: "),
-            "country": input("Enter Country: "),
-            "airport_code": input("Enter Airport Code: "),
-            "flight_duration": input("Enter Flight Duration: "),
-            "distance": input("Enter Distance: "),
-            "manager_name": input("Enter Manager Name: "),
-            "emergency_phone": input("Enter Emergency Phone: "),
-        }
-        return loc_data
-
-def add_new_location():
-    loc_data = get_location_data()
-    logic_wrapper.add_location(**loc_data)
+    logic_wrapper.add_location(id, country, airport_code, flight_duration, distance, manager_name, emergency_phone)
     print("Location added successfully.")
 
 def modify_location():
