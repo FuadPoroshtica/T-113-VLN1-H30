@@ -1,6 +1,5 @@
 import os
 def interface(text_list):
-    cursor.hide()
     try:
         terminal_size = os.get_terminal_size()
         width = terminal_size.columns
