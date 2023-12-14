@@ -1,7 +1,4 @@
 id,country,airport_code,flight_duration,distance,manager_name,emergency_phone
 01,Iceland,KEF,0,0,Jón Jónsson,+354 866 8866
 02,Denmark,CPH,180,2150,Elias L. Johnsen,+42 7 835 998455,albania,TAR,5,5000.0,fuad,1234332
-5,5,5,5,5.0,5,5
-55,5,5,5,5.0,5,5
-55,5,5,5,5.0,5,5
-2,2,2,2,2.0,2,2
+
