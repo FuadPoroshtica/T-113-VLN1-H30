@@ -21,7 +21,8 @@ def employees_menu():
             "3. Modify employees",
             "Main Menu (M), Back (B), Quit (Q)"
         ]
-        choice = interface(content)
+        interface(content)
+        choice = input("Select option: ").upper()
 
         if choice == "1":
             view_all_employees()

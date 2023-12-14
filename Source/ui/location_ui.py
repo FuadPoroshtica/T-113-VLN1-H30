@@ -1,4 +1,5 @@
 # location_ui.py
+import time
 
 from model.location_model import Location
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
@@ -90,8 +91,13 @@ def create_location():
     # Add the location using logic_wrapper
     logic_wrapper.add_location(location_data)
 
-    # Confirmation message
-    print("Location added successfully.")
+
+    interface(["Location added successfully."])
+
+    time.sleep(2)
+
+    # Return to the previous menu
+    return return_to_previous_menu()
 
 
 
