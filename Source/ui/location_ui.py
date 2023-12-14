@@ -5,7 +5,8 @@ from model.location_model import Location
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
-from ui.interface_ui import interface, print_boxed_with_inputs
+from ui.interface_ui import interface
+
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -100,33 +101,21 @@ def create_location():
     return return_to_previous_menu()
 
 
-
-def create_update_details(new_details, detail_keys):
-    update_details = {key: new_details.get(key) for key in detail_keys}
-    update_details = {k: v for k, v in update_details.items() if v is not None}
-    return update_details
-
-
 def modify_location():
+    print("\nModify Location Details")
     location_id = input("Enter the ID of the location to modify: ")
-    location = logic_wrapper.get_location_by_id(location_id)
 
+    location = logic_wrapper.get_location_by_id(location_id)
     if location is None:
         print("No location found with the given ID.")
         return
 
-    info_lines = [
-        "Modify Location Details",
-        f"Modifying details for location {location.country} (ID: {location.id})"
-    ]
-    manager_prompt = f"Enter new manager name (current: {location.manager_name})"
-    phone_prompt = f"Enter new emergency phone (current: {location.emergency_phone})"
-    input_prompts = [manager_prompt, phone_prompt]
+    print(f"Modifying details for employee {location.manager_name} (ID: {location.id})")
+    new_details = {
+        "manager": input(f"Enter new manager (current: {location.manager_name}): ") or location.manager_name,
+        "cell_phone": input(f"Enter new emergency phone number (current: {location.emergency_phone}): ") or location.emergency_phone
+    }
 
-    inputs = interface(info_lines, input_prompts)
-
-    new_details = inputs
-    detail_keys = [manager_prompt, phone_prompt]
-    update_details = create_update_details(new_details, detail_keys)
-    logic_wrapper.update_location_details(location_id, update_details)
+    logic_wrapper.update_location(location_id, new_details)
     print("Location details updated successfully.")
+

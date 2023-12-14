@@ -3,6 +3,7 @@ class Location_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
 
+
     def add_new_location(self, location):
         self.data_wrapper.add_location(location)
 
