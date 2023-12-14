@@ -94,7 +94,7 @@ def create_plane():
     # Prepare the plane data
     new_plane = Plane(
         inputs["Enter ID"],
-        inputs["Airline Name"],
+        inputs["Enter Airline Name"],
         inputs["Enter Airplane Mode"],
         inputs["Enter Max Capacity"]
     )
@@ -163,7 +163,6 @@ def view_plane_licenses():
             print(f"  Pilot ID: {id}, Name: {name}")
 
     handle_menu_options()
-
 
 def search_pilots_by_plane_type():
     menu_stack.append(search_pilots_by_plane_type)
