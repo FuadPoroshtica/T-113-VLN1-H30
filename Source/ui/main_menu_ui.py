@@ -6,7 +6,7 @@ from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
 from ui.flight_schedule_ui import flight_schedule_menu
 from ui.employees_ui import employees_menu
-from ui.interface_ui import print_boxed
+from ui.interface_ui import interface
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
 
@@ -20,15 +20,16 @@ def login_screen():
             "Login (press L)",
             "Quit (press Q)"
         ]
-        choice = print_boxed(content)
+        interface(content)
+        choice = input("Select option: ").upper()
 
         if choice == 'L':
-            main_menu()
+            main_menu()  # Ensure main_menu is defined elsewhere in your code
+            break
         elif choice == 'Q':
             exit()
         else:
             print("Invalid choice. Please choose again.")
-
 
 def main_menu():
     menu_stack.append(main_menu)
@@ -45,7 +46,8 @@ def main_menu():
             "Q. Quit"
         ]
 
-        choice = print_boxed(content)
+        interface(content)
+        choice = input("Select option: ").upper()
 
         if choice == '1':
             locations_menu()
@@ -65,14 +67,3 @@ def main_menu():
         else:
             print("Invalid choice. Please choose again.")
 
-def interface(stdscr):
-    # Clear screen
-    stdscr.clear()
-
-    # This raises ZeroDivisionError when i == 10.
-    for i in range(0, 11):
-        v = 10/i if i != 0 else "Undefined" # Avoid division by zero
-        stdscr.addstr(i, 0, '10 divided by {} is {}'.format(i, v))
-
-    stdscr.refresh()
-    stdscr.getkey()
