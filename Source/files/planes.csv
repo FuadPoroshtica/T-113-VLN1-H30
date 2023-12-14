@@ -1,6 +1,3 @@
 id,airline_name,airplane_model,max_capacity
 TF-LIF,NA,Boeing 777,260
-TF-OLI,Airbus,777,255
-5,5,5,5
-1,1,1,1
-2,2,2,2
+TF-OLI,NA,Boeing 787,260
