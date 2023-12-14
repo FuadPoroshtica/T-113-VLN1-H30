@@ -1,8 +1,6 @@
 import os
-import cursor
 
 def interface(text_list):
-    cursor.hide()
     try:
         terminal_size = os.get_terminal_size()
         width = terminal_size.columns
@@ -32,7 +30,6 @@ def interface(text_list):
 
 def print_boxed_with_inputs(prompts):
     inputs = {}
-    cursor.hide()
     terminal_size = os.get_terminal_size()
     terminal_width = terminal_size.columns
     terminal_height = terminal_size.lines
@@ -51,9 +48,7 @@ def print_boxed_with_inputs(prompts):
         for prompt in prompts:
             prompt_line = "| " + prompt.ljust(terminal_width - 4) + " |"
             print(prompt_line)
-            cursor.show()
             user_input = input('| ' + ' ' * (terminal_width - 4) + '| ' + prompt + ": ").strip()
-            cursor.hide()
             inputs[prompt] = user_input
 
         for _ in range(empty_lines - padding_above_and_below):
@@ -62,9 +57,7 @@ def print_boxed_with_inputs(prompts):
         print(horizontal_border)
 
         if "quit" in inputs.values():
-            cursor.show()
             break
 
-    cursor.show()
     return inputs
 
