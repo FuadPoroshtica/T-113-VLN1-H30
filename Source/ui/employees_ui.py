@@ -2,7 +2,7 @@
 from model.employee_model import Employee
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
-from ui.interface_ui import print_boxed
+from ui.interface_ui import interface
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
 
 # Initialize Data_Wrapper and LogicWrapper
@@ -21,7 +21,7 @@ def employees_menu():
             "3. Modify employees",
             "Main Menu (M), Back (B), Quit (Q)"
         ]
-        choice = print_boxed(content)
+        choice = interface(content)
 
         if choice == "1":
             view_all_employees()
@@ -60,7 +60,7 @@ def view_all_employees():
             content.append(row)
 
         content += ["", "Main Menu (M), Back (B), Quit (Q)", "Select Option:"]
-        choice = print_boxed(content)
+        choice = interface(content)
 
         if choice == "M":
             return_to_main_menu()

@@ -1,9 +1,10 @@
 # location_ui.py
 
+from model.location_model import Location
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
-from ui.interface_ui import print_boxed
+from ui.interface_ui import interface, print_boxed_with_inputs
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -21,7 +22,8 @@ def locations_menu():
             "Main Menu (M), Back (B), Quit (Q)"
         ]
 
-        choice = print_boxed(content)
+        interface(content)
+        choice = input("Select option: ").upper()
 
         if choice == '1':
             view_locations()
@@ -51,36 +53,74 @@ def view_locations():
             *["{}: {}, {}".format(location.id, location.country, location.airport_code) for location in all_locations],
             "Main Menu (M), Back (B), Quit (Q)"
         ]
-        choice = print_boxed(content)
+
+        interface(content)
+        choice = input("Select option: ").upper()
         handle_menu_options()
 
 def create_location():
-    print("\nCreate a New Location")
-    id = input("Enter ID: ")
-    country = input("Enter Country: ")
-    airport_code = input("Enter Airport Code: ")
-    flight_duration = input("Enter Flight Duration: ")
-    distance = input("Enter Distance: ")
-    manager_name = input("Enter Manager Name: ")
-    emergency_phone = input("Enter Emergency Phone: ")
+    print("Create New Location")
+    prompts = [
+        "Enter ID",
+        "Enter Country",
+        "Enter Airport Code",
+        "Enter Flight Duration",
+        "Enter Distance",
+        "Enter Manager Name",
+        "Enter Emergency Phone"
+    ]
 
-    logic_wrapper.add_location(id, country, airport_code, flight_duration, distance, manager_name, emergency_phone)
+    # Store inputs in a dictionary
+    inputs = {}
+    for prompt in prompts:
+        interface([prompt])  # Display each prompt using the interface function
+        inputs[prompt] = input("Type here: ").strip()
+
+    # Prepare the location data
+    location_data = Location(
+        inputs["Enter ID"],
+        inputs["Enter Country"],
+        inputs["Enter Airport Code"],
+        inputs["Enter Flight Duration"],
+        inputs["Enter Distance"],
+        inputs["Enter Manager Name"],
+        inputs["Enter Emergency Phone"]
+    )
+
+    # Add the location using logic_wrapper
+    logic_wrapper.add_location(location_data)
+
+    # Confirmation message
     print("Location added successfully.")
 
-def modify_location():
-    print("\nModify Location Details")
-    location_id = input("Enter the ID of the location to modify: ")
 
+
+def create_update_details(new_details, detail_keys):
+    update_details = {key: new_details.get(key) for key in detail_keys}
+    update_details = {k: v for k, v in update_details.items() if v is not None}
+    return update_details
+
+
+def modify_location():
+    location_id = input("Enter the ID of the location to modify: ")
     location = logic_wrapper.get_location_by_id(location_id)
+
     if location is None:
         print("No location found with the given ID.")
         return
 
-    print(f"Modifying details for location {location.country} (ID: {location.id})")
-    new_details = { #Only things allowed to change
-        'manager_name': input(f"Enter new manager name (current: {location.manager_name}): ") or None,
-        'emergency_phone': input(f"Enter new emergency phone (current: {location.emergency_phone}): ") or None
-    }
+    info_lines = [
+        "Modify Location Details",
+        f"Modifying details for location {location.country} (ID: {location.id})"
+    ]
+    manager_prompt = f"Enter new manager name (current: {location.manager_name})"
+    phone_prompt = f"Enter new emergency phone (current: {location.emergency_phone})"
+    input_prompts = [manager_prompt, phone_prompt]
 
-    logic_wrapper.update_location_details(location_id, new_details)
+    inputs = interface(info_lines, input_prompts)
+
+    new_details = inputs
+    detail_keys = [manager_prompt, phone_prompt]
+    update_details = create_update_details(new_details, detail_keys)
+    logic_wrapper.update_location_details(location_id, update_details)
     print("Location details updated successfully.")
