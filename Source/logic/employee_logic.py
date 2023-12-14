@@ -7,7 +7,7 @@ class Employee_Logic:
     def verify_allowed(self, employee):
         errors = []
         if len(employee.id) != 10:
-            errors.append("ID needs to be 12 in length.")
+            errors.append("ID needs to be 10 in length.")
 
         elif employee.id.isnumeric() == False:
             errors.append("ID needs to have only numbers")
@@ -24,9 +24,31 @@ class Employee_Logic:
         if len(employee.name) >35:
             errors.append("Name is too long please no more than 35 characters")
 
-        elif len(employee.name) <=5:
+        elif len(employee.name) <5:
             errors.append("Name needs to be atleast 5 characters")
-    
+
+        if " " not in employee.email:
+            if "@" in employee.email:
+                temp_address=employee.email.split("@")
+                if len(temp_address) == 2:                    
+                    if temp_address[0] == '':
+                        errors.append("you need to write text before the @")
+                    if "." in temp_address[1]:
+                        temp_address_2=temp_address[1].split(".")
+                        if len(temp_address_2)==2:
+                            if temp_address_2[0] == '':
+                                errors.append("you need text between @ and .")
+                            if temp_address_2[1] == '':
+                                errors.append("you need a domain suffix example(.com, .is)")
+                        else:
+                            errors.append("you must have 1 dot (.) in an email")
+                    else:
+                        errors.append("you need to put a domain for example('gmail.com')")
+            else:
+                errors.append("you must have 1 @ in an email")
+        else:
+            errors.append("you can't have spaces in emails")
+
         #id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
 
         
