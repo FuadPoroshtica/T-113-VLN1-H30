@@ -58,7 +58,7 @@ class Logic_Wrapper:
         return self.location_logic.get_location_by_id(location_id)
 
     def update_location(self, location_id, new_data):
-        self.location_logic.update_location(location_id, new_data)
+        return self.location_logic.update_location(location_id, new_data)
 
     """Plane related methods"""
     def add_plane(self, plane):

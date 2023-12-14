@@ -54,7 +54,7 @@ def view_locations():
         content = [
             "List of All Locations:",
             "----------------------",
-            *["{}: {}, {}".format(location.id, location.country, location.airport_code) for location in all_locations],
+            *["{}: {}, {}, {}, {}".format(location.id, location.country, location.airport_code, location.manager_name, f"+{location.emergency_phone}") for location in all_locations],
             "Main Menu (M), Back (B), Quit (Q)"
         ]
 

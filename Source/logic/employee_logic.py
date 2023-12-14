@@ -4,31 +4,35 @@ class Employee_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
 
-    def verify_allowed(self, employee):
+    def verify_allowed(self, employee, reason):
         employee.name=employee.name.title()
         employee.title=employee.title.title() # note employee.title is job while title() capatilzes the first letter of every word
         employee.address=employee.address.title()
         errors = []
-        if len(employee.id) != 10:
-            errors.append("ID needs to be 10 in length.")
+        if reason == "add":
+            if len(employee.id) != 10:
+                errors.append("ID needs to be 10 in length.")
 
-        elif employee.id.isnumeric() == False:
-            errors.append("ID needs to have only numbers")
+            elif employee.id.isnumeric() == False:
+                errors.append("ID needs to have only numbers")
 
-        elif len(employee.id) == 10:
-            try:
-                year=int(employee.id[4:6])
-                month=int(employee.id[2:4])
-                day=int(employee.id[0:2])
-                datetime.date(year,month,day) # uses date class from datetime package to check for accurate dates
-            except ValueError:
-                errors.append("ID needs to have legitimate day/month/year")
+            elif any(employee.id == x.id for x in self.get_all_employees()):
+                errors.append(f"Employee ID is already in use by {self.get_employee_by_id(employee.id).name}")
+    
+            elif len(employee.id) == 10:
+                try:
+                    year=int(employee.id[4:6])
+                    month=int(employee.id[2:4])
+                    day=int(employee.id[0:2])
+                    datetime.date(year,month,day) # uses date class from datetime package to check for accurate dates
+                except ValueError:
+                    errors.append("ID needs to have legitimate day/month/year")
 
-        if len(employee.name) >35:
-            errors.append("Name is too long please no more than 35 characters")
+            if len(employee.name) >35:
+                errors.append("Name is too long please no more than 35 characters")
 
-        elif len(employee.name) <5:
-            errors.append("Name needs to be atleast 5 characters")
+            elif len(employee.name) <5:
+                errors.append("Name needs to be atleast 5 characters")
 
         if " " not in employee.email:
             if "@" in employee.email:
@@ -54,10 +58,10 @@ class Employee_Logic:
 
         if employee.cell_phone.isnumeric() != True or len(employee.cell_phone) != 7:
             errors.append("Your phone number needs to be 7 numbers long")
-        if employee.home_phone.isnumeric() != True or len(employee.home_phone) != 7:
+        if employee.home_phone.isnumeric() != True and len(employee.home_phone) != 7:
             employee.home_phone=="None"
 
-        if employee.title != "Cabin Crew" and employee != "Pilot":
+        if employee.title != "Cabin Crew" and employee.title != "Pilot":
             errors.append("Job title currently only supports Pilot or Cabin Crew")
         #can't verify yet current_trip
         #can't verify plane_licenses as we don't have a database of different plane licenses.
@@ -65,14 +69,14 @@ class Employee_Logic:
         if len(employee.address) >20:
             errors.append("Home Address is too long please no more than 20 characters")
 
-        elif len(employee.name) <5:
+        elif len(employee.address) <5:
             errors.append("Home Address needs to be atleast 5 characters")
 
         if len(errors) != 0:
             return errors
-
+        
     def add_new_employee(self, employee):
-        condition = self.verify_allowed(employee)
+        condition = self.verify_allowed(employee,"add")
         if type(condition) == type([]):
             return condition
         else:
@@ -92,6 +96,13 @@ class Employee_Logic:
         return self.data_wrapper.get_employee_by_id(employee_id)
 
     def update_employee(self, employee_id, new_data):
+        #condition = self.verify_allowed(employee,"modify")
+        #if type(condition) == type([]):
+        #    return condition
+        #else:
+        #    self.data_wrapper.add_employee(employee)
+        #    return "Succesfully added employee"
+
         employee = self.get_employee_by_id(employee_id)
         if employee:
             for key, value in new_data.items():
