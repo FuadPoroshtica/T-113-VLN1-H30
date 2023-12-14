@@ -5,6 +5,9 @@ class Employee_Logic:
         self.data_wrapper = data_wrapper
 
     def verify_allowed(self, employee):
+        employee.name=employee.name.title()
+        employee.title=employee.title.title() # note employee.title is job while title() capatilzes the first letter of every word
+        employee.address=employee.address.title()
         errors = []
         if len(employee.id) != 10:
             errors.append("ID needs to be 10 in length.")
@@ -49,9 +52,21 @@ class Employee_Logic:
         else:
             errors.append("you can't have spaces in emails")
 
-        #id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
+        if employee.cell_phone.isnumeric() != True or len(employee.cell_phone) != 7:
+            errors.append("Your phone number needs to be 7 numbers long")
+        if employee.home_phone.isnumeric() != True or len(employee.home_phone) != 7:
+            employee.home_phone=="None"
 
-        
+        if employee.title != "Cabin Crew" and employee != "Pilot":
+            errors.append("Job title currently only supports Pilot or Cabin Crew")
+        #can't verify yet current_trip
+        #can't verify plane_licenses as we don't have a database of different plane licenses.
+
+        if len(employee.address) >20:
+            errors.append("Home Address is too long please no more than 20 characters")
+
+        elif len(employee.name) <5:
+            errors.append("Home Address needs to be atleast 5 characters")
 
         if len(errors) != 0:
             return errors
@@ -63,6 +78,7 @@ class Employee_Logic:
         else:
             self.data_wrapper.add_employee(employee)
             return "Succesfully added employee"
+
     def get_all_employees(self):
         return self.data_wrapper.get_all_employees()
 
@@ -88,3 +104,4 @@ class Employee_Logic:
         if employee:
             return employee.title.lower() == "pilot"
         return False
+    

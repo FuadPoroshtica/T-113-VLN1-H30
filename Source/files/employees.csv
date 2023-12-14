@@ -9,4 +9,5 @@ id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
 1005901500,Guggenheim,logarvegur 151,1500232,TheGuggenheim@gmail.com,Pilot,2312302,None,['Boeing 747']
 0310953169,Pilot One,Gata 1,8661995,pilot1@gmail.com,pilot,5511234,None,"['Boeing 747', 'Boeing 777']"
 0310943169,Pilot Two,Gata 2,8661996,pilot2@gmail.com,pilot,5515515,None,"['Airbus A350', 'Boeing 787', 'Airbus A320']"
-1010021222,jonniin,asad 3,5555355,jonni@gmail.com,Pilot,,None,[]
+1010021222,jonniin,asad 3,5555355,jonni@gmail.com,Pilot,None,None,[]
+1503021212,Jon Test,Austurbrekka 15,1414000,jontest@gmail.com,Cabin Crew,,None,None
