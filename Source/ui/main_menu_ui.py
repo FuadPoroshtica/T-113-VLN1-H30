@@ -1,7 +1,7 @@
 import os
 # main_menu_ui.py
 
-from ui.employee_schedule import employee_schedule_menu
+#from ui.employee_schedule import employee_schedule_menu
 from ui.plane_ui import planes_menu
 from ui.location_ui import locations_menu
 from ui.flight_ui import flights_menu
