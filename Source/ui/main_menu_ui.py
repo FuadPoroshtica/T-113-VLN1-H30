@@ -34,13 +34,14 @@ def main_menu():
     while True:
         content = [
             "Main Menu",
-            "-----------",
+            "----------------------",
             "1. Locations",
             "2. Flight crew",
             "3. Planes",
             "4. Flights",
             "5. Employees",
-            "6. Logout",
+            "----------------------",
+            "L. Logout",
             "Q. Quit"
         ]
 
@@ -57,7 +58,7 @@ def main_menu():
             flights_menu()
         elif choice == '5':
             employees_menu()
-        elif choice == '6':
+        elif choice == 'L':
             login_screen()
         elif choice == 'Q':
             print("Exiting the program.")
