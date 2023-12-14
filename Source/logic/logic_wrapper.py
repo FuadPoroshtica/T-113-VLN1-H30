@@ -18,7 +18,7 @@ class Logic_Wrapper:
 
     """Employee related methods"""
     def add_employee(self, employee):
-        self.employee_logic.add_new_employee(employee)
+        return self.employee_logic.add_new_employee(employee)
     
     def get_all_employees(self):
         return self.employee_logic.get_all_employees()

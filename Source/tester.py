@@ -1,5 +1,8 @@
 import datetime
-date1 = datetime.datetime(2023,11,8,13,25)
-print(date1) # 08.11.2023,13:25, 
-date2 = datetime.date(100,6,10)
-print(date2)
+employee="1212121200"
+y=int(employee[4:6])
+m=int(employee[2:4])
+d=int(employee[0:2])
+print(y,m,d)
+a=datetime.date(y,m,d)
+print(a)

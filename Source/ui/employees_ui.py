@@ -78,7 +78,7 @@ def add_employees():
     print("\nAdd a new employee")
     id = input("Enter ID: ")
     name = input("Enter Name: ")
-    address = input("Enter Address: ")
+    address = input("Enter Home Address: ")
     cell_phone = input("Enter Cell Phone: ")
     email = input("Enter Email: ")
     title = input("Enter Title: ")
@@ -87,10 +87,18 @@ def add_employees():
     if title.lower() == "pilot":
         plane_licenses = add_license()
 
-    new_employee = Employee(id, name, address, cell_phone, email, title, home_phone, plane_licenses)
+    new_employee = Employee(id, name, address, cell_phone, email, title, home_phone,plane_licenses=plane_licenses)
 
-    logic_wrapper.add_employee(new_employee)
-    print("Employee added successfully.")
+
+    status=logic_wrapper.add_employee(new_employee)
+## vinsamlegst gefið þessu sinn eigin glugga/function
+    if type(status) == type([]): #prentar errors
+        print("\n")
+        for x in status:
+            print(x)
+    else:
+        print(status)
+## vinsamlegst gefið þessu sinn eigin glugga/function
 
 def add_license():
     plane_licenses = None
