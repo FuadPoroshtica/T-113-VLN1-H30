@@ -61,7 +61,8 @@ def view_all_employees():
             content.append(row)
 
         content += ["", "Main Menu (M), Back (B), Quit (Q)", "Select Option:"]
-        choice = interface(content)
+        interface(content)
+        choice = input("Select option: ").upper()
 
         if choice == "M":
             return_to_main_menu()
