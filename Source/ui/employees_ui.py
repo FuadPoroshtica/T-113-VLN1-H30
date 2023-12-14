@@ -3,7 +3,7 @@ from model.employee_model import Employee
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 from ui.interface_ui import interface
-from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack
+from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack, handle_menu_options
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -45,35 +45,15 @@ def employees_menu():
 
 def view_all_employees():
     menu_stack.append(view_all_employees)
-    while True:
-        all_employees = logic_wrapper.get_all_employees()
-        # Header for the table-like list
-        header = f"{'ID':<10}{'Name':<20}{'Title':<15}{'Address':<25}{'Cell':<15}{'Email':<25}{'Home Phone':<15}{'Current Trip':<15}{'Licenses'}"
-        content = ["List of All Employees:", "----------------------", header]
+    all_employees = logic_wrapper.get_all_employees()
 
-        # Add each employee's details to the content list, formatted as a row
-        for employee in all_employees:
-            row = (
-                f"{employee.id:<10}{employee.name:<20}{employee.title:<15}"
-                f"{employee.address:<25}{employee.cell_phone:<15}{employee.email:<25}"
-                f"{employee.home_phone:<15}{employee.current_trip:<15}{', '.join(employee.plane_licenses)}"
-            )
-            content.append(row)
-
-        content += ["", "Main Menu (M), Back (B), Quit (Q)", "Select Option:"]
-        interface(content)
-        choice = input("Select option: ").upper()
-
-        if choice == "M":
-            return_to_main_menu()
-            break
-        elif choice == "B":
-            return_to_previous_menu()
-            break
-        elif choice == "Q":
-            exit("Exiting the program.")
-        else:
-            print("Invalid choice. Please choose again.")
+    content = [
+        "List of All Employees:",
+        "----------------------",
+        *["ID: {:<10}, Name: {:<20}, Title: {:<15}, Address: {:<25}, Cell: {:<15}, Email: {:<25}, Home Phone: {:<15}, Current Trip: {:<15}, Lincenses: {} ".format(employee.id, employee.name, employee.title, employee.address, employee.cell_phone, employee.email, employee.home_phone, employee.current_trip, employee.plane_licenses) for employee in all_employees]
+    ]
+    interface(content)
+    handle_menu_options()
 
 
 def add_employees():

@@ -26,38 +26,3 @@ def interface(text_list):
     print(horizontal_border)
 
     return interface
-
-
-def print_boxed_with_inputs(prompts):
-    inputs = {}
-    terminal_size = os.get_terminal_size()
-    terminal_width = terminal_size.columns
-    terminal_height = terminal_size.lines
-
-    while True:
-        total_content_lines = len(prompts) * 2
-        empty_lines = max(0, terminal_height - total_content_lines - 2)
-        padding_above_and_below = empty_lines // 2
-
-        horizontal_border = '+' + '-' * (terminal_width - 2) + '+'
-        print(horizontal_border)
-
-        for _ in range(padding_above_and_below):
-            print('|' + ' ' * (terminal_width - 2) + '|')
-
-        for prompt in prompts:
-            prompt_line = "| " + prompt.ljust(terminal_width - 4) + " |"
-            print(prompt_line)
-            user_input = input('| ' + ' ' * (terminal_width - 4) + '| ' + prompt + ": ").strip()
-            inputs[prompt] = user_input
-
-        for _ in range(empty_lines - padding_above_and_below):
-            print('|' + ' ' * (terminal_width - 2) + '|')
-
-        print(horizontal_border)
-
-        if "quit" in inputs.values():
-            break
-
-    return inputs
-
