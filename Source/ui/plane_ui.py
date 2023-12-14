@@ -1,10 +1,12 @@
 #plane_ui.py
-
+import time
 from .navigation import return_to_previous_menu, return_to_main_menu, menu_stack, handle_menu_options 
 from datetime import datetime, timedelta
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 from model.plane_model import Plane
+from ui.interface_ui import interface
+
 
 # Initialize LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -13,17 +15,22 @@ logic_wrapper = Logic_Wrapper(data_wrapper)
 def planes_menu():
     menu_stack.append(planes_menu)
     while True:
-        print("\nPlanes Menu")
-        print("-----------")
-        print("1. View Planes")
-        print("2. Create New Plane")
-        print("3. Modify Plane")
-        print("4. View Plane Licenses")
-        print("5. Search Pilots by Plane Type")
-        print("6. Check Plane Status by Time")
-        print("7. View Upcoming Flights for a Plane")
-        print("Main Menu (M), Back (B), Quit (Q)")
-        choice = input("Select Option: ").upper()
+        content = [
+            "Planes Menu",
+            "------------------------------",
+            "1. View Planes",
+            "2. Create New Plane",
+            "3. Modify Plane",
+            "4. View Plane Licenses",
+            "5. Search Pilots by Plane Type",
+            "6. Check Plane Status by Time",
+            "7. View Upcoming Flights for a Plane",
+            "------------------------------",
+            "Main Menu (M), Back (B), Quit (Q)"
+        ]
+
+        interface(content)
+        choice = input("Select option: ").upper()
 
         if choice == '1':
             view_planes() 
@@ -52,26 +59,56 @@ def planes_menu():
         else:
             print("Invalid choice. Please choose again.")
 
+
 def view_planes():
     menu_stack.append(view_planes)
     all_planes = logic_wrapper.get_all_planes()
-    print("\nList of All Planes:")
-    print("-------------------")
-    for plane in all_planes:
-        print(f"ID: {plane.id}, Airline: {plane.airline_name}, Model: {plane.airplane_model}, Capacity: {plane.max_capacity}")
-    
-    handle_menu_options()
-    
-def create_plane():
-    print("\nCreate a New Plane")
-    id = input("Enter ID: ")
-    airline_name = input("Enter Airline Name: ")
-    airplane_model = input("Enter Airplane Model: ")
-    max_capacity = input("Enter Max Capacity: ")
 
-    new_plane = Plane(id, airline_name, airplane_model, max_capacity)
+    # Using list comprehension to format plane details
+    content = [
+        "List of All Planes:",
+        "-------------------",
+        *["ID: {}, Airline: {}, Model: {}, Capacity: {}".format(plane.id, plane.airline_name, plane.airplane_model,
+                                                                plane.max_capacity) for plane in all_planes],
+        "Main Menu (M), Back (B), Quit (Q)"
+    ]
+
+    interface(content)
+    handle_menu_options()
+
+def create_plane():
+    print("Create a New Plane")
+    prompts = [
+        "Enter ID",
+        "Enter Airline Name",
+        "Enter Airplane Mode",
+        "Enter Max Capacity"
+    ]
+
+    # Store inputs in a dictionary
+    inputs = {}
+    for prompt in prompts:
+        interface([prompt])  # Display each prompt using the interface function
+        inputs[prompt] = input("Type here: ").strip()
+
+    # Prepare the plane data
+    new_plane = Plane(
+        inputs["Enter ID"],
+        inputs["Airline Name"],
+        inputs["Enter Airplane Mode"],
+        inputs["Enter Max Capacity"]
+    )
+
+    # Add the location using logic_wrapper
     logic_wrapper.add_plane(new_plane)
-    print("Plane added successfully.")
+
+
+    interface(["Plane added successfully."])
+
+    time.sleep(2)
+
+    # Return to the previous menu
+    return return_to_previous_menu()
 
 def modify_plane():
     plane_id = input("Enter the ID of the plane to modify: ")

@@ -6,6 +6,7 @@ from .navigation import return_to_previous_menu, return_to_main_menu, handle_men
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
 from ui.interface_ui import interface, print_boxed_with_inputs
+#from ui.ascii_ui import location_added_success
 
 # Initialize Data_Wrapper and LogicWrapper
 data_wrapper = Data_Wrapper()
@@ -56,7 +57,6 @@ def view_locations():
         ]
 
         interface(content)
-        choice = input("Select option: ").upper()
         handle_menu_options()
 
 def create_location():

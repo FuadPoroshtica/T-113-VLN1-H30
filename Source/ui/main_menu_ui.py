@@ -14,7 +14,7 @@ def login_screen():
     while True:
         content = [
             "Login Screen",
-            "------------",
+            "------------------------",
             "Login (press L)",
             "Quit (press Q)"
         ]
