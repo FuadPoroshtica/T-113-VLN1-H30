@@ -1,6 +1,7 @@
 # flight_data.py
 import csv
 from model.flight_model import Flight
+from datetime import datetime, timedelta
 
 class Flight_Data:
     def __init__(self):
@@ -67,3 +68,13 @@ class Flight_Data:
                     "tickets_home": str(flight.tickets_home),
                     "tickets_foreign": str(flight.tickets_foreign)
                 })
+    
+    def get_flights_by_date(self, date):
+        all_flights = self.flight_constructor()
+        return [flight for flight in all_flights if flight.start_home.startswith(date)]
+
+    def get_flights_by_week(self, start_date):
+        all_flights = self.flight_constructor()
+        start = datetime.strptime(start_date, "%Y-%m-%d")
+        end = start + timedelta(days=7)
+        return [flight for flight in all_flights if start <= datetime.strptime(flight.start_home.split()[0], "%Y-%m-%d") < end]

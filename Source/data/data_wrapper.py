@@ -55,6 +55,12 @@ class Data_Wrapper:
                 all_flights[i] = updated_flight
                 break
         self.flight_data.modify_flight_data(all_flights)
+    
+    def get_flights_by_date(self, date):
+        return self.flight_data.get_flights_by_date(date)
+
+    def get_flights_by_week(self, start_date):
+        return self.flight_data.get_flights_by_week(start_date)
 
     """Locations"""
     def get_all_locations(self):

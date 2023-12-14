@@ -11,7 +11,7 @@ class Logic_Wrapper:
         self.employee_logic = Employee_Logic(data_wrapper)
         self.location_logic = Location_Logic(data_wrapper)
         self.plane_logic = Plane_Logic(data_wrapper)
-        self.flight_logic = Flight_Logic(data_wrapper, self.location_logic)
+        self.flight_logic = Flight_Logic(data_wrapper, self.location_logic, self.employee_logic)
 
         self.data_wrapper = Data_Wrapper()
 
@@ -93,24 +93,16 @@ class Logic_Wrapper:
     def update_flight(self, flight_id, new_data):
         self.flight_logic.update_flight(flight_id, new_data)
     
-    def generate_flight_id(self, plane_id, arrival_airport_code):
-        plane = self.plane_logic.get_plane_by_id(plane_id)
-        if plane:
-            airline_code = plane.airline_name[:2].upper()
-        else:
-            airline_code = "NA"  
+    def validate_flight_creation(self, *args, **kwargs):
+        return self.flight_logic.validate_flight_creation(*args, **kwargs)    
 
-        arrival_location = self.location_logic.get_location_by_airport_code(arrival_airport_code)
-        if arrival_location:
-            location_id = str(arrival_location.id).zfill(3)
-        else:
-            location_id = "000"  
+    def get_flights_by_date_with_manning_info(self, date):
+        flights = self.flight_logic.get_flights_by_date(date)
+        return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
 
-        today = datetime.now().strftime("%Y-%m-%d")
-        last_digits = self.flight_logic.get_next_flight_number(airline_code, location_id, today)
-
-        return f"{airline_code}{location_id}{last_digits}"
-    
+    def get_flights_by_week_with_manning_info(self, start_date):
+        flights = self.flight_logic.get_flights_by_week(start_date)
+        return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
     
     """Flight employee assignment related methods"""
     def assign_employees_to_flight(self, flight_id, employee_ids):
@@ -129,5 +121,5 @@ class Logic_Wrapper:
     def clear_flight_employees(self, flight_id):
         flight = self.get_flight_by_id(flight_id)
         if flight:
-            flight.employees = []  # Clear the list of employees
+            flight.employees = []
             self.data_wrapper.modify_flight(flight)
