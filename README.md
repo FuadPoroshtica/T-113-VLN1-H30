@@ -17,6 +17,8 @@ _|_|______________
 */       |       \*
 
 ```
+## Video:
+[PLAY HERE](ru.is)
 
 ## Requiremnets
 
