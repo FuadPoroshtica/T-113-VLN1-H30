@@ -18,6 +18,12 @@ _|_|______________
 
 ```
 
+## Requiremnets
+
+- python 3.x
+- datetime
+- time
+
 ## Install the requirements
 
 ```bash
@@ -54,12 +60,6 @@ $ ./NaNair_win.bat
 ```bash
 $ ./NaNair_Mac_Linux.sh
 ```
-
-## Requiremnets
-
-- python 3.x
-- datetime
-- time
 
 ## Developers
 
