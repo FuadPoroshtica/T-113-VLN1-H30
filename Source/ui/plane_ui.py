@@ -127,8 +127,6 @@ def modify_plane():
 
     new_details = {
         'airline_name': input(f"Enter new airline name (current: {plane.airline_name}): ") or plane.airline_name,
-        'airplane_model': input(
-            f"Enter new airplane model (current: {plane.airplane_model}): ") or plane.airplane_model,
         'max_capacity': input(f"Enter new max capacity (current: {plane.max_capacity}): ") or plane.max_capacity
     }
 

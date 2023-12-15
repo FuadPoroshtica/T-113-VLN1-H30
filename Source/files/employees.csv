@@ -10,5 +10,8 @@ id,name,address,cell_phone,email,title,home_phone,current_trip,plane_licenses
 0310953169,Pilot One,Gata 1,8661995,pilot1@gmail.com,pilot,5511234,None,"['Boeing 747', 'Boeing 777']"
 0310943169,Pilot Two,Gata 2,8661996,pilot2@gmail.com,pilot,5515515,None,"['Airbus A350', 'Boeing 787', 'Airbus A320']"
 1010021222,jonniin,asad 3,5555355,jonni@gmail.com,Pilot,None,None,[]
-1503021212,Jon Test,Austurbrekka 15,1414000,jontest@gmail.com,Cabin Crew,,None,None
-1507021212,Jonnina,Gunna 1221,1212121,jon@jon.jon,Pilot,,None,[]
+1503021212,Jon Test,Austurbrekka 15,1414000,jontest@gmail.com,Cabin Crew,None,None,None
+1507021212,Jonnina,Grandarleið 12,1212121,jongunn@gmail.com,Pilot,None,None,"['Boeing 787', 'BOeing 767', 'Airbus A320']"
+1501852525,Gunnar Hrafn,Rósarimi 64,2552100,Gunnarh@hotmail.com,Cabin Crew,None,None,None
+2605951000,Gunnhildur Magnúsdóttir,Runugata 3,4140000,bestagull@gmail.com,Pilot,,None,"['BOOeing 787', 'Boeing 767', 'AirbUs A414']"
+1502015000,Gulla Sigmundsdóttir,Krambratún 42,4141200,Gulla@mail.is,Pilot,,None,"['Boeing 767', 'BOEING 787', 'Airbus A777']"

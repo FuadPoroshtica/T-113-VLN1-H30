@@ -8,6 +8,10 @@ class Employee_Logic:
         employee.name=employee.name.title()
         employee.title=employee.title.title() # note employee.title is job while title() capatilzes the first letter of every word
         employee.address=employee.address.title()
+        if type(employee.plane_licenses) == type([]):
+            temp_licenses=[]
+            for x in employee.plane_licenses:
+                x.title()
         errors = []
         if reason == "add":
             if len(employee.id) != 10:
@@ -107,7 +111,11 @@ class Employee_Logic:
         if employee:
             for key, value in new_data.items():
                 if value is not None:
-                    setattr(employee, key, value)
+                    if key == "plane_licenses":
+                        str_licenses = " ".join(value)
+                        setattr(employee, key, str_licenses)
+                    else:
+                        setattr(employee, key, value)
             self.data_wrapper.modify_employee(employee)
 
     def is_employee_a_pilot(self, employee_id):
