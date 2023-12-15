@@ -9,9 +9,10 @@ from logic.flight_logic import Flight_Logic
 class Logic_Wrapper:
     def __init__(self, data_wrapper):
         self.location_logic = Location_Logic(data_wrapper)
-        self.employee_logic = Employee_Logic(data_wrapper, self.location_logic)
+        self.employee_logic = Employee_Logic(data_wrapper, self)
         self.plane_logic = Plane_Logic(data_wrapper)
         self.flight_logic = Flight_Logic(data_wrapper, self.location_logic, self.employee_logic)
+        
 
         self.data_wrapper = Data_Wrapper()
 
