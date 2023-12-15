@@ -13,7 +13,6 @@ class Employee_Data:
             "email", 
             "title", 
             "home_phone", 
-            "current_trip", 
             "plane_licenses"]
 
     def employee_constructor(self):
@@ -33,7 +32,6 @@ class Employee_Data:
                     row["email"], 
                     row["title"], 
                     row["home_phone"], 
-                    row["current_trip"],
                     licenses))
         return employee_list
 
@@ -50,7 +48,6 @@ class Employee_Data:
                 "email": employee.email, 
                 "title": employee.title, 
                 "home_phone": employee.home_phone, 
-                "current_trip": employee.current_trip, 
                 "plane_licenses": employee.plane_licenses})
 
     def get_employee_by_id(self, id):
@@ -73,7 +70,6 @@ class Employee_Data:
                     "email": employee.email, 
                     "title": employee.title, 
                     "home_phone": employee.home_phone, 
-                    "current_trip": employee.current_trip, 
                     "plane_licenses": employee.plane_licenses
                 })
 
