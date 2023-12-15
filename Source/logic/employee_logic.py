@@ -3,8 +3,9 @@ from datetime import datetime, timedelta, date
 
 # employee_logic.py
 class Employee_Logic:
-    def __init__(self, data_wrapper):
+    def __init__(self, data_wrapper, location_logic):
         self.data_wrapper = data_wrapper
+        self.location_logic = location_logic
 
     def verify_allowed(self, employee, reason):
         employee.name = employee.name.title()
@@ -247,8 +248,11 @@ class Employee_Logic:
 
     def _has_pilot_license(self, pilot, plane_id):
         plane = self.data_wrapper.get_plane_by_id(plane_id)
-        if plane and pilot.plane_licenses:
-            return plane.airplane_model in pilot.plane_licenses.split(':')
+        if plane:
+            if isinstance(pilot.plane_licenses, list):
+                return plane.airplane_model in pilot.plane_licenses
+            else:
+                return plane.airplane_model in pilot.plane_licenses.split(':')
         return False
 
     def _flights_overlap(self, flight1, flight2):
