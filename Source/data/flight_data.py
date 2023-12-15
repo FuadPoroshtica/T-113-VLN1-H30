@@ -81,6 +81,10 @@ class Flight_Data:
 
     def get_flights_by_week(self, start_date):
         all_flights = self.flight_constructor()
-        start = datetime.strptime(start_date, "%Y-%m-%d")
-        end = start + timedelta(days=7)
-        return [flight for flight in all_flights if start <= datetime.strptime(flight.start_home.split()[0], "%Y-%m-%d") < end]
+        try:
+            start = datetime.strptime(start_date, "%Y-%m-%d")
+            end = start + timedelta(days=7)
+        except ValueError:
+            return "You need to write the year in this specific format YYYY-MM-DD"
+        else:
+            return [flight for flight in all_flights if start <= datetime.strptime(flight.start_home.split()[0], "%Y-%m-%d") < end]

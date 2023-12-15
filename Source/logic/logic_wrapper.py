@@ -104,6 +104,14 @@ class Logic_Wrapper:
         flights = self.flight_logic.get_flights_by_week(start_date)
         return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
     
+    def get_flights_by_this_date_with_manning_info(self):
+        flights = self.flight_logic.get_flights_by_this_week()
+        return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
+    
+    def get_flights_by_this_week_with_manning_info(self):
+        flights = self.flight_logic.get_flights_by_this_date()
+        return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
+        
     """Flight employee assignment related methods"""
     
     def get_undermanned_flights(self):

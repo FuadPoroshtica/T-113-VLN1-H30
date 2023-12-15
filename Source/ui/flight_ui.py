@@ -19,6 +19,8 @@ def flights_menu():
             "2. Create New Flight",
             "3. View Flights by Date",
             "4. View Flights by Week",
+            "5. View Flights by Today",
+            "6. View Flights by Current Week",
             "---------------------------------------------",
             "Main Menu (M), Back (B), Quit (Q)",
         ]
@@ -33,6 +35,11 @@ def flights_menu():
             view_flights_by_date()
         elif choice == '4':
             view_flights_by_week()
+        elif choice == '5':
+            view_flights_by_this_date()
+        elif choice == '6':
+            view_flights_by_this_week()
+
         elif choice == 'M':
             return_to_main_menu()
             break
@@ -162,9 +169,39 @@ def view_flights_by_date():
     if not start_date:
         return flights_menu()
 
-    flights = logic_wrapper.get_flights_by_week_with_manning_info(start_date)
+    flights = logic_wrapper.get_flights_by_date_with_manning_info(start_date)
 
-    flight_content = ["Flights for the week starting from " + start_date]
+    flight_content = ["Flights for the day " + start_date]
+    for flight, is_manned in flights:
+        flight_content.append(
+            f"Flight {flight.id} on {flight.start_home}: {'Properly Manned' if is_manned else 'Not Properly Manned'}")
+
+    flight_content.append("\nPress Enter to return to the Flights Menu.")
+    interface(flight_content)
+
+    input()
+    return flights_menu()
+
+def view_flights_by_this_date():
+
+    flights = logic_wrapper.get_flights_by_this_date_with_manning_info()
+
+    flight_content = ["Flights for today"]
+    for flight, is_manned in flights:
+        flight_content.append(
+            f"Flight {flight.id} on {flight.start_home}: {'Properly Manned' if is_manned else 'Not Properly Manned'}")
+
+    flight_content.append("\nPress Enter to return to the Flights Menu.")
+    interface(flight_content)
+
+    input()
+    return flights_menu()
+
+def view_flights_by_this_week():
+
+    flights = logic_wrapper.get_flights_by_this_week_with_manning_info()
+
+    flight_content = ["Flights for this week"]
     for flight, is_manned in flights:
         flight_content.append(
             f"Flight {flight.id} on {flight.start_home}: {'Properly Manned' if is_manned else 'Not Properly Manned'}")
