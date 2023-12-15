@@ -150,24 +150,13 @@ class Employee_Logic:
             return employee.title.lower() == "pilot"
         return False
     
-    def get_employee_licenses(self,plane):
+    def get_pilot_licenses(self):
         license_dict = {}
-        employees = self.employee_constructor()
-
-        for x in self.get_pilots():
-            l = []            
-        for employee in all_employees:
-            if employee.plane_licenses in [None, "None", ""]:
-                continue  
-            
-            licenses_str = employee.plane_licenses.replace('[', '').replace(']', '').replace("'", "")
-            licenses = [license.strip() for license in licenses_str.split(';') if license]
-            for license in licenses:
-                if ',' in license:  
-                    sub_licenses = [sub_license.strip() for sub_license in license.split(',')]
-                    for sub_license in sub_licenses:
-                        license_dict.setdefault(sub_license, []).append((employee.id, employee.name))
-                else:
-                    license_dict.setdefault(license, []).append((employee.id, employee.name))
+        for pilot in self.get_pilots():
+            if pilot.plane_licenses not in ["None",None,""]:
+                for license in pilot.plane_licenses:
+                    if license not in license_dict:
+                        license_dict[license] = [pilot]
+                    else:
+                        license_dict[license].append(pilot)
         return license_dict
-

@@ -171,39 +171,31 @@ def modify_plane():
 def view_plane_licenses():
     menu_stack.append(view_plane_licenses)
     all_planes = logic_wrapper.get_all_planes()
-    licenses = logic_wrapper.get_all_plane_licenses()
-
-    fleet_models = set(plane.airplane_model for plane in all_planes)
-
-    fleet_licenses = {model: [] for model in fleet_models}
-    non_fleet_licenses = {}
-
-    for model, pilots in licenses.items():
-        if model in fleet_models:
-            fleet_licenses[model] = pilots
-        else:
-            non_fleet_licenses[model] = pilots
+    licenses = logic_wrapper.get_pilot_licenses()
+    #for x in licenses:
+    #    print(x,licenses[x])
+    fleet_models = [plane for plane in all_planes if plane.airplane_model in licenses]
+    not_fleet_models = [plane for plane in all_planes if plane.airplane_model not in fleet_models]
 
     content = [
         "Plane License Information:",
         "--------------------------",
         "In Current Fleet:",
     ]
+    for plane in fleet_models:
+        content.append(f"{plane.airplane_model}")
+        for pilot in licenses[plane.airplane_model]:
+            content.append(f"ID: {pilot.id} Name: {pilot.name}")
+            
+    content.extend([
+        "--------------------------",
+        "Not In Current Fleet:",
+    ])
 
-    for model in fleet_models:
-        content.append(f"{model} License Holders:")
-        if fleet_licenses[model]:
-            for id, name in fleet_licenses[model]:
-                content.append(f"  Pilot ID: {id}, Name: {name}")
-        else:
-            content.append("  No licensed pilots for this plane model.")
-
-    content.append("Not in Current Fleet:")
-    for model, pilots in non_fleet_licenses.items():
-        content.append(f"{model} License Holders:")
-        for id, name in pilots:
-            content.append(f"  Pilot ID: {id}, Name: {name}")
-
+    for plane in not_fleet_models:
+        content.append(f"{plane.airplane_model}")
+        for pilot in licenses[plane.airplane_model]:
+            content.append(f"ID: {pilot.id} Name: {pilot.name}")
     interface(content)
     handle_menu_options()
 

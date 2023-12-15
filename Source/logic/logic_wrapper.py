@@ -38,9 +38,9 @@ class Logic_Wrapper:
     def is_employee_a_pilot(self, employee_id):
         return self.employee_logic.is_employee_a_pilot(employee_id)
     
-    def get_all_plane_licenses(self):
-        licenses = self.data_wrapper.get_all_employee_licenses()
-        return licenses if licenses is not None else {}
+    def get_pilot_licenses(self):
+        licenses = self.employee_logic.get_pilot_licenses()
+        return licenses    
     
     def get_pilots_by_plane_type(self, plane_type):
         all_pilots = self.get_pilots()
