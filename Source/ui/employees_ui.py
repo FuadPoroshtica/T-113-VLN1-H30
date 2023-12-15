@@ -196,8 +196,7 @@ def add_employees():
 
 def add_license():
     print('Would you like to add plane licenses ?')
-    plane_licenses = None
-    continue_input = input("Would you like to add plane licenses? (y/n): ")
+        continue_input = input("Would you like to add plane licenses? (y/n): ")
     plane_licenses = []
     while continue_input == 'y':
         license_input = input("Enter a plane license: ")
