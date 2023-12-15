@@ -12,8 +12,10 @@ class Employee_Logic:
             temp_licenses=[]
             for x in employee.plane_licenses:
                 x.title()
+
         errors = []
         if reason == "add":
+
             if len(employee.id) != 10:
                 errors.append("ID needs to be 10 in length.")
 
@@ -22,14 +24,26 @@ class Employee_Logic:
 
             elif any(employee.id == x.id for x in self.get_all_employees()):
                 errors.append(f"Employee ID is already in use by {self.get_employee_by_id(employee.id).name}")
-    
+
             elif len(employee.id) == 10:
+
                 try:
                     year=int(employee.id[4:6])
                     month=int(employee.id[2:4])
                     day=int(employee.id[0:2])
-                    datetime.date(year,month,day) # uses date class from datetime package to check for accurate dates
-                    datetime.date.today()
+                    employee_date=datetime.date(year,month,day) # uses date class from datetime package to check for accurate dates
+                    current_year=datetime.datetime.now().year
+                    if employee.title == "Pilot":
+
+                        if employee_date.year - current_year > 65:
+                            errors.append("You aren't premitted to be a Pilot over 65")
+
+                        if employee_date.year - current_year < 21:
+                            errors.append("You need to be atleast 21 to become a Commercial Pilot")
+
+                    elif employee_date.year - current_year < 18:
+                        errors.append("You need to be 18+ to be a Cabin Crew Member")
+
                 except ValueError:
                     errors.append("ID needs to have legitimate day/month/year")
 
@@ -40,13 +54,18 @@ class Employee_Logic:
                 errors.append("Name needs to be atleast 5 characters")
 
         if " " not in employee.email:
+
             if "@" in employee.email:
+
                 temp_address=employee.email.split("@")
                 if len(temp_address) == 2:                    
+
                     if temp_address[0] == '':
                         errors.append("you need to write text before the @")
+
                     if "." in temp_address[1]:
                         temp_address_2=temp_address[1].split(".")
+
                         if len(temp_address_2)==2:
                             if temp_address_2[0] == '':
                                 errors.append("you need text between @ and .")
@@ -85,6 +104,9 @@ class Employee_Logic:
         if type(condition) == type([]):
             return condition
         else:
+            if employee.plane_licenses != "None":
+                str_licenses = ":".join(employee.plane_licenses)
+                employee.plane_licenses = str_licenses
             self.data_wrapper.add_employee(employee)
             return "Succesfully added employee"
 
@@ -112,7 +134,7 @@ class Employee_Logic:
             for key, value in new_data.items():
                 if value is not None:
                     if key == "plane_licenses":
-                        str_licenses = " ".join(value)
+                        str_licenses = ":".join(value)
                         setattr(employee, key, str_licenses)
                     else:
                         setattr(employee, key, value)
