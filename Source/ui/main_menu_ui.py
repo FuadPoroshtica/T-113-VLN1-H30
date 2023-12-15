@@ -33,12 +33,16 @@ def main_menu():
     menu_stack.append(main_menu)
     while True:
         content = [
-            "Main Menu",
+            " ",
             "----------------------",
-            "1. Locations",
-            "2. Flight crew",
-            "3. Planes",
-            "4. Flights",
+            "1. Locations"
+            "     "
+            "2. Flight crew"
+            "     "
+            "3. Planes"
+            "     "
+            "4. Flights"
+            "     "
             "5. Employees",
             "----------------------",
             "L. Logout",

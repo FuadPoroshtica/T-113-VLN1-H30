@@ -162,7 +162,7 @@ def add_employees():
         inputs['Enter Email'],
         title,
         inputs.get('Enter Home Phone (Optional)', ''),
-        plane_licenses
+        plane_licenses=plane_licenses
     )
 
 
