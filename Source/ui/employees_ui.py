@@ -298,28 +298,22 @@ def modify_employees():
     interface(content)
 
     new_details = {
-        "cell_phone": input(
-            f"Enter new cell phone number (current: {employee.cell_phone}): "
-        )
-        or employee.cell_phone,
-        "email": input(f"Enter new email address (current: {employee.email}): ")
-        or employee.email,
-        "home_phone": input(f"Enter new home phone (current: {employee.home_phone}): ")
-        or employee.home_phone,
-        "address": input(f"Enter new home address (current: {employee.address}): ")
-        or employee.address,
+        "cell_phone": input(f"Enter new cell phone number (current: {employee.cell_phone}): ") or employee.cell_phone,
+        "email": input(f"Enter new email address (current: {employee.email}): ") or employee.email,
+        "home_phone": input(f"Enter new home phone (current: {employee.home_phone}): ") or employee.home_phone,
+        "address": input(f"Enter new home address (current: {employee.address}): ") or employee.address,
     }
 
     if logic_wrapper.is_employee_a_pilot(employee_id):
-        add_licenses = input("Would you like to modify plane licenses? (y/n): ")
-        if add_licenses.lower() == "y":
-            new_details[
-                "plane_licenses"
-            ] = add_license()  # Ensure add_license() is defined
+        print(f"Current Licenses: {', '.join(employee.plane_licenses) if employee.plane_licenses != 'None' else 'None'}")
+        modify_licenses = input("Would you like to modify plane licenses? (y/n): ")
+        if modify_licenses.lower() == "y":
+            new_details["plane_licenses"] = add_license()  # Keep the add_license() as is
 
     logic_wrapper.update_employee(employee_id, new_details)
 
     interface(["Employee details updated successfully."])
     time.sleep(2)
 
-    return employees_menu()  # Ensure this function is defined
+    return employees_menu()
+

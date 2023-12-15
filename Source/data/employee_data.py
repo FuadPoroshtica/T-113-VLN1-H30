@@ -62,6 +62,12 @@ class Employee_Data:
             dict_write = csv.DictWriter(file, fieldnames=self.fieldname)
             dict_write.writeheader()
             for employee in updated_employee_list:
+                # Format plane licenses as a colon-separated string
+                if isinstance(employee.plane_licenses, list):
+                    formatted_licenses = ":".join(employee.plane_licenses)
+                else:
+                    formatted_licenses = employee.plane_licenses
+
                 dict_write.writerow({
                     "id": employee.id, 
                     "name": employee.name, 
@@ -70,9 +76,8 @@ class Employee_Data:
                     "email": employee.email, 
                     "title": employee.title, 
                     "home_phone": employee.home_phone, 
-                    "plane_licenses": employee.plane_licenses
+                    "plane_licenses": formatted_licenses  # Save the formatted licenses
                 })
-
 
 
     
