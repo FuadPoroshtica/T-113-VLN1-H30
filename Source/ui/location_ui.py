@@ -90,30 +90,45 @@ def create_location():
         inputs["Enter Emergency Phone"]
     )
 
-    # Add the location using logic_wrapper
-    logic_wrapper.add_location(location_data)
+    status = logic_wrapper.add_location(location_data)
 
-    interface(["Location added successfully."])
+    if isinstance(status, list):  # Checks if status is a list of errors
+        content = [""]
+        content.extend(status)
+    else:
+        content = [status, "Location added successfully."]
 
-    time.sleep(2)
-    return return_to_previous_menu()
+    #interface(content)
+    print(content)
+    time.sleep(4)
+
+    return locations_menu()
 
 
 def modify_location():
-    print("\nModify Location Details")
-    location_id = input("Enter the ID of the location to modify: ")
+    menu_stack.append(modify_location)
 
+    interface(["Modify Location Details","----------------------", " ", "Enter the ID of the loc to modify"])
+    location_id = input("Type here: ").strip()
     location = logic_wrapper.get_location_by_id(location_id)
+
     if location is None:
-        print("No location found with the given ID.")
+        interface(["Modify Location Details","----------------------", " ","No Location found with the given ID."])
+        time.sleep(2)
         return
 
-    print(f"Modifying details for employee {location.manager_name} (ID: {location.id})")
+    content = [f"Modifying details for employee {location.manager_name} (ID: {location.id})"]
+    interface(content)
+
     new_details = {
         "manager": input(f"Enter new manager (current: {location.manager_name}): ") or location.manager_name,
         "cell_phone": input(f"Enter new emergency phone number (current: {location.emergency_phone}): ") or location.emergency_phone
     }
 
     logic_wrapper.update_location(location_id, new_details)
-    print("Location details updated successfully.")
+
+    interface(["Employee details updated successfully."])
+    time.sleep(2)
+
+    return locations_menu()
 

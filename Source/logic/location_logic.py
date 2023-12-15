@@ -19,7 +19,7 @@ class Location_Logic:
             if len(location.airport_code) != 3:
                 errors.append("location code needs to be 3 characters")
 
-            if len(location.airport_code).isalpha():
+            if location.airport_code.isalpha():
                 errors.append("location code must only contain characters")
 
         if len(location.manager_name) >35:
@@ -28,7 +28,8 @@ class Location_Logic:
         elif len(location.manager_name) <5:
             errors.append("Manager name needs to be atleast 5 characters")
         
-        temp_cell=location.cell_phone.split(" ")
+        temp_cell=location.emergency_phone.split(" ")
+
         if len(temp_cell) == 2:
             if "+" in temp_cell[0][0]: #allows "+" in verification
                 temp_cell[0].pop("+")

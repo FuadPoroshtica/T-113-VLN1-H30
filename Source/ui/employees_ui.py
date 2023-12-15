@@ -162,25 +162,21 @@ def add_employees():
         inputs['Enter Email'],
         title,
         inputs.get('Enter Home Phone (Optional)', ''),
-        plane_licenses=plane_licenses
+        plane_licenses
     )
-
-
-
-    logic_wrapper.add_employee(new_employee)
 
     status = logic_wrapper.add_employee(new_employee)
 
-    if type(status) == type([]): #prints errors
-        print("\n")
-        for x in status:
-            print(x)
+    # Interface to display the status or errors
+    if isinstance(status, list):  # Checks if status is a list of errors
+        content = [""]
+        content.extend(status)
     else:
-        print(status)
+        content = [status, "Employee added successfully."]
 
-    interface(["Employee added successfully."])
+    interface(content)
 
-    time.sleep(2)
+    time.sleep(4)
     return employees_menu()
 
 def add_license():
@@ -225,5 +221,4 @@ def modify_employees():
     interface(["Employee details updated successfully."])
     time.sleep(2)
 
-    # Return to the previous menu
-    return return_to_previous_menu()  # Ensure this function is defined
+    return employees_menu()  # Ensure this function is defined
