@@ -86,7 +86,7 @@ def view_planes():
         "-------------------",
         "----------------------------------------------------------------",
         *[
-            "ID: {}, Airline: {}, Model: {}, Capacity: {}".format(
+            "ID: {} | Airline: {} | Model: {} | Capacity: {}".format(
                 plane.id, plane.airline_name, plane.airplane_model, plane.max_capacity
             )
             for plane in all_planes
