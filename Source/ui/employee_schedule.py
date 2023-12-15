@@ -145,6 +145,7 @@ def view_employee_schedule():
             if start_of_week.date() <= flight_date <= end_of_week.date():
                 print(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
 
+
 def show_employee_working_status():
     specific_date_input = input("Enter the specific date (YYYY-MM-DD) to check: ")
     try:
@@ -154,7 +155,7 @@ def show_employee_working_status():
         return
                 schedule_content.append(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
 
-    interface(schedule_content)
+        interface(schedule_content)
 
 
     all_employees = logic_wrapper.get_all_employees()
