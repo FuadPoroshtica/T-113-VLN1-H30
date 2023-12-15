@@ -52,6 +52,7 @@ class Plane_Logic:
             self.data_wrapper.modify_plane(plane)
             return "Succesfully added plane"
 
+
     
     def get_plane_statuses_at_time(self, input_time):
         all_flights = self.data_wrapper.flight_data.flight_constructor()
