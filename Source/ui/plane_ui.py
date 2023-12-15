@@ -211,7 +211,7 @@ def search_pilots_by_plane_type():
     plane_type = input("Type here: ").strip()
 
     pilots = logic_wrapper.get_pilots_by_plane_type(plane_type)
-    content = [f"\nPilots licensed to fly {plane_type}:"]
+    content = [f"Pilots licensed to fly {plane_type}:"]
     if pilots:
         for pilot in pilots:
             content.append(f"ID: {pilot.id}, Name: {pilot.name}")
