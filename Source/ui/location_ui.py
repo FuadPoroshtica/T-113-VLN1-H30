@@ -110,32 +110,36 @@ def create_location():
     ]
 
     # Store inputs in a dictionary
-    inputs = {}
-    for prompt in prompts:
-        interface([prompt])  # Display each prompt using the interface function
-        inputs[prompt] = input("Type here: ").strip()
+    try:
+        inputs = {}
+        for prompt in prompts:
+            interface([prompt])  # Display each prompt using the interface function
+            inputs[prompt] = input("Type here: ").strip()
 
-    # Prepare the location data
-    location_data = Location(
-        inputs["Enter ID"],
-        inputs["Enter Country"],
-        inputs["Enter Airport Code"],
-        inputs["Enter Flight Duration"],
-        inputs["Enter Distance"],
-        inputs["Enter Manager Name"],
-        inputs["Enter Emergency Phone"],
-    )
-
-    status = logic_wrapper.add_location(location_data)
-
-    if isinstance(status, list):  # Checks if status is a list of errors
-        content = [""]
-        content.extend(status)
+        # Prepare the location data
+        location_data = Location(
+            inputs["Enter ID"],
+            inputs["Enter Country"],
+            inputs["Enter Airport Code"],
+            inputs["Enter Flight Duration"],
+            inputs["Enter Distance"],
+            inputs["Enter Manager Name"],
+            inputs["Enter Emergency Phone"],
+        )
+    except ValueError:
+       content = ["Duration should represents minutes (60)",
+                  "Distance must be a number represent km (414.4)."]
+        
     else:
-        content = [status, "Location added successfully."]
+       status = logic_wrapper.add_location(location_data)
 
-    #interface(content)
-    print(content)
+       if isinstance(status, list):  # Checks if status is a list of errors
+           content = [""]
+           content.extend(status)
+       else:
+           content = [status, "Location added successfully."]
+
+    interface(content)
     time.sleep(4)
 
     return locations_menu()

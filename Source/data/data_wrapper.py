@@ -34,6 +34,8 @@ class Data_Wrapper:
                 break
         self.employee_data.modify_employee_data(all_employees)
 
+        #self.employee_data.modify_employee_data(updated_employee)
+
     """Flights"""
     def add_flight(self, flight):
         self.flight_data.add_flight_data(flight)
