@@ -1,6 +1,22 @@
-# T-113-VLN1-H30
-### 
+# NaN AIR
+## T-113-VLN1-H30
 
+```ascii
+    __|__
+\___/
+ | |
+ | |
+_|_|______________
+        /|\ 
+      */ | \*            
+      / -+- \
+  ---o--(_)--o---
+    /  0 " 0  \
+  */     |     \*
+  /      |      \
+*/       |       \*
+
+```
 
 ## Install the requirements
 
@@ -10,30 +26,31 @@ pip install -r Source/requirements.txt
 
 ## How to run:
 
-## Step 1:
+### Step 1:
+```
+Download from Canvas
+```
+### Step 2:
 
-### Download from Canvas
+```
+Extract T-113-VLN1-H30-main.zip
+```
+### Step 3:
+```
+Open Command prompt (Windows) or Terminal (Mac/Linux) 
+```
+### Step 4:
+```
+cd to the directory
+```
+#### Step 5:
 
-## Step 2:
-
-### Extract T-113-VLN1-H30-main.zip
-
-## Step 3:
-
-### Open Command prompt (Windows) or Terminal (Mac/Linux) 
-
-## Step 4:
-
-### Cd to the directory
-
-## Step 5:
-
-### Windows
+#### Windows
 ```Bash
 $ ./NaNair_win.bat
 ```
 
-### Mac OS or Linux
+#### Mac OS or Linux
 ```bash
 $ ./NaNair_Mac_Linux.sh
 ```
@@ -50,3 +67,6 @@ $ ./NaNair_Mac_Linux.sh
 #### Garðar Sölvi Kjartansson
 #### Jón Logi Dagbjartsson
 #### Ólafur Valfells
+
+##### ________________________
+######  [_Reykjavik University_](https://www.ru.is) _2023_
