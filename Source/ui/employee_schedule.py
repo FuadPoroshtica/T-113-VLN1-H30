@@ -19,6 +19,9 @@ def employee_schedule_menu():
             "------------------------------------------------",
             "2. View Employee Schedule for a Week",
             "------------------------------------------------",
+            "3. Show Employees Working Status on a Specific Day",
+            "------------------------------------------------",
+
             "Main Menu (M), Back (B), Quit (Q)",
         ]
         interface(content)
@@ -28,6 +31,8 @@ def employee_schedule_menu():
             add_employees_to_flight()
         elif choice == '2':
             view_employee_schedule()
+        elif choice == '3':
+            show_employee_working_status()
         elif choice == "M":
             return_to_main_menu()
             break
@@ -138,7 +143,38 @@ def view_employee_schedule():
         if employee_id in flight.employees:
             flight_date = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M").date()
             if start_of_week.date() <= flight_date <= end_of_week.date():
+                print(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
+
+def show_employee_working_status():
+    specific_date_input = input("Enter the specific date (YYYY-MM-DD) to check: ")
+    try:
+        specific_date = datetime.strptime(specific_date_input, "%Y-%m-%d").date()
+    except ValueError:
+        print("Invalid date format.")
+        return
                 schedule_content.append(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
 
     interface(schedule_content)
-    
+
+
+    all_employees = logic_wrapper.get_all_employees()
+    all_flights = logic_wrapper.get_all_flights()
+
+    working_employees = []
+    not_working_employees = {employee.id: employee for employee in all_employees}
+
+    for flight in all_flights:
+        flight_date = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M").date()
+        if flight_date == specific_date:
+            for employee_id in flight.employees:
+                if employee_id in not_working_employees:
+                    employee = not_working_employees.pop(employee_id)
+                    working_employees.append((employee, flight))
+
+    print("\nEmployees working on " + specific_date_input + ":")
+    for employee, flight in working_employees:
+        print(f"{employee.name} (ID: {employee.id}) - Flight {flight.id} from {flight.initial_location} to {flight.arrival_location}")
+
+    print("\nEmployees not working on " + specific_date_input + ":")
+    for employee_id, employee in not_working_employees.items():
+        print(f"{employee.name} (ID: {employee.id})")
