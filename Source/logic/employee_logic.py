@@ -33,9 +33,9 @@ class Employee_Logic:
                     current_year = datetime.now().year
                     age = current_year - employee_date.year
                     if employee.title == "Pilot":
-                        if age > 65:
+                        if age < 65:
                             errors.append("You aren't permitted to be a Pilot over 65")
-                        if age < 21:
+                        if age > 21:
                             errors.append("You need to be at least 21 to become a Commercial Pilot")
 
                     elif age < 18:
