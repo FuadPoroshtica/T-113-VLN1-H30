@@ -2,4 +2,3 @@ id,country,airport_code,flight_duration,distance,manager_name,emergency_phone
 01,Iceland,KEF,0,0.0,Jón Jónsson,354 8668866
 02,Denmark,CPH,180,2150.0,Elias L. Johnsen,42 7835998455
 03,Australia,MEL,480,11150.0,Elias L. Johnsen,533 835998455
-43,Lichenstein,LCH,224,3000.0,George Orwell,121 0000000002

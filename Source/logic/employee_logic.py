@@ -126,24 +126,22 @@ class Employee_Logic:
         return self.data_wrapper.get_employee_by_id(employee_id)
 
     def update_employee(self, employee_id, new_data):
-
         employee = self.get_employee_by_id(employee_id)
 
         condition = self.verify_allowed(employee,"modify")
         if type(condition) == type([]):
             return condition
         else:
-            #if employee:
             for key, value in new_data.items():
                 if value is not None:
-                    if key == "plane_licenses":
-                        str_licenses = ":".join(value)
+                    if key == "plane_licenses" and value != employee.plane_licenses:
+                        str_licenses = ":".join(value) if value else "None"
                         setattr(employee, key, str_licenses)
                     else:
                         setattr(employee, key, value)
-            self.data_wrapper.modify_employee(employee)
-            return "Succesfully added employee"
 
+            self.data_wrapper.modify_employee(employee)
+            return "Successfully updated employee"
 
 
     def is_employee_a_pilot(self, employee_id):
