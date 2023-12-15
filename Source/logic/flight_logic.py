@@ -179,4 +179,3 @@ class Flight_Logic:
     
     def get_flights_by_week(self, start_date):
         return self.data_wrapper.get_flights_by_week(start_date)
-

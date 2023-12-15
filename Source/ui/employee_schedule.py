@@ -16,9 +16,7 @@ def employee_schedule_menu():
             "Employee Schedule Menu",
             "------------------------------------------------",
             "1. Add Employees to Flights",
-            "------------------------------------------------",
             "2. View Employee Schedule for a Week",
-            "------------------------------------------------",
             "3. Show Employees Working Status on a Specific Day",
             "------------------------------------------------",
 

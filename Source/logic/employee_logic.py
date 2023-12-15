@@ -261,4 +261,3 @@ class Employee_Logic:
         start2 = datetime.strptime(flight2.start_home, "%Y-%m-%d %H:%M")
         end2 = datetime.strptime(flight2.start_foreign, "%Y-%m-%d %H:%M")
         return max(start1, start2) < min(end1, end2)
-    
