@@ -5,15 +5,16 @@ from logic.location_logic import Location_Logic
 from logic.plane_logic import Plane_Logic
 from data.data_wrapper import Data_Wrapper
 from logic.flight_logic import Flight_Logic
+from logic.date_converter import date_to_code, code_to_date
+
 
 class Logic_Wrapper:
     def __init__(self, data_wrapper):
         self.location_logic = Location_Logic(data_wrapper)
         self.employee_logic = Employee_Logic(data_wrapper, self)
         self.plane_logic = Plane_Logic(data_wrapper)
-        self.flight_logic = Flight_Logic(data_wrapper, self.location_logic, self.employee_logic)
+        self.flight_logic = Flight_Logic(data_wrapper, self, self.employee_logic)
         
-
         self.data_wrapper = Data_Wrapper()
 
 
@@ -104,6 +105,13 @@ class Logic_Wrapper:
     def get_flights_by_week_with_manning_info(self, start_date):
         flights = self.flight_logic.get_flights_by_week(start_date)
         return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
+    
+    def date_to_code(self, date):
+        return date_to_code(date)
+    
+    def code_to_date(self, code):
+        return code_to_date(code)
+
             
     """Flight employee assignment related methods"""
     

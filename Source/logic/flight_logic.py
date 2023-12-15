@@ -6,16 +6,14 @@ from logic.date_converter import date_to_code
 
 
 class Flight_Logic:
-    def __init__(self, data_wrapper, location_logic, employee_logic):
+    def __init__(self, data_wrapper, logic_wrapper, employee_logic):
         self.data_wrapper = data_wrapper
-        self.location_logic = location_logic 
-        self.employee_logic = employee_logic
-    
+        self.logic_wrapper = logic_wrapper  
+
     def add_new_flight(self, flight_data):
         start_home_dt = datetime.strptime(flight_data['start_home'], "%Y-%m-%d %H:%M")
 
-        # Retrieve flight duration from arrival location
-        arrival_location = self.location_logic.get_location_by_airport_code(flight_data['arrival_location'])
+        arrival_location = self.logic_wrapper.location_logic.get_location_by_airport_code(flight_data['arrival_location'])
         if arrival_location:
             flight_duration = arrival_location.flight_duration
         else:
@@ -73,15 +71,16 @@ class Flight_Logic:
     def generate_flight_id(self, plane, arrival_airport_code, start_home):
         airline_code = plane.airline_name[:2].upper()
 
-        arrival_location = self.location_logic.get_location_by_airport_code(arrival_airport_code)
+        arrival_location = self.logic_wrapper.location_logic.get_location_by_airport_code(arrival_airport_code)
         if arrival_location:
             location_id = str(arrival_location.id).zfill(2)
         else:
             location_id = "00"
-
         start_time = datetime.strptime(start_home, "%Y-%m-%d %H:%M").strftime("%H%M")
         start_date = datetime.strptime(start_home.split(" ")[0], "%Y-%m-%d")
-        date_string = date_to_code(start_date).upper()
+        
+        # Use logic_wrapper for date conversion
+        date_string = self.logic_wrapper.date_to_code(start_date).upper()
 
         last_digits = self.generate_lowest_available_number(airline_code, location_id, start_home)
 
@@ -104,15 +103,17 @@ class Flight_Logic:
     
     def _common_flight_validation(self, plane_id, start_home, arrival_airport_code, tickets_home, tickets_foreign):
         # Check for plane existence
-        plane = self.data_wrapper.plane_data.get_plane_by_id(plane_id)
+        plane = self.data_wrapper.get_plane_by_id(plane_id)
         if not plane:
             return False, "Plane not found."
 
-        # Validate airport code and calculate total flight duration
-        arrival_location = self.location_logic.get_location_by_airport_code(arrival_airport_code)
+        # Access location_logic through logic_wrapper
+        arrival_location = self.logic_wrapper.location_logic.get_location_by_airport_code(arrival_airport_code)
         if not arrival_location:
             return False, "Arrival airport code not found."
         total_duration = (2 * arrival_location.flight_duration) + 60  # 1 hour turnaround
+
+
 
         # Convert start_home to datetime and check format
         try:
@@ -151,7 +152,8 @@ class Flight_Logic:
         for flight in all_flights:
             if flight.plane == plane_id and flight.id != current_flight_id:
                 flight_start = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M")
-                arrival_location = self.location_logic.get_location_by_airport_code(flight.arrival_location)
+                
+                arrival_location = self.logic_wrapper.location_logic.get_location_by_airport_code(flight.arrival_location)
                 if arrival_location:
                     flight_duration = arrival_location.flight_duration
                 else:
@@ -169,10 +171,11 @@ class Flight_Logic:
     def is_flight_properly_manned(self, flight_id):
         flight = self.get_flight_by_id(flight_id)
         if flight:
-            pilots = [emp for emp in flight.employees if self.employee_logic.is_employee_a_pilot(emp)]
-            stewards = [emp for emp in flight.employees if not self.employee_logic.is_employee_a_pilot(emp)]
+            pilots = [emp for emp in flight.employees if self.logic_wrapper.is_employee_a_pilot(emp)]
+            stewards = [emp for emp in flight.employees if not self.logic_wrapper.is_employee_a_pilot(emp)]
             return len(pilots) >= 2 and len(stewards) >= 1
         return False
+
     
     def get_flights_by_date(self, date):
         return self.data_wrapper.get_flights_by_date(date)
