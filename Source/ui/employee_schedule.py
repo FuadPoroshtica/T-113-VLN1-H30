@@ -145,12 +145,15 @@ def view_employee_schedule():
 
 
 def show_employee_working_status():
-    specific_date_input = input("Enter the specific date (YYYY-MM-DD) to check: ")
+    interface(["Enter the specific date (YYYY-MM-DD) to check:"])
+    specific_date_input = input("Type here: ").strip()
+
     try:
         specific_date = datetime.strptime(specific_date_input, "%Y-%m-%d").date()
     except ValueError:
-        print("Invalid date format.")
-        return
+        interface(["Invalid date format."])
+        time.sleep(2)
+        return(employee_schedule_menu())
 
     all_employees = logic_wrapper.get_all_employees()
     all_flights = logic_wrapper.get_all_flights()
@@ -166,10 +169,15 @@ def show_employee_working_status():
                     employee = not_working_employees.pop(employee_id)
                     working_employees.append((employee, flight))
 
-    print("\nEmployees working on " + specific_date_input + ":")
+    content = ["Employees working on " + specific_date_input + ":", "------------------------------------"]
     for employee, flight in working_employees:
-        print(f"{employee.name} (ID: {employee.id}) - Flight {flight.id} from {flight.initial_location} to {flight.arrival_location}")
+        content.append(
+            f"{employee.name} (ID: {employee.id}) - Flight {flight.id} from {flight.initial_location} to {flight.arrival_location}")
 
-    print("\nEmployees not working on " + specific_date_input + ":")
+    content.append("Employees not working on " + specific_date_input + ":")
     for employee_id, employee in not_working_employees.items():
-        print(f"{employee.name} (ID: {employee.id})")
+        content.append(f"{employee.name} (ID: {employee.id})")
+
+    interface(content)
+    input("Press any key to continue...")
+    return employee_schedule_menu()
