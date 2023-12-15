@@ -27,6 +27,7 @@ class Employee_Logic:
 
             elif len(employee.id) == 10:
                 try:
+
                     tenth_digit = int(employee.id[9])
                     century_addition = 1900 if tenth_digit == 9 else 2000
 
