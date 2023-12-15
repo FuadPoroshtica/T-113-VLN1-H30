@@ -37,7 +37,6 @@ class Location_Logic:
         else:
             errors.append("Please have a space between numbers example(354 2000212)")
 
-
         if len(errors) != 0:
             return errors
     def add_new_location(self, location):
@@ -63,8 +62,13 @@ class Location_Logic:
 
     def update_location(self, location_id, new_data):
         location = self.get_location_by_id(location_id)
-        if location:
+        condition = self.verify_allowed(location,"modify")
+        if type(condition) == type([]):
+            return condition
+        else:
             for key, value in new_data.items():
                 if value is not None:
                     setattr(location, key, value)
             self.data_wrapper.modify_location(location)
+            return "Succesfully added plane"
+

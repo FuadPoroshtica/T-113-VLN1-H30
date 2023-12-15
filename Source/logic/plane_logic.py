@@ -41,11 +41,17 @@ class Plane_Logic:
 
     def update_plane(self, plane_id, new_data):
         plane = self.get_plane_by_id(plane_id)
-        if plane:
+
+        condition = self.verify_allowed(plane,"modify")
+        if type(condition) == type([]):
+            return condition
+        else:
             for key, value in new_data.items():
                 if value is not None:
                     setattr(plane, key, value)
             self.data_wrapper.modify_plane(plane)
+            return "Succesfully added plane"
+
     
     def get_plane_statuses_at_time(self, input_time):
         all_flights = self.data_wrapper.flight_data.flight_constructor()

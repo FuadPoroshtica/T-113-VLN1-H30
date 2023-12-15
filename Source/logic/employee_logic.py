@@ -29,6 +29,7 @@ class Employee_Logic:
                     month=int(employee.id[2:4])
                     day=int(employee.id[0:2])
                     datetime.date(year,month,day) # uses date class from datetime package to check for accurate dates
+                    datetime.date.today()
                 except ValueError:
                     errors.append("ID needs to have legitimate day/month/year")
 
@@ -62,8 +63,8 @@ class Employee_Logic:
 
         if employee.cell_phone.isnumeric() != True or len(employee.cell_phone) != 7:
             errors.append("Your phone number needs to be 7 numbers long")
-        if employee.home_phone.isnumeric() != True and len(employee.home_phone) != 7:
-            employee.home_phone=="None"
+        if employee.home_phone.isnumeric() != True or len(employee.home_phone) != 7:
+            employee.home_phone="None"
 
         if employee.title != "Cabin Crew" and employee.title != "Pilot":
             errors.append("Job title currently only supports Pilot or Cabin Crew")
@@ -100,15 +101,14 @@ class Employee_Logic:
         return self.data_wrapper.get_employee_by_id(employee_id)
 
     def update_employee(self, employee_id, new_data):
-        #condition = self.verify_allowed(employee,"modify")
-        #if type(condition) == type([]):
-        #    return condition
-        #else:
-        #    self.data_wrapper.add_employee(employee)
-        #    return "Succesfully added employee"
 
         employee = self.get_employee_by_id(employee_id)
-        if employee:
+
+        condition = self.verify_allowed(employee,"modify")
+        if type(condition) == type([]):
+            return condition
+        else:
+            #if employee:
             for key, value in new_data.items():
                 if value is not None:
                     if key == "plane_licenses":
@@ -117,6 +117,9 @@ class Employee_Logic:
                     else:
                         setattr(employee, key, value)
             self.data_wrapper.modify_employee(employee)
+            return "Succesfully added employee"
+
+
 
     def is_employee_a_pilot(self, employee_id):
         employee = self.get_employee_by_id(employee_id)
