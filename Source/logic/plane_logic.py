@@ -7,9 +7,31 @@ from datetime import datetime, timedelta
 class Plane_Logic:
     def __init__(self, data_wrapper):
         self.data_wrapper = data_wrapper
-
+    
+    def verify_allowed(self, plane, reason):
+        plane.airline_name = plane.airline_name.upper()
+        #id,airline_name,airplane_model,max_capacity
+        errors = []
+        temp_plane=plane.id.split("-")
+        if len(temp_plane) != 2:
+            errors.append("Location needs to range from TF-AAA - TF-ZZZ")
+        else:
+            if temp_plane[0] != "TF" == False:
+                errors.append("You need to include a TF- prefix for Icelandic Plane registration")
+            if temp_plane[1].isalpha() == False and len(temp_plane[1] !=3):
+                errors.append("After The TF- Prefix must be 3 characters for Icelandic Aircraft Registation")
+            if len(plane.airline_name) != 2:
+                errors.append("Airline bame needs to be 2 characters long")
+            # Can't verify airplane model needs database of allowed models
+            if plane.max_capacity.isnumeric == False:
+                errors.append("max_capacity must be a number")
     def add_new_plane(self, plane):
-        self.data_wrapper.add_plane(plane)
+        condition = self.verify_allowed(plane,"add")
+        if type(condition) == type([]):
+            return condition
+        else:
+            self.data_wrapper.add_plane(plane)
+            return "Succesfully added plane"
 
     def get_all_planes(self):
         return self.data_wrapper.get_all_planes()
