@@ -1,6 +1,7 @@
 import os
 
 def interface(text_list):
+    os.system('cls' if os.name == 'nt' else 'clear')
     try:
         terminal_size = os.get_terminal_size()
         width = terminal_size.columns

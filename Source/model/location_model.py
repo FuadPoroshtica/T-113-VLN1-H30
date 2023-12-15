@@ -9,4 +9,3 @@ class Location:
         self.distance = float(distance)
         self.manager_name = str(manager_name)
         self.emergency_phone = str(emergency_phone)
-

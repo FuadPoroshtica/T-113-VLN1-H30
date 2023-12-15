@@ -93,3 +93,19 @@ class Data_Wrapper:
                 all_planes[i] = updated_plane
                 break
         self.plane_data.modify_plane_data(all_planes)
+
+    """Employee Flight Schedule """
+    def update_flight_crew(self, flight_id, crew_list):
+        flight = self.flight_data.get_flight_by_id(flight_id)
+        if flight:
+            flight.employees = crew_list
+            self.flight_data.modify_flight_data(flight)
+
+    def update_employee_schedule(self, employee_id, flight_id):
+        employee = self.employee_data.get_employee_by_id(employee_id)
+        if employee:
+            if employee.current_trip:
+                employee.current_trip += f',{flight_id}'
+            else:
+                employee.current_trip = flight_id
+            self.employee_data.modify_employee_data(employee)

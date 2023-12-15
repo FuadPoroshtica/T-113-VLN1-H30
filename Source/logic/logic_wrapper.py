@@ -105,21 +105,24 @@ class Logic_Wrapper:
         return [(flight, self.flight_logic.is_flight_properly_manned(flight.id)) for flight in flights]
     
     """Flight employee assignment related methods"""
-    def assign_employees_to_flight(self, flight_id, employee_ids):
-        flight = self.get_flight_by_id(flight_id)
-        if flight:
-            updated_employee_list = list(set(flight.employees + employee_ids)) 
-            flight.employees = updated_employee_list
-            self.data_wrapper.modify_flight(flight)
     
-    def update_flight_employees(self, flight_id, employee_ids):
+    def get_undermanned_flights(self):
+        return [flight for flight in self.get_all_flights() if not self.flight_logic.is_flight_properly_manned(flight.id)]
+
+    def get_available_pilots_for_flight(self, flight_id):
         flight = self.get_flight_by_id(flight_id)
-        if flight:
-            flight.employees = employee_ids
-            self.data_wrapper.modify_flight(flight)
-    
-    def clear_flight_employees(self, flight_id):
+        if not flight:
+            return []
+        return self.employee_logic.get_available_pilots(flight)
+
+    def add_pilot_to_flight(self, flight_id, pilot_id):
+        return self.employee_logic.add_pilot_to_flight(flight_id, pilot_id)
+
+    def get_available_stewards_for_flight(self, flight_id):
         flight = self.get_flight_by_id(flight_id)
-        if flight:
-            flight.employees = []
-            self.data_wrapper.modify_flight(flight)
+        if not flight:
+            return []
+        return self.employee_logic.get_available_stewards(flight)
+
+    def add_steward_to_flight(self, flight_id, steward_id):
+        return self.employee_logic.add_steward_to_flight(flight_id, steward_id)

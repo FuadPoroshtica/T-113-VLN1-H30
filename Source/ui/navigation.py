@@ -1,6 +1,6 @@
 # navigation.py
 menu_stack = []
-
+from ui.interface_ui import interface
 def return_to_previous_menu():
     if len(menu_stack) > 1:
         menu_stack.pop()  
@@ -29,7 +29,7 @@ def handle_menu_options():
             return_to_previous_menu()
             break
         elif choice == 'Q':
-            print("Exiting the program.")
+            interface(print("Exiting the program."))
             exit()
         else:
             print("Invalid choice. Please choose again.")
