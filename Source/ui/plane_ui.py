@@ -120,6 +120,7 @@ def modify_plane():
 
     if plane is None:
         interface(["No plane found with the given ID."])
+        time.sleep(2)
         return
 
     content = [f"Modifying details for plane {plane.airplane_model} (ID: {plane.id})"]

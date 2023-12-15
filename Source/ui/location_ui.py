@@ -93,12 +93,9 @@ def create_location():
     # Add the location using logic_wrapper
     logic_wrapper.add_location(location_data)
 
-
     interface(["Location added successfully."])
 
     time.sleep(2)
-
-    # Return to the previous menu
     return return_to_previous_menu()
 
 
