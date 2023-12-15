@@ -21,6 +21,10 @@ class Employee_Data:
         with open(self.model, newline='', encoding="utf-8") as file:
             dict_file = csv.DictReader(file)
             for row in dict_file:
+                if row["plane_licenses"] == "None":
+                    licenses="None"
+                else:
+                    licenses= [x for x in row["plane_licenses"].split(":")]                    
                 employee_list.append(Employee(
                     row["id"], 
                     row["name"], 
@@ -29,8 +33,8 @@ class Employee_Data:
                     row["email"], 
                     row["title"], 
                     row["home_phone"], 
-                    row["current_trip"], 
-                    row["plane_licenses"]))
+                    row["current_trip"],
+                    licenses))
         return employee_list
 
     def add_employee_data(self, employee):
@@ -72,7 +76,7 @@ class Employee_Data:
                     "current_trip": employee.current_trip, 
                     "plane_licenses": employee.plane_licenses
                 })
-    
+
     def get_all_employee_licenses(self):
         license_dict = {}
         all_employees = self.employee_constructor()
@@ -91,3 +95,4 @@ class Employee_Data:
                     license_dict.setdefault(license, []).append((employee.id, employee.name))
         return license_dict
 
+    
