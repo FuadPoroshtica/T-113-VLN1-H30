@@ -1,7 +1,8 @@
+# employee_logic.py
+
 import datetime
 from datetime import datetime, timedelta, date
 
-# employee_logic.py
 class Employee_Logic:
     def __init__(self, data_wrapper, location_logic):
         self.data_wrapper = data_wrapper
@@ -26,16 +27,22 @@ class Employee_Logic:
 
             elif len(employee.id) == 10:
                 try:
-                    year = int(employee.id[4:6])  # Assuming the year is in 21st century
+
+                    tenth_digit = int(employee.id[9])
+                    century_addition = 1900 if tenth_digit == 9 else 2000
+
+                    year = int(employee.id[4:6]) + century_addition
                     month = int(employee.id[2:4])
                     day = int(employee.id[0:2])
                     employee_date = date(year, month, day)  # uses date class from datetime package to check for accurate dates
-                    current_year = datetime.now()
-                    age = (int(str(current_year.year)[2:4])) - employee_date.year
+                    current_year = datetime.now().year
+                    today = datetime.now().date()
+
+                    age = today.year - employee_date.year - ((today.month, today.day) < (employee_date.month, employee_date.day))
                     if employee.title == "Pilot":
-                        if age < 65:
+                        if age > 65:
                             errors.append("You aren't permitted to be a Pilot over 65")
-                        if age > 21:
+                        if age < 21:
                             errors.append("You need to be at least 21 to become a Commercial Pilot")
 
                     elif age < 18:
