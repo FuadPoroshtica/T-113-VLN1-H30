@@ -1,7 +1,6 @@
 # NaN AIR
 ## T-113-VLN1-H30
-## youtube video
-## https://youtu.be/Bl0qRb6nFsA
+
 ```ascii
     __|__
 \___/
@@ -18,8 +17,8 @@ _|_|______________
 */       |       \*
 
 ```
-## Demonstration video:
-[PLAY HERE](https://ru.is)
+## Demonstration video on youtube:
+[PLAY HERE](https://youtu.be/Bl0qRb6nFsA)
 
 ## Requiremnets
 
