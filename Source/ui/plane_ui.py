@@ -172,19 +172,24 @@ def view_plane_licenses():
     menu_stack.append(view_plane_licenses)
     all_planes = logic_wrapper.get_all_planes()
     licenses = logic_wrapper.get_pilot_licenses()
-    #for x in licenses:
-    #    print(x,licenses[x])
-    fleet_models = [plane for plane in all_planes if plane.airplane_model in licenses]
-    not_fleet_models = [plane for plane in all_planes if plane.airplane_model not in fleet_models]
+
+    # Collecting all plane models in the fleet
+    fleet_model_names = {plane.airplane_model for plane in all_planes}
+
+    # Collecting all plane models from pilot licenses
+    licensed_model_names = set(licenses.keys())
+
+    # Finding models that are licensed but not in the fleet
+    not_fleet_models = licensed_model_names - fleet_model_names
 
     content = [
         "Plane License Information:",
         "--------------------------",
         "In Current Fleet:",
     ]
-    for plane in fleet_models:
-        content.append(f"{plane.airplane_model}")
-        for pilot in licenses[plane.airplane_model]:
+    for model in fleet_model_names:
+        content.append(f"{model}")
+        for pilot in licenses.get(model, []):
             content.append(f"ID: {pilot.id} Name: {pilot.name}")
             
     content.extend([
@@ -192,9 +197,9 @@ def view_plane_licenses():
         "Not In Current Fleet:",
     ])
 
-    for plane in not_fleet_models:
-        content.append(f"{plane.airplane_model}")
-        for pilot in licenses[plane.airplane_model]:
+    for model in not_fleet_models:
+        content.append(f"{model}")
+        for pilot in licenses.get(model, []):
             content.append(f"ID: {pilot.id} Name: {pilot.name}")
     interface(content)
     handle_menu_options()
