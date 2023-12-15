@@ -104,7 +104,7 @@ def create_plane():
     prompts = [
         "Enter ID",
         "Enter Airline Name",
-        "Enter Airplane Mode",
+        "Enter Airplane Model",
         "Enter Max Capacity",
     ]
 
@@ -118,7 +118,7 @@ def create_plane():
     new_plane = Plane(
         inputs["Enter ID"],
         inputs["Enter Airline Name"],
-        inputs["Enter Airplane Mode"],
+        inputs["Enter Airplane Model"],
         inputs["Enter Max Capacity"],
     )
 
@@ -191,11 +191,13 @@ def view_plane_licenses():
         content.append(f"{model}")
         for pilot in licenses.get(model, []):
             content.append(f"ID: {pilot.id} Name: {pilot.name}")
-            
-    content.extend([
-        "--------------------------",
-        "Not In Current Fleet:",
-    ])
+
+    content.extend(
+        [
+            "--------------------------",
+            "Not In Current Fleet:",
+        ]
+    )
 
     for model in not_fleet_models:
         content.append(f"{model}")
