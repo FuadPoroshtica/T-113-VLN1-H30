@@ -153,10 +153,6 @@ def show_employee_working_status():
     except ValueError:
         print("Invalid date format.")
         return
-                schedule_content.append(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
-
-        interface(schedule_content)
-
 
     all_employees = logic_wrapper.get_all_employees()
     all_flights = logic_wrapper.get_all_flights()
