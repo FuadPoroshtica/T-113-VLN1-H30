@@ -1,6 +1,6 @@
 #employee_schedule.py
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
@@ -17,6 +17,8 @@ def employee_schedule_menu():
             "------------------------------------------------",
             "1. Add Employees to Flights",
             "------------------------------------------------",
+            "2. View Employee Schedule for a Week",
+            "------------------------------------------------",
             "Main Menu (M), Back (B), Quit (Q)",
         ]
         interface(content)
@@ -24,6 +26,8 @@ def employee_schedule_menu():
 
         if choice == '1':
             add_employees_to_flight()
+        elif choice == '2':
+            view_employee_schedule()
         elif choice == "M":
             return_to_main_menu()
             break
@@ -85,3 +89,29 @@ def add_employees_to_flight():
         else:
             interface(["Invalid Steward ID or Steward not available."])
 
+def view_employee_schedule():
+    employee_id = input("Enter Employee ID: ")
+    employee = logic_wrapper.get_employee_by_id(employee_id)
+
+    if not employee:
+        print("Employee ID does not exist.")
+        return
+
+    date_input = input("Enter a specific date (YYYY-MM-DD) to check the schedule: ")
+    try:
+        specific_date = datetime.strptime(date_input, "%Y-%m-%d")
+    except ValueError:
+        print("Invalid date format.")
+        return
+
+    start_of_week = specific_date - timedelta(days=specific_date.weekday())  # Monday
+    end_of_week = start_of_week + timedelta(days=6)  # Sunday
+
+    print(f"\nSchedule for {employee.name} from {start_of_week.date()} to {end_of_week.date()}:")
+    flights = logic_wrapper.get_all_flights()
+    for flight in flights:
+        if employee_id in flight.employees:
+            flight_date = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M").date()
+            if start_of_week.date() <= flight_date <= end_of_week.date():
+                print(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
+    
