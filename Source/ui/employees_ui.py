@@ -24,8 +24,10 @@ def employees_menu():
             "Employees menu",
             "--------------------",
             "1. View all employees",
-            "2. Add employees",
-            "3. Modify employees",
+            "2. View all Pilots",
+            "3. View all Cabin Crew",
+            "4. Add employees",
+            "5. Modify employees",
             "Main Menu (M), Back (B), Quit (Q)",
         ]
         interface(content)
@@ -34,8 +36,12 @@ def employees_menu():
         if choice == "1":
             view_all_employees()
         elif choice == "2":
-            add_employees()
+            view_pilots()
         elif choice == "3":
+            view_cabin_crew()
+        elif choice == "4":
+            add_employees()
+        elif choice == "5":
             modify_employees()
         elif choice == "M":
             return_to_main_menu()
@@ -58,7 +64,6 @@ def view_all_employees():
         "List of All Employees",
         "----------------------",
         "",
-        # *["ID: {:<10}, Name: {:<20}, Title: {:<15}, Address: {:<25}, Cell: {:<15}, Email: {:<25}, Home Phone: {:<15}, Current Trip: {:<15}, Lincenses: {} ".format(employee.id, employee.name, employee.title, employee.address, employee.cell_phone, employee.email, employee.home_phone, employee.current_trip, employee.plane_licenses) for employee in all_employees]
         "---------------------------------------------------",
         "|ID         |Name                 |Title          |",
         "---------------------------------------------------",
@@ -88,6 +93,78 @@ def view_all_employees():
         else:
             print("Invalid choice. Please choose again.")
 
+    
+def view_pilots():
+    menu_stack.append(view_all_employees)
+    all_employees = logic_wrapper.get_pilots()
+
+    content = [
+    "List of All Employees",
+    "----------------------",
+    "",
+    "---------------------------------------------------",
+    "|ID         |Name                 |Title          |",
+    "---------------------------------------------------",
+    *[
+        "|{:<10},|{:<20},|{:<15}|".format(
+            employee.id, employee.name, employee.title
+        )
+        for employee in all_employees
+    ],
+    "---------------------------------------------------",
+    "Type 1 to search for specific Pilot",
+    ]
+    
+    interface(content)
+    while True:
+        choice = input("Select option: ").upper()
+        if choice == "1":
+            view_employee()
+        elif choice == "M":
+            return_to_main_menu()
+        elif choice == "B":
+            return_to_previous_menu()
+        elif choice == "Q":
+            print("Exiting the program.")
+            exit()
+        else:
+            print("Invalid choice. Please choose again.")
+def view_cabin_crew():
+    menu_stack.append(view_all_employees)
+    all_employees = logic_wrapper.get_cabin_crew()
+
+    content = [
+        "List of All Employees",
+        "----------------------",
+        "",
+        "---------------------------------------------------",
+        "|ID         |Name                 |Title          |",
+        "---------------------------------------------------",
+        *[
+        "|{:<10},|{:<20},|{:<15}|".format(
+                employee.id, employee.name, employee.title
+            )
+            for employee in all_employees
+        ],
+    "---------------------------------------------------",
+        "Type 1 to search for specific Cabin Crew Member",
+    ]
+
+    interface(content)
+
+    while True:
+        choice = input("Select option: ").upper()
+        if choice == "1":
+            view_employee()
+        elif choice == "M":
+            return_to_main_menu()
+        elif choice == "B":
+            return_to_previous_menu()
+        elif choice == "Q":
+            print("Exiting the program.")
+            exit()
+        else:
+            print("Invalid choice. Please choose again.")
 
 def view_employee():
     menu_stack.append(view_employee)

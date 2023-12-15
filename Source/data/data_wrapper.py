@@ -102,12 +102,3 @@ class Data_Wrapper:
         if flight:
             flight.employees = crew_list
             self.flight_data.modify_flight_data(flight)
-
-    def update_employee_schedule(self, employee_id, flight_id):
-        employee = self.employee_data.get_employee_by_id(employee_id)
-        if employee:
-            if employee.current_trip:
-                employee.current_trip += f',{flight_id}'
-            else:
-                employee.current_trip = flight_id
-            self.employee_data.modify_employee_data(employee)
