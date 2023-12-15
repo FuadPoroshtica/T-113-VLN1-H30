@@ -20,6 +20,8 @@ _|_|______________
 ## Demonstration video on youtube:
 [PLAY HERE](https://youtu.be/Bl0qRb6nFsA)
 
+## The report for the assignment is in docs in the repository
+
 ## Requiremnets
 
 - python 3.x
