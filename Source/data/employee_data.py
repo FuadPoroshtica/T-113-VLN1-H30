@@ -21,6 +21,10 @@ class Employee_Data:
         with open(self.model, newline='', encoding="utf-8") as file:
             dict_file = csv.DictReader(file)
             for row in dict_file:
+                if row["plane_licenses"] == "None":
+                    licenses="None"
+                else:
+                    licenses= [x for x in row["plane_licenses"].split(":")]                    
                 employee_list.append(Employee(
                     row["id"], 
                     row["name"], 
@@ -29,8 +33,8 @@ class Employee_Data:
                     row["email"], 
                     row["title"], 
                     row["home_phone"], 
-                    row["current_trip"], 
-                    row["plane_licenses"]))
+                    row["current_trip"],
+                    licenses))
         return employee_list
 
     def add_employee_data(self, employee):
@@ -73,21 +77,3 @@ class Employee_Data:
                     "plane_licenses": employee.plane_licenses
                 })
     
-    def get_all_employee_licenses(self):
-        license_dict = {}
-        all_employees = self.employee_constructor()
-        for employee in all_employees:
-            if employee.plane_licenses in [None, "None", ""]:
-                continue  
-
-            licenses_str = employee.plane_licenses.replace('[', '').replace(']', '').replace("'", "")
-            licenses = [license.strip() for license in licenses_str.split(';') if license]
-            for license in licenses:
-                if ',' in license:  
-                    sub_licenses = [sub_license.strip() for sub_license in license.split(',')]
-                    for sub_license in sub_licenses:
-                        license_dict.setdefault(sub_license, []).append((employee.id, employee.name))
-                else:
-                    license_dict.setdefault(license, []).append((employee.id, employee.name))
-        return license_dict
-

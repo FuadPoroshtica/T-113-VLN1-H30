@@ -119,6 +119,7 @@ class Employee_Logic:
     def get_cabin_crew(self):
         return [employee for employee in self.data_wrapper.get_all_employees() if employee.title.lower() != "pilot"]
     
+    
     def get_employee_by_id(self, employee_id):
         return self.data_wrapper.get_employee_by_id(employee_id)
 
@@ -149,3 +150,24 @@ class Employee_Logic:
             return employee.title.lower() == "pilot"
         return False
     
+    def get_employee_licenses(self,plane):
+        license_dict = {}
+        employees = self.employee_constructor()
+
+        for x in self.get_pilots():
+            l = []            
+        for employee in all_employees:
+            if employee.plane_licenses in [None, "None", ""]:
+                continue  
+            
+            licenses_str = employee.plane_licenses.replace('[', '').replace(']', '').replace("'", "")
+            licenses = [license.strip() for license in licenses_str.split(';') if license]
+            for license in licenses:
+                if ',' in license:  
+                    sub_licenses = [sub_license.strip() for sub_license in license.split(',')]
+                    for sub_license in sub_licenses:
+                        license_dict.setdefault(sub_license, []).append((employee.id, employee.name))
+                else:
+                    license_dict.setdefault(license, []).append((employee.id, employee.name))
+        return license_dict
+
