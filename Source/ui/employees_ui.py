@@ -165,40 +165,28 @@ def add_employees():
         plane_licenses
     )
 
+
+
     logic_wrapper.add_employee(new_employee)
+
+    status = logic_wrapper.add_employee(new_employee)
+
+    if type(status) == type([]): #prints errors
+        print("\n")
+        for x in status:
+            print(x)
+    else:
+        print(status)
 
     interface(["Employee added successfully."])
 
     time.sleep(2)
     return employees_menu()
 
-
-
-'''    
-    plane_licenses="None"
-    if title.lower() == "pilot":
-        plane_licenses = add_license()
-
-    new_employee = Employee(id, name, address, cell_phone, email, title, home_phone,plane_licenses=plane_licenses)
-'''
-
-
-'''
-## vinsamlegst gefið þessu sinn eigin glugga/function
-    if type(status) == type([]): #prentar errors
-        print("\n")
-        for x in status:
-            print(x)
-    else:
-        print(status)
-## vinsamlegst gefið þessu sinn eigin glugga/function
-'''
-
 def add_license():
-    print('Would you like to add plane licenses ?')
-        continue_input = input("Would you like to add plane licenses? (y/n): ")
     plane_licenses = []
-    while continue_input == 'y':
+    continue_input = input("Would you like to add plane licenses? (y/n): ")
+    while continue_input.lower() == 'y':
         license_input = input("Enter a plane license: ")
         plane_licenses.append(license_input)
         continue_input = input("Would you like to add another license? (y/n): ")
