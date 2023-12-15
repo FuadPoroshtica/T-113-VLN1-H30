@@ -69,7 +69,7 @@ def view_all_employees():
             for employee in all_employees
         ],
         "---------------------------------------------------",
-        "Type 1 to search for pecific employee",
+        "Type 1 to search for specific employee",
     ]
 
     interface(content)
