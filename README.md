@@ -10,6 +10,24 @@ pip install -r Source/requirements.txt
 
 ## How to run:
 
+## Step 1:
+
+### Download from Canvas
+
+## Step 2:
+
+### Extract T-113-VLN1-H30-main.zip
+
+## Step 3:
+
+### Open Command prompt (Windows) or Terminal (Mac/Linux) 
+
+## Step 4:
+
+### Cd to the directory
+
+## Step 5:
+
 ### Windows
 ```Bash
 $ ./NaNair_win.bat
@@ -19,17 +37,16 @@ $ ./NaNair_win.bat
 ```bash
 $ ./NaNair_Mac_Linux.sh
 ```
-### Usage
 
-```py
-from project_name import BaseClass
-from project_name import base_function
+## Requiremnets
 
-BaseClass().base_method()
-base_function()
-```
+- python 3.x
+- datetime
+- time
 
+## Developers
 
-## Development
-
-#### Fuad Poroshtica, 
+#### Fuad Poroshtica
+#### Garðar Sölvi Kjartansson
+#### Jón Logi Dagbjartsson
+#### Ólafur Valfells
