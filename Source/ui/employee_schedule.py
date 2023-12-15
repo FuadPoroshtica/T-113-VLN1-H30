@@ -81,7 +81,19 @@ def add_employees_to_flight():
 
     interface(pilots_content)
 
+    # Pilot addition loop
     while True:
+        available_pilots = logic_wrapper.get_available_pilots_for_flight(flight_id)
+        pilots_content = ["Available Pilots:"]
+
+        if available_pilots:
+            pilots_content.extend([f"{pilot.id}: {pilot.name}" for pilot in available_pilots])
+        else:
+            pilots_content.append("No available pilots.")
+
+        pilots_content.append("Enter Pilot ID to add (or 'done' to finish):")
+        interface(pilots_content)
+
         pilot_id = input("Type here: ").strip().lower()
         if pilot_id == 'done':
             break
@@ -91,24 +103,40 @@ def add_employees_to_flight():
         else:
             interface(["Invalid Pilot ID or Pilot not available."])
             time.sleep(2)
-        return add_employees_to_flight()
+
+    # Steward addition section starts here
+    available_stewards = logic_wrapper.get_available_stewards_for_flight(flight_id)
+    stewards_content = ["Available Stewards:"] + \
+                       [f"{steward.id}: {steward.name}" for steward in available_stewards]
+    interface(stewards_content)
 
     available_stewards = logic_wrapper.get_available_stewards_for_flight(flight_id)
     stewards_content = ["Available Stewards:"] + \
                        [f"{steward.id}: {steward.name}" for steward in available_stewards]
     interface(stewards_content)
 
+    # Steward addition loop
     while True:
-        interface(["Enter Steward ID to add (or 'done' to finish):"])
+        available_stewards = logic_wrapper.get_available_stewards_for_flight(flight_id)
+        stewards_content = ["Available Stewards:"]
+
+        if available_stewards:
+            stewards_content.extend([f"{steward.id}: {steward.name}" for steward in available_stewards])
+        else:
+            stewards_content.append("No available stewards.")
+
+        stewards_content.append("Enter Steward ID to add (or 'done' to finish):")
+        interface(stewards_content)
+
         steward_id = input("Type here: ").strip().lower()
         if steward_id == 'done':
             break
         if logic_wrapper.add_steward_to_flight(flight_id, steward_id):
             interface(["Steward added successfully."])
+            time.sleep(2)
         else:
             interface(["Invalid Steward ID or Steward not available."])
-        time.sleep(2)
-
+            time.sleep(2)
 
 def view_employee_schedule():
     interface(["Enter Employee ID:"])
@@ -120,7 +148,7 @@ def view_employee_schedule():
         time.sleep(2)
         return
 
-    interface(["Enter a specific date (YYYY-MM-DD) to check the schedule:"])
+    interface(["Enter the start date of the week (YYYY-MM-DD) to check the schedule:"])
     date_input = input("Type here: ").strip()
 
     try:
@@ -134,14 +162,26 @@ def view_employee_schedule():
     end_of_week = start_of_week + timedelta(days=6)
 
     schedule_content = [f"Schedule for {employee.name} from {start_of_week.date()} to {end_of_week.date()}:"]
-    time.sleep(3)
-
+    
     flights = logic_wrapper.get_all_flights()
     for flight in flights:
         if employee_id in flight.employees:
             flight_date = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M").date()
             if start_of_week.date() <= flight_date <= end_of_week.date():
-                print(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
+                schedule_content.append(f"- Flight {flight.id}: From {flight.initial_location} to {flight.arrival_location} on {flight.start_home}")
+
+    interface(schedule_content)
+
+    while True:
+        print("\nPress 'B' to go back or 'M' for the main menu.")
+        user_input = input("Select Option: ").upper()
+        if user_input == "B":
+            return_to_previous_menu()
+            break
+        elif user_input == "M":
+            return_to_main_menu()
+            break
+
 
 
 def show_employee_working_status():
