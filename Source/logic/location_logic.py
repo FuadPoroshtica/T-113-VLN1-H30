@@ -19,7 +19,7 @@ class Location_Logic:
             if len(location.airport_code) != 3:
                 errors.append("location code needs to be 3 characters")
 
-            if location.airport_code.isalpha():
+            if location.airport_code.isalpha() != True:
                 errors.append("location code must only contain characters")
 
         if len(location.manager_name) >35:
