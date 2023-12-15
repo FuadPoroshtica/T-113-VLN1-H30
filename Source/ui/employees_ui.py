@@ -58,6 +58,7 @@ def view_all_employees():
         '---------------------------------------------------',
         *["|{:<10},|{:<20},|{:<15}|".format(employee.id, employee.name, employee.title) for employee in all_employees],
         '---------------------------------------------------',
+        'Type 1 to search for pecific employee'
     ]
 
     interface(content)
@@ -82,12 +83,13 @@ def view_employee():
     all_employees = logic_wrapper.get_all_employees()
     if not all_employees:
         interface(["No employees found."])
-        return handle_menu_options()
+        time.sleep(2)
+        return view_all_employees()
 
     # Displaying a list of all employees with IDs
     employee_list_content = [
         '---------------------------------------------------',
-        "List of Employees:",
+        "The Employee:",
         *["ID: {:<10}, Name: {:<20}".format(employee.id, employee.name) for employee in all_employees],
         '---------------------------------------------------',
         "Enter the ID of the employee to view details, or type 'back' to return:"
@@ -118,21 +120,18 @@ def view_employee():
         interface(employee_details_content)
     else:
         interface([f"No employee found with ID {selected_id}."])
-
-    return handle_menu_options()
+        time.sleep(2)
+    return view_all_employees()
 
 
 def add_employees():
     print("Adding new employees...")
     prompts = [
-        'Add Employee',
         'Enter ID',
         'Enter Name',
-        'Enter home Address',
+        'Enter Home Address',
         'Enter Cell Phone',
-        'Enter Email',
-        'Enter Title',
-        'Enter Home Phone (Optional))'
+        'Enter Email'
     ]
 
     # Store inputs in a dictionary
@@ -141,24 +140,38 @@ def add_employees():
         interface([prompt])  # Display each prompt using the interface function
         inputs[prompt] = input("Type here: ").strip()
 
-    # Prepare the location data
+    # Ask for title
+    interface(['Enter Title (Pilot/Cabin Crew)'])
+    title = input("Type here: ").strip().lower()
+    inputs['Enter Title'] = title
+
+    plane_licenses = "None"
+    if title == "pilot":
+        plane_licenses = add_license()  # Ensure add_license() is defined
+
+    # Enter optional home phone
+    interface(['Enter Home Phone (Optional)'])
+    inputs['Enter Home Phone (Optional)'] = input("Type here: ").strip()
+
+    # Prepare the employee data
     new_employee = Employee(
-        'Add Employee',
-        'Enter ID',
-        'Enter Name',
-        'Enter home Address',
-        'Enter Cell Phone',
-        'Enter Email',
-        'Enter Title',
-        'Enter Home Phone (Optional))'
+        inputs['Enter ID'],
+        inputs['Enter Name'],
+        inputs['Enter Home Address'],
+        inputs['Enter Cell Phone'],
+        inputs['Enter Email'],
+        title,
+        inputs.get('Enter Home Phone (Optional)', ''),
+        plane_licenses
     )
 
     logic_wrapper.add_employee(new_employee)
 
-    interface(["Location added successfully."])
+    interface(["Employee added successfully."])
 
     time.sleep(2)
     return employees_menu()
+
 
 
 '''    
@@ -169,9 +182,8 @@ def add_employees():
     new_employee = Employee(id, name, address, cell_phone, email, title, home_phone,plane_licenses=plane_licenses)
 '''
 
-'''
-Please take a look at this code!!!
 
+'''
 ## vinsamlegst gefið þessu sinn eigin glugga/function
     if type(status) == type([]): #prentar errors
         print("\n")
@@ -181,6 +193,7 @@ Please take a look at this code!!!
         print(status)
 ## vinsamlegst gefið þessu sinn eigin glugga/function
 '''
+
 def add_license():
     print('Would you like to add plane licenses ?')
     plane_licenses = None
