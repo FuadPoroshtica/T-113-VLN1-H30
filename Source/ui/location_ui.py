@@ -108,9 +108,9 @@ def create_location():
         "Enter Manager Name",
         "Enter Emergency Phone",
     ]
+    try:
 
     # Store inputs in a dictionary
-    try:
         inputs = {}
         for prompt in prompts:
             interface([prompt])  # Display each prompt using the interface function
@@ -127,19 +127,19 @@ def create_location():
             inputs["Enter Emergency Phone"],
         )
     except ValueError:
-       content = ["Duration should represents minutes (60)",
+       prompts = ["Duration should represents minutes (60)",
                   "Distance must be a number represent km (414.4)."]
         
     else:
        status = logic_wrapper.add_location(location_data)
 
        if isinstance(status, list):  # Checks if status is a list of errors
-           content = [""]
-           content.extend(status)
-       else:
-           content = [status, "Location added successfully."]
+           prompts = [status]
 
-    interface(content)
+       else:
+           prompts = [status, "Location added successfully."]
+
+    interface(prompts)
     time.sleep(4)
 
     return locations_menu()
