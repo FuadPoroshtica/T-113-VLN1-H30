@@ -162,9 +162,9 @@ def view_flights_by_date():
     if not start_date:
         return flights_menu()
 
-    flights = logic_wrapper.get_flights_by_week_with_manning_info(start_date)
+    flights = logic_wrapper.get_flights_by_date_with_manning_info(start_date)
 
-    flight_content = ["Flights for the day starting from " + start_date]
+    flight_content = ["Flights for the day: " + start_date]
     for flight, is_manned in flights:
         flight_content.append(
             f"Flight {flight.id} on {flight.start_home}: {'Properly Manned' if is_manned else 'Not Properly Manned'}")
