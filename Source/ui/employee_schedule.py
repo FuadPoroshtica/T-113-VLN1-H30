@@ -4,6 +4,7 @@ from datetime import datetime
 from .navigation import return_to_previous_menu, return_to_main_menu, handle_menu_options, menu_stack
 from logic.logic_wrapper import Logic_Wrapper
 from data.data_wrapper import Data_Wrapper
+from ui.location_ui import interface
 
 data_wrapper = Data_Wrapper()
 logic_wrapper = Logic_Wrapper(data_wrapper)
