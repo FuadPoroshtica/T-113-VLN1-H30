@@ -205,7 +205,6 @@ def add_license():
         continue_input = input("Would you like to add another license? (y/n): ")
     return plane_licenses
 
-
 def modify_employees():
     menu_stack.append(modify_employees)
 
