@@ -74,148 +74,131 @@ def view_all_employees():
             for employee in all_employees
         ],
         "---------------------------------------------------",
-        "Type 1 to search for specific employee",
+        "Enter employee ID to view details, or M/B/Q for menu options:",
     ]
 
     interface(content)
 
     while True:
         choice = input("Select option: ").upper()
-        if choice == "1":
-            view_employee()
-        elif choice == "M":
+
+        if choice == "M":
             return_to_main_menu()
         elif choice == "B":
             return_to_previous_menu()
         elif choice == "Q":
             print("Exiting the program.")
             exit()
+        elif choice.isnumeric():  # Check if the input is numeric, assuming IDs are numeric
+            view_employee(choice)  # Call view_employee with the entered ID
         else:
             print("Invalid choice. Please choose again.")
+
 
     
 def view_pilots():
-    menu_stack.append(view_all_employees)
+    menu_stack.append(view_pilots)
     all_employees = logic_wrapper.get_pilots()
 
     content = [
-    "List of All Employees",
-    "----------------------",
-    "",
-    "---------------------------------------------------",
-    "|ID         |Name                 |Title          |",
-    "---------------------------------------------------",
-    *[
-        "|{:<10},|{:<20},|{:<15}|".format(
-            employee.id, employee.name, employee.title
-        )
-        for employee in all_employees
-    ],
-    "---------------------------------------------------",
-    "Type 1 to search for specific Pilot",
-    ]
-    
-    interface(content)
-    while True:
-        choice = input("Select option: ").upper()
-        if choice == "1":
-            view_employee()
-        elif choice == "M":
-            return_to_main_menu()
-        elif choice == "B":
-            return_to_previous_menu()
-        elif choice == "Q":
-            print("Exiting the program.")
-            exit()
-        else:
-            print("Invalid choice. Please choose again.")
-def view_cabin_crew():
-    menu_stack.append(view_all_employees)
-    all_employees = logic_wrapper.get_cabin_crew()
-
-    content = [
-        "List of All Employees",
-        "----------------------",
+        "List of All Pilots",
+        "------------------",
         "",
         "---------------------------------------------------",
         "|ID         |Name                 |Title          |",
         "---------------------------------------------------",
         *[
-        "|{:<10},|{:<20},|{:<15}|".format(
+            "|{:<10},|{:<20},|{:<15}|".format(
                 employee.id, employee.name, employee.title
             )
             for employee in all_employees
         ],
-    "---------------------------------------------------",
-        "Type 1 to search for specific Cabin Crew Member",
+        "---------------------------------------------------",
+        "Enter pilot ID to view details, or M/B/Q for menu options:",
     ]
 
     interface(content)
 
     while True:
         choice = input("Select option: ").upper()
-        if choice == "1":
-            view_employee()
-        elif choice == "M":
+
+        if choice == "M":
             return_to_main_menu()
         elif choice == "B":
             return_to_previous_menu()
         elif choice == "Q":
             print("Exiting the program.")
             exit()
+        elif choice.isnumeric():  # Check if the input is numeric
+            view_employee(choice)  # Call view_employee with the entered ID
         else:
             print("Invalid choice. Please choose again.")
 
-def view_employee():
-    menu_stack.append(view_employee)
+def view_cabin_crew():
+    menu_stack.append(view_cabin_crew)
+    all_employees = logic_wrapper.get_cabin_crew()
 
-    # Fetching all employees
-    all_employees = logic_wrapper.get_all_employees()
-    if not all_employees:
-        interface(["No employees found."])
-        time.sleep(2)
-        return view_all_employees()
-
-    # Displaying a list of all employees with IDs
-    employee_list_content = [
+    content = [
+        "List of All Cabin Crew Members",
+        "-------------------------------",
+        "",
         "---------------------------------------------------",
-        "The Employee:",
+        "|ID         |Name                 |Title          |",
+        "---------------------------------------------------",
         *[
-            "ID: {:<10}, Name: {:<20}".format(employee.id, employee.name)
+            "|{:<10},|{:<20},|{:<15}|".format(
+                employee.id, employee.name, employee.title
+            )
             for employee in all_employees
         ],
         "---------------------------------------------------",
-        "Enter the ID of the employee to view details, or type 'back' to return:",
+        "Enter cabin crew ID to view details, or M/B/Q for menu options:",
     ]
-    interface(employee_list_content)
 
-    # Input for selecting an employee
-    selected_id = input("Type here: ").strip()
-    if selected_id.lower() == "back":
-        return handle_menu_options()
+    interface(content)
 
-    # Fetch and display details of the selected employee
-    selected_employee = logic_wrapper.get_employee_by_id(selected_id)
+    while True:
+        choice = input("Select option: ").upper()
+
+        if choice == "M":
+            return_to_main_menu()
+        elif choice == "B":
+            return_to_previous_menu()
+        elif choice == "Q":
+            print("Exiting the program.")
+            exit()
+        elif choice.isnumeric():  # Check if the input is numeric
+            view_employee(choice)  # Call view_employee with the entered ID
+        else:
+            print("Invalid choice. Please choose again.")
+
+
+def view_employee(employee_id):
+    menu_stack.append(view_employee)
+
+    selected_employee = logic_wrapper.get_employee_by_id(employee_id)
     if selected_employee:
         employee_details_content = [
             "---------------------------------------------------",
-            f"Details for employee ID {selected_id}:",
+            f"Details for employee ID {employee_id}:",
             f"Name: {selected_employee.name}",
             f"Title: {selected_employee.title}",
             f"Address: {selected_employee.address}",
             f"Cell Phone: {selected_employee.cell_phone}",
             f"Email: {selected_employee.email}",
             f"Home Phone: {selected_employee.home_phone}",
-            f"Current Trip: {selected_employee.current_trip}",
             f"Plane Licenses: {', '.join(selected_employee.plane_licenses)}",
             "---------------------------------------------------",
         ]
         interface(employee_details_content)
-    else:
-        interface([f"No employee found with ID {selected_id}."])
-        time.sleep(2)
-    return view_all_employees()
 
+        # Wait for the user to press a key before returning to the previous menu
+        input("Press any key to return to the previous menu.")
+    else:
+        interface([f"No employee found with ID {employee_id}."])
+        time.sleep(2)
+
+    return_to_previous_menu() 
 
 def add_employees():
     print("Adding new employees...")
@@ -272,7 +255,6 @@ def add_employees():
     time.sleep(4)
     return employees_menu()
 
-
 def add_license():
     plane_licenses = []
     continue_input = input("Would you like to add plane licenses? (y/n): ")
@@ -316,4 +298,3 @@ def modify_employees():
     time.sleep(2)
 
     return employees_menu()
-

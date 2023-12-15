@@ -124,7 +124,9 @@ class Employee_Logic:
     
     
     def get_employee_by_id(self, employee_id):
+        print(f"Retrieving employee with ID: {employee_id}")  # Debugging line
         return self.data_wrapper.get_employee_by_id(employee_id)
+
 
     def update_employee(self, employee_id, new_data):
         employee = self.get_employee_by_id(employee_id)
