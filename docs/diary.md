@@ -247,3 +247,22 @@ Jón is gonna update the model diagram, class diagram make a task checklist.
 Ólafur is gonna finish connecting the flight logic.
 
 ### Status
+Everything is connected now but we still need to implement the schedule and verification
+
+## 14/12/23
+
+We met up at 9:00 Fuad Garðar and Jón showed up Garðar showed up at around 11
+
+Jón is todays project manager.
+
+### Daily goals
+
+Fuad is attempting to finish the ui with border in every location, making everything stylized.
+
+Garðar is changing our requirement list and making sure the use case diagram is accurate to our current design.
+
+Jón is implementing thorough verification for employee, location, and plane
+
+Ólafur is working on the schedule and verification of flights.
+
+### Status
