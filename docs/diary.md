@@ -266,3 +266,23 @@ Jón is implementing thorough verification for employee, location, and plane
 Ólafur is working on the schedule and verification of flights.
 
 ### Status
+
+Progress went really might be on our way to finish this in time.
+
+## 15/12/23
+
+Fuad showed up at 8 and we met up at 9 Fuad Garðar Jón and Ólafur showed up:
+
+Jón is the project manager today.
+
+### Daily goals 
+
+Jón is gonna attempt to fix the wrappers, fix bugs and finish what's left of class diagram.
+
+Fuad is gonna work on interface and fixing how data is output.
+
+Garðar is gonna work on Ascii art, the documentation and bug fixing
+
+Ólafur: finish the schedule and verification of instances in flights
+
+### Status
