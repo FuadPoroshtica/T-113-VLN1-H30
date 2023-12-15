@@ -251,7 +251,7 @@ Everything is connected now but we still need to implement the schedule and veri
 
 ## 14/12/23
 
-We met up at 9:00 Fuad Garðar and Jón showed up Garðar showed up at around 11
+We met up at 9:00 everyone showed up on time.
 
 Jón is todays project manager.
 
