@@ -17,8 +17,8 @@ _|_|______________
 */       |       \*
 
 ```
-## Demonstration video:
-[PLAY HERE](https://ru.is)
+## Demonstration video on youtube:
+[PLAY HERE](https://youtu.be/Bl0qRb6nFsA)
 
 ## Requiremnets
 

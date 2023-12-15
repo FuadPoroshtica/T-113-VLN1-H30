@@ -4,9 +4,9 @@ import datetime
 from datetime import datetime, timedelta, date
 
 class Employee_Logic:
-    def __init__(self, data_wrapper, location_logic):
+    def __init__(self, data_wrapper, logic_wrapper):
         self.data_wrapper = data_wrapper
-        self.location_logic = location_logic
+        self.logic_wrapper = logic_wrapper
 
     def verify_allowed(self, employee, reason):
         employee.name = employee.name.title()
@@ -206,7 +206,7 @@ class Employee_Logic:
     def _is_pilot_available(self, pilot, target_flight):
         # Get target flight's start and end time
         target_start = datetime.strptime(target_flight.start_home, "%Y-%m-%d %H:%M")
-        target_location = self.location_logic.get_location_by_airport_code(target_flight.arrival_location)
+        target_location = self.logic_wrapper.location_logic.get_location_by_airport_code(target_flight.arrival_location)        
         target_flight_duration = target_location.flight_duration if target_location else 0
         target_total_duration = (2 * target_flight_duration) + 60
         target_end = target_start + timedelta(minutes=target_total_duration)
@@ -215,7 +215,7 @@ class Employee_Logic:
         for flight in all_flights:
             if pilot.id in flight.employees and flight.id != target_flight.id:
                 flight_start = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M")
-                flight_location = self.location_logic.get_location_by_airport_code(flight.arrival_location)
+                flight_location = self.logic_wrapper.location_logic.get_location_by_airport_code(flight.arrival_location)
                 flight_duration = flight_location.flight_duration if flight_location else 0
                 flight_total_duration = (2 * flight_duration) + 60
                 flight_end = flight_start + timedelta(minutes=flight_total_duration)
@@ -226,7 +226,7 @@ class Employee_Logic:
 
     def _is_steward_available(self, steward, target_flight):
         target_start = datetime.strptime(target_flight.start_home, "%Y-%m-%d %H:%M")
-        target_location = self.location_logic.get_location_by_airport_code(target_flight.arrival_location)
+        target_location = self.logic_wrapper.location_logic.get_location_by_airport_code(target_flight.arrival_location)
         target_flight_duration = target_location.flight_duration if target_location else 0
         target_total_duration = (2 * target_flight_duration) + 60
         target_end = target_start + timedelta(minutes=target_total_duration)
@@ -235,7 +235,7 @@ class Employee_Logic:
         for flight in all_flights:
             if steward.id in flight.employees and flight.id != target_flight.id:
                 flight_start = datetime.strptime(flight.start_home, "%Y-%m-%d %H:%M")
-                flight_location = self.location_logic.get_location_by_airport_code(flight.arrival_location)
+                flight_location = self.logic_wrapper.location_logic.get_location_by_airport_code(flight.arrival_location)
                 flight_duration = flight_location.flight_duration if flight_location else 0
                 flight_total_duration = (2 * flight_duration) + 60
                 flight_end = flight_start + timedelta(minutes=flight_total_duration)
