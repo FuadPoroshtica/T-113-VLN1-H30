@@ -26,12 +26,12 @@ class Employee_Logic:
 
             elif len(employee.id) == 10:
                 try:
-                    year = int(employee.id[4:6]) + 2000  # Assuming the year is in 21st century
+                    year = int(employee.id[4:6])  # Assuming the year is in 21st century
                     month = int(employee.id[2:4])
                     day = int(employee.id[0:2])
                     employee_date = date(year, month, day)  # uses date class from datetime package to check for accurate dates
-                    current_year = datetime.now().year
-                    age = current_year - employee_date.year
+                    current_year = datetime.now()
+                    age = (int(str(current_year.year)[2:4])) - employee_date.year
                     if employee.title == "Pilot":
                         if age < 65:
                             errors.append("You aren't permitted to be a Pilot over 65")
@@ -136,7 +136,7 @@ class Employee_Logic:
                     else:
                         setattr(employee, key, value)
             self.data_wrapper.modify_employee(employee)
-            return "Succesfully added employee"
+            return "Succesfully changed employee"
 
 
 

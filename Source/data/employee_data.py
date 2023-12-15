@@ -73,22 +73,6 @@ class Employee_Data:
                     "plane_licenses": employee.plane_licenses
                 })
 
-    def get_all_employee_licenses(self):
-        license_dict = {}
-        all_employees = self.employee_constructor()
-        for employee in all_employees:
-            if employee.plane_licenses in [None, "None", ""]:
-                continue  
 
-            licenses_str = employee.plane_licenses.replace('[', '').replace(']', '').replace("'", "")
-            licenses = [license.strip() for license in licenses_str.split(';') if license]
-            for license in licenses:
-                if ',' in license:  
-                    sub_licenses = [sub_license.strip() for sub_license in license.split(',')]
-                    for sub_license in sub_licenses:
-                        license_dict.setdefault(sub_license, []).append((employee.id, employee.name))
-                else:
-                    license_dict.setdefault(license, []).append((employee.id, employee.name))
-        return license_dict
 
     
